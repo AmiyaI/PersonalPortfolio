@@ -20,6 +20,7 @@ const ContactForm = () => {
 
     emailjs.sendForm(
       "amiya_personalport",
+       'default',
       e.target,
       "cdoSytMf3BqCdBI3H"
     )
