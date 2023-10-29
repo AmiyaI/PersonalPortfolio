@@ -114,7 +114,7 @@ export const navLinks = [
 const projects = [
   {
     name: "Main Project",
-    description: 'TBD.',
+    description: 'In Progress',
     image: memoryGame,
     source_code_link: 'TBD',
     demo_link: 'TBD',
