@@ -131,7 +131,7 @@ const projects = [
     description: 'A website hosted on AWS Amplify that includes a brief introduction about me, my projects, the technologies I have worked with, and my experience.',
     image: calculator,
     source_code_link: 'https://github.com/AmiyaI/PersonalPortfolio',
-    demo_link: 'TBD',
+    demo_link: 'https://www.amiyaislam.com',
   },
 ];
 
