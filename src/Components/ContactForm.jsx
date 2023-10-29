@@ -14,28 +14,29 @@ import emailjs from "@emailjs/browser";
 const ContactForm = () => {
   const [isSent, setIsSent] = useState(false);
   const form = useRef();
-  
-  const sendEmail = (e) => {
-    e.preventDefault();
 
-    emailjs.sendForm(
-      "amiya_personalport",
-       'default',
-      e.target,
-      "cdoSytMf3BqCdBI3H"
-    )
-      .then(
-        (result) => {
-          document.getElementById("contact_form").reset();
-          setIsSent(true);
-          alert('Thank you I will get back to you as soon as possible ! (:');
-        },
-        (error) => {
-          console.error(error);
-          setIsSent(false);
-        }
-      );
-  };  
+const sendEmail = (e) => {
+  e.preventDefault();
+
+  emailjs.sendForm(
+    'amiya_personalport', // Your Service ID
+    'default',            // Your Template ID
+    form.current,         // Reference to your form
+    'cdoSytMf3BqCdBI3H'   // Your Public Key (User ID)
+  )
+  .then(
+    (result) => {
+      form.current.reset(); // Resetting the form using the ref
+      setIsSent(true);
+      alert('Thank you! I will get back to you as soon as possible ! (:');
+    },
+    (error) => {
+      console.error(error);
+      setIsSent(false);
+    }
+  );
+};
+
 
   return (
     <div
