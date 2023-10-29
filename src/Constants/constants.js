@@ -208,7 +208,7 @@ const skills = [
     title: 'Docker',
     icon: psqlIcon,
     description:
-      'I have hands-on experience with Docker, understanding its core concepts and practical applications. Additionally, I am familiar with integrating Docker on AWS, leveraging the synergy of containerization and cloud infrastructure for optimized solutions',
+      'Experienced with Docker, adept at its essential concepts and practical applications, including integration with AWS for enhanced containerized solutions.',
   },
   {
     id: 'py',
