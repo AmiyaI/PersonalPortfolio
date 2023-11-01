@@ -116,8 +116,8 @@ const projects = [
     name: "Cloud-Based Automated Data Processing and Analytics Platform",
     description: 'In Progress',
     image: memoryGame,
-    source_code_link: 'TBD',
-    demo_link: 'TBD',
+    source_code_link: 'https://github.com/AmiyaI',
+    demo_link: 'https://github.com/AmiyaI',
   },
   {
     name: 'FSA Capstone Project',
