@@ -113,7 +113,7 @@ export const navLinks = [
 
 const projects = [
   {
-    name: "Main Project",
+    name: "Cloud-Based Automated Data Processing and Analytics Platform",
     description: 'In Progress',
     image: memoryGame,
     source_code_link: 'TBD',
