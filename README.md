@@ -12,20 +12,6 @@ Welcome to the repository for my personal portfolio! This project showcases a br
 - `pages`: Different sections/pages of the portfolio.
 - `constants`: Immutable values used throughout the application.
 
-## How to Use
-
-To clone and run this application, ensure you have Git, Node.js, and Vite installed on your computer. Follow these steps in your command line:
-
-```bash
-# Clone this repository
-$ git clone https://github.com/AmiyaI/PersonalPortfolio
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm run dev
-```
 ## Packages
 This portfolio utilizes several open-source packages, including:
     Vite,
