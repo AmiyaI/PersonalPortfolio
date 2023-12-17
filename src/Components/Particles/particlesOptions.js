@@ -181,7 +181,7 @@ export const heroOptions = {
           fill: true,
           font: 'Font Awesome 6 Brands',
           style: '',
-          value: ['\uf0c2'],
+          value: ['\uf3b6'],
           weight: '400',
         },
         {
