@@ -112,9 +112,9 @@ export const navLinks = [
 const projects = [
   {
     name: "Cloud-Based Automated Data Processing and Analytics Platform",
-    description: 'In Progress',
+    description: 'Developed an advanced, scalable AWS-based ETL pipeline for weather data analysis, leveraging Python for data processing, Docker for containerization, Jenkins for continuous integration and deployment, and Terraform for efficient infrastructure management, all while ensuring top-notch security and performance',
     image: memoryGame,
-    source_code_link: 'https://github.com/AmiyaI',
+    source_code_link: 'https://github.com/AmiyaI/WeatherApp',
     demo_link: 'https://github.com/AmiyaI',
   },
   {
@@ -178,14 +178,14 @@ const skills = [
     title: 'Amazon Web Services',
     icon: awsIcon,
     description:
-      'I hold dual AWS certifications as a Cloud Practitioner and Associate Solutions Architect, highlighting my in-depth expertise with the platform. My skills extend beyond certifications, with a strong proficiency in a broad spectrum of AWS services.',
+      '2x AWS Certified with proficiency in a wide range of AWS services, expertly navigating cloud solutions for scalable and reliable infrastructure.',
   },
   {
     id: 'figma',
     title: 'Project Management',
     icon: figmaIcon,
     description:
-    'As a Virginia Tech graduate in Construction Engineering and Management, I possess exceptional project management skills. My expertise spans estimating, scheduling, team coordination, and more.',
+    'As a Virginia Tech graduate in Construction Engineering and Management, I excel in project management with skills in estimating, scheduling, team coordination, and more.',
   },
   {
     id: 'git',
@@ -213,14 +213,14 @@ const skills = [
     title: 'Python',
     icon: pyIcon,
     description:
-      'With about 2 years of Python experience, I am adept at coding solutions specific to cloud',
+      'Proficient in Python, I specialize in developing cloud-specific coding solutions, leveraging the language's versatility and power.',
   },
   {
     id: 'node',
     title: 'CI/CD',
     icon: nodeIcon,
     description:
-      'I possess a strong proficiency in DevOps, particularly in CI/CD processes. My in-depth experience covers the intricacies of continuous integration and continuous delivery, ensuring streamlined development and robust deployments.',
+      'Skilled in CI/CD methodologies, I excel in optimizing development pipelines for efficiency and reliability in a DevOps framework.',
   },
 
 ];
