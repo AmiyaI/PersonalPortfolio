@@ -111,11 +111,11 @@ export const navLinks = [
 
 const projects = [
   {
-    name: "Cloud-Based Automated Data Processing and Analytics Platform",
-    description: 'Developed an advanced, scalable AWS-based ETL pipeline for weather data analysis, leveraging Python for data processing, Docker for containerization, Jenkins for continuous integration and deployment, and Terraform for efficient infrastructure management, all while ensuring top-notch security and performance',
+    name: "Weather Data Processing and Analytics Platform",
+    description: 'Developed an advanced, scalable AWS-based ETL pipeline for weather data analysis, leveraging Python for data processing, Docker for containerization, Jenkins for CI/CD, and Terraform for efficient infrastructure management, all while ensuring top-notch security and performance. Currently working on adding a user-friendly interface',
     image: memoryGame,
     source_code_link: 'https://github.com/AmiyaI/WeatherApp',
-    demo_link: 'https://github.com/AmiyaI',
+    demo_link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
   },
   {
     name: 'FSA Capstone Project',
