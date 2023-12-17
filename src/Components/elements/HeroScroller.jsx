@@ -1,6 +1,4 @@
 /*
-   Template from Sara Echeverria
-     @editor: Amiya Islam
      FileName: HeroScroller.jsx
      @version: I
      Creation: 10/23/2023
