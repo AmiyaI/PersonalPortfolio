@@ -1,6 +1,4 @@
 /*
-   Template from Sara Echeverria
-     @author Amiya Islam
      FileName: ParticlesComponent.jsx
      @version: I
      Creation: 10/23/2023
