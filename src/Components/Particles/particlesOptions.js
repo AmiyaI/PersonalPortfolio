@@ -1,6 +1,4 @@
 /*
-   Template from Sara Echeverria
-     @author Amiya Islam
      FileName: particlesOptions.js
      @version: I
      Creation: 10/23/2023
@@ -176,21 +174,21 @@ export const heroOptions = {
           fill: true,
           font: 'Font Awesome 6 Brands',
           style: '',
-          value: ['\uf375'],
+          value: ['\uf3e2'],
           weight: '400',
         },
         {
           fill: true,
           font: 'Font Awesome 6 Brands',
           style: '',
-          value: ['\uf375'],
+          value: ['\uf0c2'],
           weight: '400',
         },
         {
           fill: true,
           font: 'Font Awesome 6 Brands',
           style: '',
-          value: ['\uf375'],
+          value: ['\uf395'],
           weight: '400',
         },
       ],
