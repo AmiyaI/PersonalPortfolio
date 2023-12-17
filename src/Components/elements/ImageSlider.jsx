@@ -1,6 +1,4 @@
 /*
-   Template from Sara Echeverria
-     @editor: Amiya Islam
      FileName: ImageSlider.jsx
      @version: I
      Creation: 10/23/2023

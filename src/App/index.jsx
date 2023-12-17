@@ -1,7 +1,4 @@
-
 /*
-   Template from Sara Echeverria
-     @editor: Amiya Islam
      FileName: index.jsx
      @version: I
      Creation: 10/23/2023
