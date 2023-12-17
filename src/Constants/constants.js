@@ -112,14 +112,14 @@ export const navLinks = [
 const projects = [
   {
     name: "Weather Data Processing and Analytics Platform",
-    description: 'Developed an advanced, scalable AWS-based ETL pipeline for weather data analysis, leveraging Python for data processing, Docker for containerization, Jenkins for CI/CD, and Terraform for efficient infrastructure management, all while ensuring top-notch security and performance. Currently working on adding a user-friendly interface',
+    description: 'AWS-based ETL pipeline for weather data analysis, leveraging Python for data processing, Docker for containerization, Jenkins for CI/CD, and Terraform for efficient infrastructure management, all while ensuring top-notch security and performance. Currently working on adding a user-friendly interface',
     image: memoryGame,
     source_code_link: 'https://github.com/AmiyaI/WeatherApp',
     demo_link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
   },
   {
-    name: 'FSA Capstone Project',
-    description: 'Collaborative Fullstack Academy Capstone project, showcasing a skillful blend of HTML, CSS, and JavaScript. Expertly hosted and managed on AWS Amplify for robust, scalable performance',
+    name: 'Fullstack Academy Capstone Project',
+    description: 'Simple Collaborative Capstone project, showcasing a skillful blend of HTML, CSS, and JavaScript. Expertly hosted and managed on AWS Amplify for robust, scalable performance',
     image: pawsitivePrototype,
     source_code_link: 'https://github.com/AmiyaI/ISCREAMSHOP123',
     demo_link: 'https://main.daou2vh0mfwr.amplifyapp.com/',
