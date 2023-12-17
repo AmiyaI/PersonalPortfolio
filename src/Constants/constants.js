@@ -213,7 +213,7 @@ const skills = [
     title: 'Python',
     icon: pyIcon,
     description:
-      'Proficient in Python, I specialize in developing cloud-specific coding solutions, leveraging the language's versatility and power.',
+      'Proficient in Python, I specialize in developing cloud-specific coding solutions, leveraging the language\'s versatility and power.',
   },
   {
     id: 'node',
