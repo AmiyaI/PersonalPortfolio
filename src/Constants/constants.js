@@ -81,7 +81,7 @@ const introduction = {
   text: [
     "Hello there, and welcome! I'm thrilled you're here! :)",
 
-    "I'm Amiya, a 22-year-old recent Virginia Tech graduate from Blacksburg, VA, deeply passionate about the field of Cloud Engineering.",
+    "I'm Amiya, a 23-year-old recent Virginia Tech graduate from Blacksburg, VA, deeply passionate about the field of Cloud Engineering.",
 
     "When I'm not immersed in technology, you'll find me powerlifting, trading stocks in my spare time, or embracing the serenity of nature. I also enjoy a good game of chess, just for fun.",
 
@@ -111,11 +111,11 @@ export const navLinks = [
 
 const projects = [
   {
-    name: "Weather Data Processing and Analytics Platform",
-    description: 'AWS-based ETL pipeline for weather data analysis, leveraging Python for data processing, Docker for containerization, Jenkins for CI/CD, and Terraform for efficient infrastructure management, all while ensuring top-notch security and performance. Currently working on adding a user-friendly interface',
+    name: "Weather App",
+    description: 'AWS ETL pipeline for collecting and transforming weather data, utilizing Python and Docker for processing and deployment, Jenkins for CI/CD, and Terraform for infrastructure management. All components are secured with best practices in cloud security. Currently enhancing the system with a user-friendly interface',
     image: memoryGame,
     source_code_link: 'https://github.com/AmiyaI/WeatherApp',
-    demo_link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    demo_link: 'https://github.com/AmiyaI/WeatherApp/blob/main/README.md',
   },
   {
     name: 'Fullstack Academy Capstone Project',
