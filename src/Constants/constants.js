@@ -178,7 +178,7 @@ const skills = [
     title: 'Amazon Web Services',
     icon: awsIcon,
     description:
-      '3x AWS Certified with proficiency in a wide range of AWS services, expertly navigating cloud solutions for scalable and reliable infrastructure.',
+      '6x AWS Certified with proficiency in a wide range of AWS services, expertly navigating cloud solutions for scalable and reliable infrastructure.',
   },
   {
     id: 'figma',
