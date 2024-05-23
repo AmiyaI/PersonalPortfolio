@@ -79,13 +79,13 @@ const icons = {
 
 const introduction = {
   text: [
-    "Hello there, and welcome! I'm thrilled you're here! :)",
+    "Hello and welcome! I'm thrilled you're here! :)",
 
     "I'm Amiya, a 23-year-old recent Virginia Tech graduate from Blacksburg, VA, deeply passionate about the field of Cloud Engineering.",
 
     "When I'm not immersed in technology, you'll find me powerlifting, trading stocks in my spare time, or embracing the serenity of nature. I also enjoy a good game of chess, just for fun.",
 
-    "I'm always excited to collaborate with individuals and teams who share my enthusiasm for creating remarkable experiences. Thank you for visiting my portfolio - your interest means a lot to me!",
+    "I'm always excited to collaborate with individuals and teams who share my enthusiasm for creating remarkable experiences. Thank you for visiting my portfolio!",
   ],
 };
 
