@@ -79,12 +79,12 @@ const icons = {
 
 const introduction = {
   text: [
-    "Hello and welcome! I'm thrilled you're here! :)",
-
-    "I'm Amiya, a 23-year-old recent Virginia Tech graduate from Blacksburg, VA, deeply passionate about the field of Cloud Engineering.",
-
-    "When I'm not immersed in technology, you'll find me powerlifting, trading stocks in my spare time, or embracing the serenity of nature. I also enjoy a good game of chess, just for fun.",
-
+    "Hello and welcome! I'm thrilled you're here :)",
+       
+    "I'm Amiya, a Virginia Tech Master's in Information Technology student from Blacksburg, VA, deeply passionate about Cloud Engineering.",
+       
+    "When I'm not immersed in technology, you'll find me powerlifting, exploring nature, sports betting, or playing the piano.",
+       
     "I'm always excited to collaborate with individuals and teams who share my enthusiasm for creating remarkable experiences. Thank you for visiting my portfolio!",
   ],
 };
@@ -118,11 +118,11 @@ const projects = [
     demo_link: 'https://github.com/AmiyaI/WeatherApp/blob/main/README.md',
   },
   {
-    name: 'Fullstack Academy Capstone Project',
-    description: 'Simple Collaborative Capstone project, showcasing a skillful blend of HTML, CSS, and JavaScript. Expertly hosted and managed on AWS Amplify for robust, scalable performance',
+    name: 'PhishAI',
+    description: 'A generative AI-powered cybersecurity training platform that simulates evolving phishing scenarios. Uses AWS (SageMaker, Bedrock, Polly), Terraform, and CI/CD to produce dynamic voice, images, and prompts, empowering users to detect and respond to threats.',
     image: pawsitivePrototype,
-    source_code_link: 'https://github.com/AmiyaI/ISCREAMSHOP123',
-    demo_link: 'https://main.daou2vh0mfwr.amplifyapp.com/',
+    source_code_link: 'https://github.com/AmiyaI/PhishAI',
+    demo_link: 'https://phishai.co/',
   },
   {
     name: 'Personal Portfolio Website',
