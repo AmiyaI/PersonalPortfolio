@@ -6,9 +6,8 @@
 */
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
 
 @font-face {
   font-family: "SuperMario";
@@ -19,12 +18,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
+}
 
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: url("https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png");
+  background: url("../assets/textures/noise.png");
   background-color: #5C546B;
   position: relative;
   overflow-x: hidden;
@@ -34,6 +35,37 @@ body {
 .overflow-hidden-web {
   overflow: hidden;
   -webkit-overflow: hidden;
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 28s linear infinite;
+}
+.marquee__track--right {
+  animation-name: marquee-right;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+}
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
 }
 
 .message::after {

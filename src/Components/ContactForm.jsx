@@ -8,38 +8,44 @@
 import { useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import emailjs from "@emailjs/browser";
+import noise from "../assets/textures/noise.png";
 
 const ContactForm = () => {
-  const [isSent, setIsSent] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
   const form = useRef();
-  
+
   const sendEmail = (e) => {
     e.preventDefault();
+    setStatus("sending");
 
-    emailjs.sendForm(
-      "amiya_personalport",
-      "template1",
-      e.target,
-      "cdoSytMf3BqCdBI3H"
-    )
+    emailjs
+      .sendForm("amiya_personalport", "template1", e.target, {
+        publicKey: "cdoSytMf3BqCdBI3H",
+      })
       .then(
-        (result) => {
-          document.getElementById("contact_form").reset();
-          setIsSent(true);
-          alert('Thank you I will get back to you as soon as possible ! (:');
+        () => {
+          form.current.reset();
+          setStatus("sent");
+          setTimeout(() => setStatus("idle"), 4000);
         },
         (error) => {
           console.error(error);
-          setIsSent(false);
+          setStatus("error");
         }
       );
-  };  
+  };
+
+  const buttonLabel = {
+    idle: "Send",
+    sending: "Sending...",
+    sent: "Sent!",
+    error: "Try again",
+  }[status];
 
   return (
     <div
   style={{
-    backgroundImage:
-      "url(https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png)",
+    backgroundImage: `url(${noise})`,
     width: "80%",
     height: "96%",
     boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)"
@@ -58,8 +64,6 @@ const ContactForm = () => {
         <form
           id="contact_form"
           ref={form}
-          method="POST"
-          target="_blank"
           onSubmit={sendEmail}
           style={{ fontFamily: "Poppins, sans-serif" }}
           className="w-[80%] h-full flex flex-col gap-4 pt-4 text-grayscale-200"
@@ -98,21 +102,30 @@ const ContactForm = () => {
             />
           </div>
           <div className="w-full flex flex-col">
-            <label>Message</label>
+            <label htmlFor="message">Message</label>
             <textarea
+              id="message"
               className="p-[0.5em] rounded-xl text-grayscale-950"
               placeholder="Enter your message..."
               name="message"
               required
             ></textarea>
           </div>
-          <div className="w-full flex justify-center">
+          <div className="w-full flex flex-col items-center gap-2">
             <input
-              className="w-[100px] h-[50px] bg-primary-600 rounded-xl cursor-pointer hover:bg-primary-700"
+              className="w-[120px] h-[50px] bg-primary-600 rounded-xl cursor-pointer hover:bg-primary-700 disabled:opacity-60"
               type="submit"
-              value={!isSent ? 'Send' : 'Done!'}
-              
+              value={buttonLabel}
+              disabled={status === "sending"}
             />
+            <p
+              role="status"
+              aria-live="polite"
+              className="text-grayscale-200 text-sm text-center min-h-[1.25rem]"
+            >
+              {status === "sent" && "Thanks! I'll get back to you as soon as possible."}
+              {status === "error" && "Something went wrong — please try again or email me directly."}
+            </p>
           </div>
         </form>
       </div>

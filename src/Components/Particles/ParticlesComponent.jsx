@@ -1,41 +1,25 @@
-/*
-     FileName: ParticlesComponent.jsx
-     @version: I
-     Creation: 10/23/2023
-     Last modification: 10/23/2023
-*/
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadAll } from "@tsparticles/all";
 
+const ParticlesComponent = ({ particlesOptions, className, id }) => {
+  const [ready, setReady] = useState(false);
 
-import { useCallback } from "react";
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
-
-const ParticlesComponent = (props) => {
-  const { particlesOptions, className, id } = props;
-
-  let isInitialized = false;
-
-  const particlesInit = useCallback(async (engine) => {
-    if(!isInitialized) {
-      await loadFull(engine);
-      isInitialized = true;
-    }
-
+  useEffect(() => {
+    let active = true;
+    initParticlesEngine(async (engine) => {
+      await loadAll(engine);
+    }).then(() => {
+      if (active) setReady(true);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const particlesLoaded = useCallback(async (container) => {
-      await container
-  }, []);
+  if (!ready) return null;
 
-  return (
-    <Particles
-      id={id}
-      className={className}
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={particlesOptions}
-    />
-  );
+  return <Particles id={id} className={className} options={particlesOptions} />;
 };
 
 export default ParticlesComponent;

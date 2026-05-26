@@ -5,10 +5,9 @@
      Last modification: 10/23/2023
 */
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { styles } from '../styles'
 import { projects } from "../Constants/constants";
-import { Tilt } from "react-tilt";
 import { githubIcon } from "../assets";
 
 export const staggerContainer = (staggerChildren, delayChildren) => {
@@ -119,17 +118,14 @@ const SectionWrapper = (Component, idName) =>
     )
   };
 
-  const ProjectCard = ({ index, name, description, tags, image, source_code_link, demo_link }) => {
+  const ProjectCard = ({ index, name, description, image, source_code_link, demo_link }) => {
     return (
       <motion.div
         variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
       >
-        <Tilt
-          options={{
-            max: 40,
-            scale: 1,
-            speed: 450
-          }}
+        <motion.div
+          whileHover={{ scale: 1.04 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15 }}
           className='text-grayscale-50 p-5 rounded-lg sm:w-[280px] w-full'
           style={{ marginTop: '-120%' }}
           >
@@ -144,17 +140,18 @@ const SectionWrapper = (Component, idName) =>
             <div
               className="absolute inset-0 flex justify-end m-3 card-img_hover"
             >
-              <div
-                onClick={() => window.open
-                (source_code_link, "_blank")}
+              <button
+                type="button"
+                aria-label={`View ${name} source on GitHub`}
+                onClick={() => window.open(source_code_link, "_blank", "noopener,noreferrer")}
                 className="black-gradient w-8 h-8 rounded-full flex justify-center items-center cursor-pointer"
               >
-               <img 
+               <img
                 src={githubIcon}
-                alt="github"
+                alt=""
                 className="w-15 h-15 object-contain"
                 />
-              </div>
+              </button>
             </div>
           </div>
   
@@ -169,15 +166,16 @@ const SectionWrapper = (Component, idName) =>
           <div 
             className="mt-3 flex justify-center items-center"
           >
-            <a 
+            <a
               className="shadow-md shadow-primary m-3 p-2 bg-tertiary w-[60%] rounded-lg flex justify-center"
               href={demo_link}
               target='_blank'
+              rel="noopener noreferrer"
             >
               See the Demo
             </a>
           </div>
-        </Tilt>
+        </motion.div>
       </motion.div>
     )
   }  

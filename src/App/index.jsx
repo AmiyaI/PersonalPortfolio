@@ -8,20 +8,18 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import PreloadMedia from "../Components/PreloadMedia";
 import { media } from "../Constants/constants";
 import App from "./App";
 import "./index.css";
-import "font-awesome/css/font-awesome.min.css";
 import "../../public/Fonts/Morganite/morganiteFont.css";
+// Brands webfont used by the hero particle glyphs (Docker, Linux, AWS, etc.)
+import "@fortawesome/fontawesome-free/css/brands.min.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <PreloadMedia images={Object.values(media)}>
-        <App />
-      </PreloadMedia>
-    </BrowserRouter>
+    <PreloadMedia images={Object.values(media)}>
+      <App />
+    </PreloadMedia>
   </React.StrictMode>
 );

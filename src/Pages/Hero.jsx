@@ -5,7 +5,7 @@
      Last modification: 10/23/2023
 */
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "motion/react";
 import HeroText from "../Components/HeroText";
 import HeroParticles from "../Components/Particles/HeroParticles";
 import HeroScroller from "../Components/elements/HeroScroller";
@@ -15,7 +15,6 @@ const Hero = () => {
     <div id="hero" className="w-full flex justify-center overflow-hidden-web relative">
     <LazyMotion features={domAnimation} strict>
       <m.div
-        id="hero"
         className="relative w-full flex justify-center items-center h-screen min-h-[800px]"
       >
         <HeroText />

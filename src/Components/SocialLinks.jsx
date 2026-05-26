@@ -11,19 +11,19 @@ import { icons } from "../Constants/constants";
 const SocialLinks = () => {
   return (
     <div className="w-full h-[100px] bg-grayscale-950 flex justify-center items-center gap-3 p-6">
-      <a href="https://github.com/AmiyaI" target="_blank">
+      <a href="https://github.com/AmiyaI" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
         <FontAwesomeIcon
           className="text-3xl text-grayscale-50 hover:text-primary-400 hover:scale-[1.1] transition-all duration-75"
           icon={icons.faGithub}
         />
       </a>
-      <a href="mailto:iamiya@vt.edu" target="_blank">
+      <a href="mailto:iamiya@vt.edu" aria-label="Email">
         <FontAwesomeIcon
           className="text-3xl text-grayscale-50 hover:text-primary-400 hover:scale-[1.1] transition-all duration-75"
           icon={icons.faEnvelope}
         />
       </a>
-      <a href="https://www.linkedin.com/in/amiya-islam-devopsengineer" target="_blank">
+      <a href="https://www.linkedin.com/in/amiya-islam-devopsengineer" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
         <FontAwesomeIcon
           className="text-3xl text-grayscale-50 hover:text-primary-400 hover:scale-[1.1] transition-all duration-75"
           icon={icons.faLinkedin}

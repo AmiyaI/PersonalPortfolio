@@ -5,7 +5,7 @@
      Last modification: 10/23/2023
 */
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "motion/react";
 import SectionTitle from "../Components/SectionTitle";
 import ContactForm from "../Components/ContactForm";
 import SocialLinks from "../Components/SocialLinks";

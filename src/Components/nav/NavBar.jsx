@@ -5,11 +5,10 @@
      Last modification: 10/23/2023
 */
 
-import React, {useState } from "react";
-import { Link } from "react-router-dom";
-import {styles} from '../../styles.js';
+import { useState } from "react";
+import { styles } from '../../styles.js';
 import { navLinks } from "../../Constants/constants";
-import { bl33hIcon, menu, close } from "../../assets";
+import { logo, menu, close } from "../../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -22,19 +21,17 @@ const Navbar = () => {
       fixed top-0 z-20 bg-primary
     `}
     >
-      <div className="w-full flex justify-between items-center max-w-7x1 mx-auto">
-        <Link
-          to="/"
+      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+        <a
+          href="#hero"
           className="flex items-center gap-2"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          <img src={bl33hIcon} alt={bl33hIcon} className="w-18 h-9 object-contain" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex">
-          </p>
-        </Link>
+          <img src={logo} alt="Amiya Islam" className="h-9 w-auto object-contain" />
+        </a>
         <ul className="list-none hidden sm:flex flex-row gap-10"  style={{ color: '#FFFFFF' }}>
           {navLinks.map((link) => {
             return (
@@ -43,20 +40,25 @@ const Navbar = () => {
                 className={`${
                   active === link.title ? "text-white" : "text-secondary"
                 } hover:text-white text-[18px] font-medium cursor-pointer `}
-                onClick={() => setActive(link.title)}
               >
-                <a href={`#${link.id}`}>{link.title}</a>
+                <a href={`#${link.id}`} onClick={() => setActive(link.title)}>{link.title}</a>
               </li>
             );
           })}
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            className="w-[28ox] h-[28px] pbject-contain cursor-pointer z-20 " 
+          <button
+            type="button"
+            aria-label={toggle ? "Close menu" : "Open menu"}
+            className="z-20"
             onClick={() => setToggle(!toggle)}
-            src={toggle ? close : menu}
-            alt={menu}
-          />
+          >
+            <img
+              className="w-[28px] h-[28px] object-contain cursor-pointer"
+              src={toggle ? close : menu}
+              alt=""
+            />
+          </button>
           <div
             className={`${
               !toggle ? "hidden" : "flex"
@@ -70,12 +72,16 @@ const Navbar = () => {
                     className={`${
                       active === link.title ? "text-white" : "text-secondary"
                     } font-poppins font-medium cursor-pointer text-[16px]`}
-                    onClick={() => {
-                      setActive(link.title);
-                      setToggle(!toggle);
-                    }}
                   >
-                    <a href={`#${link.id}`}>{link.title}</a>
+                    <a
+                      href={`#${link.id}`}
+                      onClick={() => {
+                        setActive(link.title);
+                        setToggle(false);
+                      }}
+                    >
+                      {link.title}
+                    </a>
                   </li>
                 );
               })}

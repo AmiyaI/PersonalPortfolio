@@ -6,7 +6,7 @@
 */
 
 // Logo
-import bl33hIcon from './logo/bl33hIcon.png';
+import logo from './logo/amiya-logo.png';
 
 // Technologies
 import htmlIcon from './tech/html.png';
@@ -59,5 +59,5 @@ export {
   calculator,
   memoryGame,
   avatar,
-  bl33hIcon,
+  logo,
 };

@@ -1,6 +1,3 @@
-import tailwindcss from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -24,5 +21,5 @@ export default {
       },
     },
   },
-  plugins: [tailwindcss, autoprefixer],
+  plugins: [],
 };

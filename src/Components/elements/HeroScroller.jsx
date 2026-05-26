@@ -5,7 +5,7 @@
      Last modification: 10/23/2023
 */
 
-import { m } from "framer-motion";
+import { m } from "motion/react";
 
 const HeroScroller = () => {
   return (

@@ -16,7 +16,7 @@ const Projects = () => {
           <SectionTitle title="PROJECTS" subtitle="What I have done so far" />
         </div>
         <div className="w-full h-[70%] z-10 flex justify-center">
-          <div className="w-full xl:w-[70%] h-[-10%">
+          <div className="w-full xl:w-[70%] h-full">
             <ProjectCards />
           </div>
           <div className="absolute w-full h-full top-[100%] right-[-75%] sm:right-[-50%]">
