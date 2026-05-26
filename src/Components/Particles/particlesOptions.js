@@ -7,15 +7,19 @@ export const heroOptions = {
   fpsLimit: 120,
   interactivity: {
     events: {
-      onHover: { enable: true, mode: "bubble" },
+      onHover: {
+        enable: true,
+        mode: "bubble",
+        parallax: { enable: true, force: 60, smooth: 20 },
+      },
       resize: { enable: true },
     },
     modes: {
       bubble: {
-        distance: 220,
-        duration: 2,
-        size: 42,
-        opacity: 0.85,
+        distance: 100,
+        duration: 0.4,
+        size: 40,
+        opacity: 0.8,
         color: { value: "#cbbde5" },
       },
       repulse: { distance: 200 },
@@ -26,8 +30,8 @@ export const heroOptions = {
     links: {
       enable: true,
       color: "#ffffff",
-      distance: 110,
-      opacity: 0.3,
+      distance: 100,
+      opacity: 0.4,
       width: 1,
     },
     move: {
@@ -37,12 +41,12 @@ export const heroOptions = {
       outModes: { default: "bounce" },
     },
     number: {
-      value: 26,
+      value: 30,
       density: { enable: true },
     },
     opacity: {
-      value: { min: 0.35, max: 0.6 },
-      animation: { enable: true, speed: 0.3, sync: false },
+      value: { min: 0.4, max: 0.6 },
+      animation: { enable: true, speed: 0.2, sync: true },
     },
     shape: {
       type: "character",
@@ -56,7 +60,7 @@ export const heroOptions = {
       },
     },
     size: {
-      value: { min: 16, max: 28 },
+      value: { min: 25, max: 35 },
     },
   },
 };
