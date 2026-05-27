@@ -71,7 +71,7 @@ const ContactForm = () => {
           <div className="w-full flex flex-col">
             <label htmlFor="firstname">First Name</label>
             <input
-              className="p-[0.5em] rounded-xl text-grayscale-950"
+              className="p-[0.5em] rounded-xl bg-grayscale-50 text-grayscale-950"
               placeholder="Enter your First Name"
               id="firstname"
               type="text"
@@ -82,7 +82,7 @@ const ContactForm = () => {
           <div className="w-full flex flex-col">
             <label htmlFor="lastname">Last Name</label>
             <input
-              className="p-[0.5em] rounded-xl text-grayscale-950"
+              className="p-[0.5em] rounded-xl bg-grayscale-50 text-grayscale-950"
               placeholder="Enter your Last Name"
               id="lastname"
               type="text"
@@ -93,7 +93,7 @@ const ContactForm = () => {
           <div className="w-full flex flex-col">
             <label htmlFor="email">E-mail</label>
             <input
-              className="p-[0.5em] rounded-xl text-grayscale-950"
+              className="p-[0.5em] rounded-xl bg-grayscale-50 text-grayscale-950"
               placeholder="Enter your E-mail"
               id="email"
               type="email"
@@ -105,7 +105,7 @@ const ContactForm = () => {
             <label htmlFor="message">Message</label>
             <textarea
               id="message"
-              className="p-[0.5em] rounded-xl text-grayscale-950"
+              className="p-[0.5em] rounded-xl bg-grayscale-50 text-grayscale-950"
               placeholder="Enter your message..."
               name="message"
               required
