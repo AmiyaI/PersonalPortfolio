@@ -10,7 +10,7 @@ export const heroOptions = {
       onHover: {
         enable: true,
         mode: "bubble",
-        parallax: { enable: true, force: 60, smooth: 20 },
+        parallax: { enable: true, force: 100, smooth: 20 },
       },
       onDiv: [
         { selectors: "#repulse-div", enable: true, mode: "repulse", type: "circle" },
@@ -46,7 +46,7 @@ export const heroOptions = {
     },
     opacity: {
       value: { min: 0.4, max: 0.6 },
-      animation: { enable: true, speed: 0.2, sync: false },
+      animation: { enable: true, speed: 0.2, sync: true, startValue: "random" },
     },
     shape: {
       type: "character",
@@ -60,7 +60,8 @@ export const heroOptions = {
       },
     },
     size: {
-      value: { min: 12, max: 42 },
+      value: { min: 25, max: 35 },
+      animation: { enable: true, speed: 0.2, sync: true, startValue: "random" },
     },
   },
 };
