@@ -10,7 +10,7 @@ export const heroOptions = {
       onHover: {
         enable: true,
         mode: "bubble",
-        parallax: { enable: true, force: 25, smooth: 30 },
+        parallax: { enable: true, force: 60, smooth: 20 },
       },
       onDiv: [
         { selectors: "#repulse-div", enable: true, mode: "repulse", type: "circle" },
@@ -33,8 +33,8 @@ export const heroOptions = {
   },
   particles: {
     color: { value: "#ffffff" },
-    links: { enable: false },
-    collisions: { enable: false },
+    links: { enable: true, color: "#ffffff", distance: 100, opacity: 0.4, width: 1 },
+    collisions: { enable: true, mode: "bounce" },
     move: {
       enable: true,
       speed: 0.8,
@@ -42,10 +42,10 @@ export const heroOptions = {
       outModes: { default: "bounce" },
     },
     number: {
-      value: 18,
+      value: 30,
     },
     opacity: {
-      value: { min: 0.2, max: 0.55 },
+      value: { min: 0.4, max: 0.6 },
       animation: { enable: true, speed: 0.2, sync: false },
     },
     shape: {
