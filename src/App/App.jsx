@@ -13,6 +13,7 @@ import Cursor from "../Components/motion/Cursor";
 import { ScrollTrigger } from "../lib/gsap";
 import Hero from "../Pages/Hero";
 import About from "../Pages/About";
+import EarlyAI from "../Pages/EarlyAI";
 import Experience from "../Pages/Experience";
 import Projects from "../Pages/Projects";
 import Skills from "../Pages/Skills";
@@ -29,6 +30,7 @@ const Home = () => (
   <main>
     <Hero />
     <About />
+    <EarlyAI />
     <Experience />
     <Projects />
     <Skills />

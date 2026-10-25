@@ -77,6 +77,7 @@ const stats = [
 
 export const navLinks = [
   { id: 'about', title: 'About' },
+  { id: 'early-ai', title: 'Early to AI' },
   { id: 'experience', title: 'Experience' },
   { id: 'projects', title: 'Projects' },
   { id: 'skills', title: 'Skills' },
@@ -334,6 +335,30 @@ const skillLines = [
   { word: 'security', fact: 'Security+, AWS Specialty' },
 ];
 
+// Early to AI: the timeline of how I've worked with AI since GPT-3.5.
+const aiJourney = [
+  {
+    when: '2022',
+    title: 'ChatGPT on GPT-3.5',
+    text: 'Started using ChatGPT when it launched. I was hooked from the first answer and it never left my workflow.',
+  },
+  {
+    when: '2023',
+    title: 'Copy, paste, debug',
+    text: 'No agents yet. I pasted code in, pasted answers out, ran them, fed the errors back and checked every line myself.',
+  },
+  {
+    when: '2025',
+    title: 'Claude Code',
+    text: 'Claude Code arrived with Claude 3.7 Sonnet and the copy-paste loop ended. The agent edits, runs and tests; I review.',
+  },
+  {
+    when: 'Now',
+    title: 'Building the agents',
+    text: 'I build multi-agent platforms for a living and try every new model and tool the week it ships.',
+  },
+];
+
 // Favourite quotes and controversial takes. Add new ones to the end.
 const hotTakes = [
   "People who say they like animals more than people are not good people. They think they have a deep well of compassion, but really they just want a relationship of unequal status.",
@@ -362,6 +387,7 @@ export {
   skillLines,
   hobbies,
   hotTakes,
+  aiJourney,
   socials,
   icons,
 };

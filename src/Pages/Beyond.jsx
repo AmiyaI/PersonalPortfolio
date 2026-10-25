@@ -122,7 +122,7 @@ const Beyond = () => {
                 AI Slop <span className="inline-block transition-transform duration-500 group-hover:rotate-12">→</span>
               </h3>
               <p className="mt-3 max-w-md text-body font-medium">
-                Games, skits and fake photo shoots I made with AI because I could. Not production grade. No refunds.
+                Games, skits and experiments from every new AI tool I get my hands on. Not production grade. No refunds.
               </p>
             </div>
           </TransitionLink>
