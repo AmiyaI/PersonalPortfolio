@@ -73,7 +73,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
@@ -99,23 +104,11 @@
 
 @font-face {
   font-family: "SuperMario";
-  src: url(/Fonts/Mario/SuperMario256.ttf);
+  src: url(/Fonts/Mario/SuperMario256.ttf) format("truetype");
+  font-display: swap;
 }
 
-.overflow-hidden-web {
-  overflow: hidden;
-}
 
-.message::after {
-  content: " ";
-  width: 10px;
-  height: 10px;
-  background: var(--color-surface);
-  position: absolute;
-  bottom: -10px;
-  right: 0;
-  border-radius: 0 0 0 100%;
-}
 
 .noselect {
   -webkit-user-select: none;
@@ -176,36 +169,7 @@
   }
 }
 
-.loader {
-  width: 100px;
-  height: 100px;
-  border: 5px solid var(--color-ink);
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  animation: rotation 1s linear infinite;
-}
-.loader::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 5px solid;
-  border-color: var(--color-accent) transparent;
-}
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 /* Lenis' recommended base styles. */
 html.lenis,
@@ -227,7 +191,7 @@ html.lenis * {
 /* Custom cursor (mouse and trackpad only; see Cursor.jsx). */
 @media (hover: hover) and (pointer: fine) {
   html.has-custom-cursor,
-  html.has-custom-cursor * {
+  html.has-custom-cursor *:not(input):not(textarea) {
     cursor: none !important;
   }
 }
@@ -323,7 +287,8 @@ html.lenis * {
 
 @media (prefers-reduced-motion: reduce) {
   .grain::before,
-  .blob {
+  .blob,
+  .bounce:hover {
     animation: none;
   }
 }

@@ -137,7 +137,7 @@ const AiSlop = () => {
 
   return (
     <MediaViewerProvider theme="light">
-      <main ref={scope} className="slop-page relative min-h-screen overflow-hidden bg-[#d2ff00] pb-24 text-[#111112]">
+      <main ref={scope} id="main" tabIndex={-1} className="outline-none slop-page relative min-h-screen overflow-hidden bg-[#d2ff00] pb-24 text-[#111112]">
         <header className="relative flex min-h-[88vh] flex-col items-center justify-center px-6 pt-28 text-center">
           <svg viewBox="0 0 200 200" className="slop-badge absolute top-28 right-[6%] hidden w-40 sm:block" aria-hidden="true">
             <defs>

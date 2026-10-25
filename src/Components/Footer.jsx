@@ -84,16 +84,16 @@ const Footer = () => {
       </div>
       <div className="mt-12 flex items-center justify-between text-small text-white/75">
         <span>Made by Amiya Islam, {new Date().getFullYear()}</span>
-        <a
-          href="#top"
-          onClick={(e) => {
-            e.preventDefault();
+        <button
+          type="button"
+          onClick={() => {
             scrollToTarget(lenis, 0);
+            document.getElementById("main")?.focus({ preventScroll: true });
           }}
           className="nav-link pb-0.5"
         >
           Back to top
-        </a>
+        </button>
       </div>
     </footer>
   );

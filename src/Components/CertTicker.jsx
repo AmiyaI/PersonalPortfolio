@@ -22,20 +22,28 @@ const CertTicker = () => {
       mm.add(MOTION_OK, () => {
         const loop = gsap.fromTo(".ticker-row", { xPercent: 0 }, { xPercent: -50, duration: 50, ease: "none", repeat: -1 });
         let direction = 1;
+        let hovering = false;
         ScrollTrigger.create({
           trigger: scope.current,
           start: "top bottom",
           end: "bottom top",
           onUpdate: (self) => {
             direction = self.direction;
+            if (hovering) return;
             const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 250, 8);
             gsap.to(loop, { timeScale: boost * direction, duration: 0.2, overwrite: true });
             gsap.to(loop, { timeScale: direction, duration: 1.2, delay: 0.2, ease: "power2.out", overwrite: false });
           },
         });
         const el = scope.current;
-        const pause = () => gsap.to(loop, { timeScale: 0, duration: 0.4, overwrite: true });
-        const resume = () => gsap.to(loop, { timeScale: direction, duration: 0.6, overwrite: true });
+        const pause = () => {
+          hovering = true;
+          gsap.to(loop, { timeScale: 0, duration: 0.4, overwrite: true });
+        };
+        const resume = () => {
+          hovering = false;
+          gsap.to(loop, { timeScale: direction, duration: 0.6, overwrite: true });
+        };
         el.addEventListener("pointerenter", pause);
         el.addEventListener("pointerleave", resume);
         return () => {

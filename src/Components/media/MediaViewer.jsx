@@ -13,7 +13,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLenis } from "../motion/SmoothScroll";
-import { hasFinePointer } from "../../lib/gsap";
+import { hasFinePointer, prefersReducedMotion } from "../../lib/gsap";
 
 const ViewerContext = createContext(() => {});
 
@@ -30,7 +30,11 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
   const [item, setItem] = useState(null);
   const [index, setIndex] = useState(0);
   const lenis = useLenis();
+  const dialog = useRef(null);
+  const closeButton = useRef(null);
+  const returnFocus = useRef(null);
   const open = useCallback((entry, start = 0) => {
+    returnFocus.current = document.activeElement;
     setIndex(start);
     setItem(entry);
   }, []);
@@ -46,21 +50,45 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
     : [];
   if (item && !slots.length) slots.push({ type: "image", src: item.poster, thumb: item.poster });
   const slot = slots[index] ?? slots[0];
+  const slotCount = useRef(1);
+  slotCount.current = Math.max(slots.length, 1);
 
+  // While open: lock page scrolling, move focus in, keep Tab inside, and hand
+  // focus back to whatever opened the viewer when it closes.
+  const isOpen = Boolean(item);
   useEffect(() => {
-    if (!item) return undefined;
+    if (!isOpen) return undefined;
+    const html = document.documentElement;
     lenis?.stop();
+    html.style.overflow = "hidden";
+    requestAnimationFrame(() => closeButton.current?.focus());
     const onKey = (e) => {
       if (e.key === "Escape") close();
-      if (e.key === "ArrowRight") setIndex((i) => (i + 1) % slots.length);
-      if (e.key === "ArrowLeft") setIndex((i) => (i - 1 + slots.length) % slots.length);
+      // Leave arrow keys to video controls when they have focus.
+      const inVideo = e.target instanceof HTMLVideoElement;
+      if (!inVideo && e.key === "ArrowRight") setIndex((i) => (i + 1) % slotCount.current);
+      if (!inVideo && e.key === "ArrowLeft") setIndex((i) => (i - 1 + slotCount.current) % slotCount.current);
+      if (e.key === "Tab" && dialog.current) {
+        const focusable = dialog.current.querySelectorAll("button, video[controls], a[href]");
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
       lenis?.start();
+      html.style.overflow = "";
       window.removeEventListener("keydown", onKey);
+      returnFocus.current?.focus?.({ preventScroll: true });
     };
-  }, [item, lenis, close, slots.length]);
+  }, [isOpen, lenis, close]);
 
   const light = theme === "light";
 
@@ -71,6 +99,7 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
         {item && (
           <motion.div
             key="viewer"
+            ref={dialog}
             role="dialog"
             aria-modal="true"
             aria-label={item.title}
@@ -81,7 +110,11 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
             transition={{ duration: 0.3 }}
             onClick={close}
           >
-            <div className="flex items-center justify-between gap-4 px-6 pt-20 pb-4 md:pt-6" style={{ fontFamily: "Poppins, sans-serif" }}>
+            <div
+              className="flex items-center justify-between gap-4 px-6 pt-20 pb-4 md:pt-6"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+              onClick={(e) => e.stopPropagation()}
+            >
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] opacity-60">{item.tags?.join(" · ")}</p>
                 <h2 className="text-5xl leading-none sm:text-6xl" style={{ fontFamily: "Morganite Black" }}>
@@ -89,6 +122,7 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
                 </h2>
               </div>
               <button
+                ref={closeButton}
                 type="button"
                 onClick={close}
                 className={`shrink-0 rounded-full border px-5 py-2 text-sm ${light ? "border-[#111112]" : "border-[#f2ead8]/40"}`}
@@ -162,7 +196,7 @@ export const PreviewCard = ({ item, className = "", children, cursor = "Play" })
 
   // Touch screens can't hover, so loops play while the card is on screen.
   useEffect(() => {
-    if (fine || !video.current) return undefined;
+    if (fine || !video.current || prefersReducedMotion()) return undefined;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) video.current?.play().catch(() => {});
       else video.current?.pause();
@@ -205,7 +239,7 @@ export const PreviewCard = ({ item, className = "", children, cursor = "Play" })
           loop
           playsInline
           preload="none"
-          className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 [@media(pointer:coarse)]:opacity-100"
+          className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100 [@media(pointer:coarse)]:opacity-100"
         />
       )}
       {children}

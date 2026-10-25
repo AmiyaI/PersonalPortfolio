@@ -12,6 +12,7 @@ import { navLinks, pageLinks } from "../../Constants/constants";
 import { logo, menu, close } from "../../assets";
 import { TransitionLink, usePageTransition } from "../motion/PageTransition";
 import Magnetic from "../motion/Magnetic";
+import { useLenis } from "../motion/SmoothScroll";
 
 // Desktop shows three words and one action; the phone menu lists everything.
 const desktopLinks = [
@@ -26,6 +27,7 @@ const Navbar = () => {
   const lastY = useRef(0);
   const { pathname } = useLocation();
   const go = usePageTransition();
+  const lenis = useLenis();
   // Studio is a dark room, so the nav goes light-on-dark there; everywhere
   // else (and in the open phone menu) it is dark ink on a light ground.
   const onDark = pathname === "/studio" && !toggle;
@@ -42,11 +44,28 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // While the phone menu is open: lock scrolling, close on Escape, and close
+  // if the window grows past the breakpoint where the toggle disappears.
   useEffect(() => {
-    document.documentElement.style.overflow = toggle ? "hidden" : "";
-  }, [toggle]);
+    if (!toggle) return undefined;
+    const html = document.documentElement;
+    lenis?.stop();
+    html.style.overflow = "hidden";
+    const onKey = (e) => e.key === "Escape" && setToggle(false);
+    const wide = window.matchMedia("(min-width: 768px)");
+    const onWide = (e) => e.matches && setToggle(false);
+    window.addEventListener("keydown", onKey);
+    wide.addEventListener("change", onWide);
+    return () => {
+      lenis?.start();
+      html.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+      wide.removeEventListener("change", onWide);
+    };
+  }, [toggle, lenis]);
 
   const jump = (id) => (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     setToggle(false);
     go(`/#${id}`, "Amiya");
@@ -62,8 +81,15 @@ const Navbar = () => {
 
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only z-[70] rounded-full bg-night px-5 py-3 font-extrabold text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
+      >
+        Skip to content
+      </a>
       <nav
-        className={`fixed top-0 z-[60] flex w-full items-center px-5 py-4 ${bar} transition-[transform,background-color] duration-500 ease-[cubic-bezier(.22,1,.36,1)] sm:px-8 ${
+        aria-label="Main"
+        className={`fixed top-0 z-[60] focus-within:translate-y-0 flex w-full items-center px-5 py-4 ${bar} transition-[transform,background-color] duration-500 ease-[cubic-bezier(.22,1,.36,1)] sm:px-8 ${
           hidden && !toggle ? "-translate-y-full" : "translate-y-0"
         }`}
       >
@@ -133,9 +159,8 @@ const Navbar = () => {
                   <motion.li
                     key={link.id ?? link.to}
                     initial={{ y: 60, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 30, opacity: 0 }}
-                    transition={{ delay: 0.15 + i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    animate={{ y: 0, opacity: 1, transition: { delay: 0.15 + i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
+                    exit={{ y: 20, opacity: 0, transition: { duration: 0.2 } }}
                     className="overflow-hidden"
                   >
                     {link.kind === "anchor" ? (

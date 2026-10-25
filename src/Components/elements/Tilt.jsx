@@ -10,6 +10,7 @@
 // element instead of re-rendering on every mouse move.
 
 import { useEffect, useRef } from "react";
+import { hasFinePointer, prefersReducedMotion } from "../../lib/gsap";
 
 const defaultSettings = {
   reverse: false,
@@ -44,7 +45,11 @@ const Tilt = ({ options, className, style, children }) => {
     }, settings.speed);
   };
 
+  // Touch taps fire emulated mouse events that would leave a card stuck tilted.
+  const enabled = () => hasFinePointer() && !prefersReducedMotion();
+
   const onMouseEnter = () => {
+    if (!enabled()) return;
     const el = ref.current;
     const box = el.getBoundingClientRect();
     rect.current = { left: box.left, top: box.top, width: el.offsetWidth, height: el.offsetHeight };
@@ -53,6 +58,7 @@ const Tilt = ({ options, className, style, children }) => {
   };
 
   const onMouseMove = (e) => {
+    if (!rect.current) return;
     const { clientX, clientY } = e;
     cancelAnimationFrame(frame.current);
     frame.current = requestAnimationFrame(() => {
@@ -63,16 +69,22 @@ const Tilt = ({ options, className, style, children }) => {
       const tiltY = (reverse * (y * settings.max - settings.max / 2)).toFixed(2);
       const rotateX = settings.axis === "x" ? 0 : tiltY;
       const rotateY = settings.axis === "y" ? 0 : tiltX;
+      if (!ref.current) return;
       ref.current.style.transform = `perspective(${settings.perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${settings.scale}, ${settings.scale}, ${settings.scale})`;
       frame.current = null;
     });
   };
 
   const onMouseLeave = () => {
+    if (!rect.current) return;
+    rect.current = null;
+    cancelAnimationFrame(frame.current);
     setTransition();
     if (settings.reset) {
       requestAnimationFrame(() => {
+        if (!ref.current) return;
         ref.current.style.transform = `perspective(${settings.perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        ref.current.style.willChange = "";
       });
     }
   };

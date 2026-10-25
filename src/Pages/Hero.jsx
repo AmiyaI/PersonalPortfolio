@@ -5,9 +5,10 @@
      Last modification: 10/25/2026
 */
 
-import { useRef } from "react";
+import { lazy, Suspense, useRef } from "react";
 import HeroText from "../Components/HeroText";
-import HeroParticles from "../Components/Particles/HeroParticles";
+// The particle engine is a large dependency; load it after the title paints.
+const HeroParticles = lazy(() => import("../Components/Particles/HeroParticles"));
 import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 
 const Hero = () => {
@@ -37,7 +38,9 @@ const Hero = () => {
       className="relative isolate flex h-[100svh] min-h-[640px] w-full flex-col justify-center overflow-hidden hero-purple pt-20"
     >
       <div className="hero-particles-wrap absolute inset-0 -z-10">
-        <HeroParticles />
+        <Suspense fallback={null}>
+          <HeroParticles />
+        </Suspense>
       </div>
       <HeroText />
     </section>

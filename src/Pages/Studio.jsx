@@ -10,7 +10,7 @@
 
 import { useRef } from "react";
 import media from "../Constants/media.json";
-import { gsap, useGSAP, SplitText, MOTION_OK } from "../lib/gsap";
+import { gsap, useGSAP, SplitText, refreshSoon, MOTION_OK } from "../lib/gsap";
 import { MediaViewerProvider, PreviewCard, formatDuration, useMediaViewer } from "../Components/media/MediaViewer";
 
 const all = media.studio;
@@ -50,7 +50,13 @@ const StillsWall = () => {
             className="studio-reveal group mb-3 block w-full overflow-hidden rounded-lg"
             aria-label={`Open ${set.title}, image ${i + 1}`}
           >
-            <img src={src} alt="" loading="lazy" className="w-full transition-transform duration-700 group-hover:scale-105" />
+            <img
+              src={src}
+              alt=""
+              loading="lazy"
+              onLoad={refreshSoon}
+              className="w-full transition-transform duration-700 group-hover:scale-105"
+            />
           </button>
         ))
       )}
@@ -123,7 +129,7 @@ const Studio = () => {
 
   return (
     <MediaViewerProvider>
-      <main ref={scope} className="studio-page grain relative min-h-screen overflow-hidden bg-[#0d0b10] pb-24 text-[#f2ead8]">
+      <main ref={scope} id="main" tabIndex={-1} className="outline-none studio-page grain relative min-h-screen overflow-hidden bg-[#0d0b10] pb-24 text-[#f2ead8]">
         <header className="relative flex min-h-[92vh] flex-col justify-end px-6 pt-32 pb-10 sm:px-16">
           <p className="studio-kicker text-xs uppercase tracking-[0.4em] text-[#ff8539]" style={sans}>
             Amiya Islam · Studio

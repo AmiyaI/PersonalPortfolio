@@ -37,7 +37,8 @@ const Experience = () => {
           ease: "none",
           scrollTrigger: { ...scrollTrigger, pin: true, scrub: 1, anticipatePin: 1 },
         });
-        gsap.fromTo(".xp-progress", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { ...scrollTrigger, scrub: true } });
+        // Same scrub as the track, so the bar and the cards move together.
+        gsap.fromTo(".xp-progress", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { ...scrollTrigger, scrub: 1 } });
 
         gsap.utils.toArray(".xp-card").forEach((card) => {
           gsap.from(card.querySelectorAll(".xp-point"), {
@@ -46,6 +47,19 @@ const Experience = () => {
             duration: 0.7,
             ease: "power3.out",
             scrollTrigger: { trigger: card, containerAnimation: slide, start: "left 80%" },
+          });
+        });
+      });
+
+      // Phones and tablets get a plain vertical list; give its cards an entrance too.
+      mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap.utils.toArray(".xp-card").forEach((card) => {
+          gsap.from(card.querySelectorAll(".xp-point"), {
+            y: 24,
+            stagger: 0.07,
+            duration: 0.7,
+            ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 85%", once: true },
           });
         });
       });
@@ -65,14 +79,17 @@ const Experience = () => {
         {/* The cards slide inside the page margins, not against the screen edge. */}
         <div className="mx-5 overflow-hidden sm:mx-8">
         <ol className="xp-track flex flex-col gap-5 lg:w-max lg:flex-row lg:gap-6">
-          {experience.map((job) => (
+          {experience.map((job, i) => (
+            // Company, role and dates show once per employer, not on every chapter.
             <li
               key={job.chapter}
               className="xp-card flex w-full flex-col bg-white/65 p-7 lg:w-[min(420px,29vw)]"
             >
               <p className="text-body font-medium">
                 {job.company}
-                <span className="text-muted"> · {job.role} · {job.period}</span>
+                {experience[i - 1]?.company !== job.company && (
+                  <span className="text-muted"> · {job.role} · {job.period}</span>
+                )}
               </p>
               <h3 className="mt-5 text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-[0.95] font-extrabold tracking-[-0.03em]">
                 {job.chapter}

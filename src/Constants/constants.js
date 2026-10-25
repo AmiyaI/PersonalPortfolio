@@ -5,53 +5,12 @@
      Last modification: 10/25/2026
 */
 
-import {
-  faEnvelope,
-  faRobot,
-  faDharmachakra,
-  faChartLine,
-  faDumbbell,
-  faMountainSun,
-  faMusic,
-  faBasketball,
-  faHandHoldingHeart,
-  faArrowTrendUp,
-} from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin, faReact } from '@fortawesome/free-brands-svg-icons';
-
-import {
-  linuxIcon,
-  terraformIcon,
-  securityIcon,
-  awsIcon,
-  githubIcon,
-  projectManagementIcon,
-  dockerIcon,
-  pyIcon,
-  cicdIcon,
-  phishai,
-  portfolio,
-  weatherApp,
-  avatar,
-} from '../assets';
-
-const icons = {
-  faGithub,
-  faLinkedin,
-  faEnvelope,
-};
+import { phishai, portfolio, weatherApp, avatar } from '../assets';
 
 const socials = [
-  { label: 'GitHub', href: 'https://github.com/AmiyaI', icon: faGithub },
-  { label: 'Email', href: 'mailto:iamiya@vt.edu', icon: faEnvelope },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amiya-islam', icon: faLinkedin },
-];
-
-const roles = [
-  'Founding Engineer',
-  'AI agent builder',
-  'Cloud & DevOps engineer',
-  'AI filmmaker',
+  { label: 'GitHub', href: 'https://github.com/AmiyaI' },
+  { label: 'Email', href: 'mailto:iamiya@vt.edu' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amiya-islam' },
 ];
 
 const introduction = {
@@ -237,93 +196,6 @@ const memoji = {
   image: [avatar],
 };
 
-const skills = [
-  {
-    id: 'ai-agents',
-    title: 'AI Agents & LLMs',
-    fa: faRobot,
-    description:
-      'Multi-agent orchestration, tool calling, RAG with Pinecone and conversation memory across OpenAI, Claude, Gemini, Grok and Perplexity.',
-  },
-  {
-    id: 'aws',
-    title: 'Amazon Web Services',
-    icon: awsIcon,
-    description:
-      'Lambda, API Gateway, DynamoDB, S3, ECS, EventBridge, SQS, IAM and Amplify, with 5 AWS certifications including DevOps Pro.',
-  },
-  {
-    id: 'terraform',
-    title: 'Infrastructure as Code',
-    icon: terraformIcon,
-    description:
-      'Terraform Associate certified. Terraform, CloudFormation and SAM for environments that are rebuilt, not hand-tuned.',
-  },
-  {
-    id: 'kubernetes',
-    title: 'Kubernetes',
-    fa: faDharmachakra,
-    description:
-      'Certified Kubernetes Administrator, comfortable running and debugging workloads on real clusters.',
-  },
-  {
-    id: 'docker',
-    title: 'Docker',
-    icon: dockerIcon,
-    description:
-      'Containerized services from local dev to ECS, with images that stay small and builds that stay fast.',
-  },
-  {
-    id: 'py',
-    title: 'Python',
-    icon: pyIcon,
-    description:
-      'Backend services, automation and cloud tooling, plus Bash for everything in between.',
-  },
-  {
-    id: 'typescript',
-    title: 'TypeScript & React',
-    fa: faReact,
-    description:
-      'Next.js, React and Node.js for portals, products and this site, with Playwright tests behind them.',
-  },
-  {
-    id: 'cicd',
-    title: 'CI/CD',
-    icon: cicdIcon,
-    description:
-      'GitHub Actions, Jenkins and n8n pipelines, plus an AI reviewer that checks every pull request.',
-  },
-  {
-    id: 'linux',
-    title: 'Linux',
-    icon: linuxIcon,
-    description:
-      'LFCS certified, from kernel basics and command-line tooling to day-to-day system administration.',
-  },
-  {
-    id: 'security',
-    title: 'Networking & Security',
-    icon: securityIcon,
-    description:
-      'AWS Security Specialty and Security+ certified. Auth0, tenant isolation, access controls and audits in production.',
-  },
-  {
-    id: 'observability',
-    title: 'Observability',
-    fa: faChartLine,
-    description:
-      'Prometheus, Grafana and CloudWatch, plus usage analytics over millions of records.',
-  },
-  {
-    id: 'project-management',
-    title: 'Project Management',
-    icon: projectManagementIcon,
-    description:
-      'Construction engineering roots: estimating, scheduling and coordinating teams, now applied to shipping software.',
-  },
-];
-
 // The poster list in Skills: one giant word per line, one fact beside it.
 const skillLines = [
   { word: 'ai agents', fact: 'OpenAI, Claude, Gemini, Grok, RAG' },
@@ -367,27 +239,24 @@ const hotTakes = [
 
 // Draft from the resume and the old About text; swap in real photos later.
 const hobbies = [
-  { title: 'Powerlifting', note: 'Squat, bench, deadlift. Mostly deadlift.', fa: faDumbbell, tilt: -6 },
-  { title: 'Trading', note: 'Charts, theses and the occasional humbling.', fa: faArrowTrendUp, tilt: 4 },
-  { title: 'The outdoors', note: 'Trails, water and anywhere without Wi-Fi.', fa: faMountainSun, tilt: -3 },
-  { title: 'Piano', note: 'Slowly, enthusiastically, mostly by ear.', fa: faMusic, tilt: 7 },
-  { title: 'Rec sports', note: 'Pickup games and whatever league will have me.', fa: faBasketball, tilt: -8 },
-  { title: 'Volunteering', note: 'Fitness and cooking classes for seniors at Warm Hearth Village since 2022.', fa: faHandHoldingHeart, tilt: 3 },
+  { title: 'Powerlifting', note: 'Squat, bench, deadlift. Mostly deadlift.', tilt: -6 },
+  { title: 'Trading', note: 'Charts, theses and the occasional humbling.', tilt: 4 },
+  { title: 'The outdoors', note: 'Trails, water and anywhere without Wi-Fi.', tilt: -3 },
+  { title: 'Piano', note: 'Slowly, enthusiastically, mostly by ear.', tilt: 7 },
+  { title: 'Rec sports', note: 'Pickup games and whatever league will have me.', tilt: -8 },
+  { title: 'Volunteering', note: 'Fitness and cooking classes for seniors at Warm Hearth Village since 2022.', tilt: 3 },
 ];
 
 export {
   introduction,
-  roles,
   stats,
   experience,
   certifications,
   projects,
   memoji,
-  skills,
   skillLines,
   hobbies,
   hotTakes,
   aiJourney,
   socials,
-  icons,
 };

@@ -16,7 +16,7 @@ const divInteraction = (selectors) => ({
   type: 'circle',
 });
 
-export const heroOptions = {
+const heroOptionsBase = {
   autoPlay: true,
 
   fullScreen: {
@@ -25,7 +25,7 @@ export const heroOptions = {
   },
 
   detectRetina: true,
-  fpsLimit: 120,
+  fpsLimit: 60,
 
   // v1 passed detectsOn: '#hero', which v2 did not recognize, so it fell back
   // to the canvas. The canvas is what the mouse is tracked on.
@@ -169,4 +169,19 @@ export const heroOptions = {
   pauseOnBlur: true,
   pauseOnOutsideViewport: true,
   smooth: true,
+};
+
+// Reduced motion: the logos stay where they are. Touch screens: fewer of them.
+const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const coarse = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+
+export const heroOptions = {
+  ...heroOptionsBase,
+  particles: {
+    ...heroOptionsBase.particles,
+    move: { ...heroOptionsBase.particles.move, enable: !reduced },
+    number: { ...heroOptionsBase.particles.number, value: coarse ? 18 : heroOptionsBase.particles.number.value },
+    opacity: { ...heroOptionsBase.particles.opacity, animation: { ...heroOptionsBase.particles.opacity.animation, enable: !reduced } },
+    size: { ...heroOptionsBase.particles.size, animation: { ...heroOptionsBase.particles.size.animation, enable: !reduced } },
+  },
 };

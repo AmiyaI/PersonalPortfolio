@@ -24,4 +24,11 @@ export const prefersReducedMotion = () =>
 export const hasFinePointer = () =>
   window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+// Many images finishing at once would each force a full re-measure; batch them.
+let refreshTimer = 0;
+export const refreshSoon = () => {
+  clearTimeout(refreshTimer);
+  refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+};
+
 export { gsap, ScrollTrigger, SplitText, useGSAP };

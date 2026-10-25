@@ -62,16 +62,24 @@ const Cursor = () => {
       setState(e.target.closest?.(INTERACTIVE) ?? null);
     };
     // Scrolling moves content under a still pointer, so re-check what's there.
+    let scrollFrame = 0;
     const onScroll = () => {
-      if (!shown) return;
-      const el = document.elementFromPoint(last.x, last.y);
-      setState(el?.closest?.(INTERACTIVE) ?? null);
+      if (!shown || scrollFrame) return;
+      scrollFrame = requestAnimationFrame(() => {
+        scrollFrame = 0;
+        const el = document.elementFromPoint(last.x, last.y);
+        setState(el?.closest?.(INTERACTIVE) ?? null);
+      });
     };
     const onLeave = () => {
       shown = false;
       gsap.to([dot.current, ring.current], { opacity: 0, duration: 0.3 });
     };
-    const onDown = () => gsap.to(ring.current, { scale: "*=0.8", duration: 0.15 });
+    const ringScale = () => {
+      const text = current?.closest?.("[data-cursor]")?.dataset.cursor;
+      return text ? 2.6 : current ? 1.6 : 1;
+    };
+    const onDown = () => gsap.to(ring.current, { scale: ringScale() * 0.8, duration: 0.15 });
     const onUp = () => {
       const target = current;
       current = undefined;
@@ -88,6 +96,7 @@ const Cursor = () => {
       document.documentElement.classList.remove("has-custom-cursor");
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(scrollFrame);
       document.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);

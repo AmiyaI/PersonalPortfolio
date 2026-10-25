@@ -7,7 +7,7 @@
 
 // Hobby cards laid out like stickers on a desk. Grab one and throw it.
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import SectionTitle from "../Components/SectionTitle";
 import { hobbies } from "../Constants/constants";
@@ -17,6 +17,8 @@ const Hobbies = () => {
   const board = useRef(null);
   // Dragging on touch screens would hijack page scrolling, so mouse only.
   const canDrag = hasFinePointer();
+  // The last card you grabbed stays on top after you let go.
+  const [onTop, setOnTop] = useState(null);
 
   return (
     <section id="hobbies" className="w-full field-orchid px-5 py-16 text-night sm:px-8 lg:py-20">
@@ -35,8 +37,10 @@ const Hobbies = () => {
               dragConstraints={board}
               dragElastic={0.2}
               dragTransition={{ bounceStiffness: 300, bounceDamping: 18 }}
-              whileHover={{ scale: 1.04, rotate: 0 }}
-              whileDrag={{ scale: 1.1, rotate: hobby.tilt * -1.5, zIndex: 20, cursor: "grabbing" }}
+              whileHover={{ scale: 1.03 }}
+              onDragStart={() => setOnTop(hobby.title)}
+              style={{ zIndex: onTop === hobby.title ? 20 : 1 }}
+              whileDrag={{ scale: 1.08, rotate: hobby.tilt * -1.2, cursor: "grabbing" }}
               // Visible from the start; the entrance only adds the drop and the tilt.
               initial={{ y: 40, rotate: hobby.tilt * 2 }}
               whileInView={{ y: 0, rotate: hobby.tilt }}
