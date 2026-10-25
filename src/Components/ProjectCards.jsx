@@ -8,6 +8,19 @@
 import { motion } from "motion/react";
 import { projects } from "../Constants/constants";
 import Tilt from "./elements/Tilt";
+import { TransitionLink } from "./motion/PageTransition";
+
+// Internal paths ("/studio") get a page transition; everything else opens in a new tab.
+const SmartLink = ({ href, children, ...rest }) =>
+  href.startsWith("/") ? (
+    <TransitionLink to={href} label={href === "/studio" ? "Studio" : "Amiya"} {...rest}>
+      {children}
+    </TransitionLink>
+  ) : (
+    <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+      {children}
+    </a>
+  );
 
 const rise = (delay) => ({
   hidden: { y: 60 },
@@ -18,7 +31,7 @@ const rise = (delay) => ({
 });
 
 const ProjectCard = ({ index, project }) => {
-  const { name, description, tags, image, imageAlt, source_code_link, demo_link } = project;
+  const { name, description, tags, image, imageAlt, source_code_link, demo_link, demo_label } = project;
   return (
     <motion.li
       variants={rise((index % 2) * 0.09)}
@@ -28,10 +41,8 @@ const ProjectCard = ({ index, project }) => {
       className="flex list-none flex-col"
     >
       <Tilt options={{ max: 10, scale: 1.01, speed: 450 }} className="group overflow-hidden bg-surface">
-        <a
+        <SmartLink
           href={demo_link ?? source_code_link ?? "#projects"}
-          target={demo_link || source_code_link ? "_blank" : undefined}
-          rel="noopener noreferrer"
           data-cursor="View"
           aria-label={`${name}: open`}
           className="block aspect-[16/10] overflow-hidden"
@@ -42,7 +53,7 @@ const ProjectCard = ({ index, project }) => {
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"
           />
-        </a>
+        </SmartLink>
       </Tilt>
       <div className="mt-4 flex flex-col gap-2.5">
         <h3 className="text-[clamp(1.5rem,1.2rem+0.8vw,2rem)] leading-none font-extrabold tracking-[-0.03em] text-ink">
@@ -52,9 +63,9 @@ const ProjectCard = ({ index, project }) => {
         <p className="text-small text-muted">{tags.join(", ")}</p>
         <div className="mt-1 flex items-center gap-6 text-body font-medium">
           {demo_link && (
-            <a className="nav-link pb-0.5 text-accent" href={demo_link} target="_blank" rel="noopener noreferrer">
-              See it live →
-            </a>
+            <SmartLink className="nav-link pb-0.5 text-accent" href={demo_link}>
+              {demo_label ?? "See it live"} →
+            </SmartLink>
           )}
           {source_code_link && (
             <a className="nav-link pb-0.5 text-ink" href={source_code_link} target="_blank" rel="noopener noreferrer">

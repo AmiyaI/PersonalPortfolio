@@ -32,7 +32,6 @@ import {
   phishai,
   portfolio,
   weatherApp,
-  swaSolo,
   avatar,
 } from '../assets';
 
@@ -191,12 +190,13 @@ const projects = [
     demo_link: 'https://swa-ai.com',
   },
   {
-    name: 'Swa Solo',
-    description: 'A standalone AI chat product I built and launched in about a week, then grew with Stripe upgrades, team invites, voice input and streaming responses.',
-    tags: ['Next.js', 'Stripe', 'Streaming'],
-    image: swaSolo,
-    imageAlt: 'The Swa Solo sign-in screen',
-    demo_link: 'https://swa-ai.com',
+    name: "I Didn't Film This",
+    description: 'A 45-second video where an AI avatar explains it was never filmed: HeyGen for the presenter, my cloned voice on ElevenLabs, and an edit built in code with HyperFrames and GSAP.',
+    tags: ['AI video', 'HyperFrames', 'ElevenLabs'],
+    image: '/media/studio/i-didnt-film-this-poster.webp',
+    imageAlt: "A frame from I Didn't Film This",
+    demo_link: '/studio',
+    demo_label: 'Watch it in Studio',
   },
   {
     name: 'Agentic Marketing Engine',

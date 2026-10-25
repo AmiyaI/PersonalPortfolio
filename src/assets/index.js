@@ -28,7 +28,6 @@ import menu from './menu.svg';
 import phishai from './projects/phishai.jpeg';
 import portfolio from './projects/portfolio.jpg';
 import weatherApp from './projects/weather-app.jpg';
-import swaSolo from './projects/swa-solo.webp';
 
 // Avatar
 import avatar from './avatar/avatar.png';
@@ -54,7 +53,6 @@ export {
   phishai,
   portfolio,
   weatherApp,
-  swaSolo,
   avatar,
   logo,
   noise,
