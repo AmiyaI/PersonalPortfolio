@@ -1,6 +1,6 @@
 /*
      FileName: Projects.jsx
-     @version: II
+     @version: III
      Creation: 10/23/2023
      Last modification: 10/25/2026
 */
@@ -10,12 +10,15 @@ import ProjectCards from "../Components/ProjectCards";
 
 const Projects = () => {
   return (
-    <div id="projects" className="w-full overflow-hidden-web flex justify-center py-24">
-      <div className="w-full xl:w-[70%] flex flex-col gap-10">
-        <SectionTitle title="PROJECTS" subtitle="What I have done so far" index="03" />
-        <ProjectCards />
+    <section id="projects" className="w-full px-5 py-24 sm:px-8 lg:py-28">
+      <div className="mb-16 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <SectionTitle title="Projects" />
+        <p className="max-w-[40ch] text-body text-ink">
+          Products I've shipped at SWA AI and the side projects that got me there.
+        </p>
       </div>
-    </div>
+      <ProjectCards />
+    </section>
   );
 };
 

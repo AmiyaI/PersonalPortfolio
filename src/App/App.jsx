@@ -46,6 +46,11 @@ const TITLES = {
 function App() {
   const { pathname } = useLocation();
 
+  // Cabinet Grotesk arrives after first paint and changes section heights.
+  useEffect(() => {
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+  }, []);
+
   useEffect(() => {
     document.title = TITLES[pathname] ?? TITLES["/"];
     // New page, new layout: let every ScrollTrigger re-measure.
@@ -57,7 +62,7 @@ function App() {
     <>
       <Cursor />
       <NavBar />
-      <Suspense fallback={<div className="h-screen" />}>
+      <Suspense fallback={<div className="h-[100svh]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/studio" element={<Studio />} />

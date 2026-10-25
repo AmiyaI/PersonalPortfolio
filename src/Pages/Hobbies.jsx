@@ -1,6 +1,6 @@
 /*
      FileName: Hobbies.jsx
-     @version: I
+     @version: II
      Creation: 10/25/2026
      Last modification: 10/25/2026
 */
@@ -9,7 +9,6 @@
 
 import { useRef } from "react";
 import { motion } from "motion/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SectionTitle from "../Components/SectionTitle";
 import { hobbies } from "../Constants/constants";
 import { hasFinePointer } from "../lib/gsap";
@@ -20,16 +19,15 @@ const Hobbies = () => {
   const canDrag = hasFinePointer();
 
   return (
-    <section id="hobbies" className="w-full overflow-hidden-web flex justify-center py-24">
-      <div className="w-full xl:w-[70%]">
-        <SectionTitle title="OFF THE CLOCK" subtitle="Hobbies" index="06" />
-        <p className="px-6 text-sm text-grayscale-100/60" style={{ fontFamily: "Poppins, sans-serif" }}>
-          {canDrag ? "Go ahead, drag them around." : "The stuff that keeps me sane."}
-        </p>
-        <div
-          ref={board}
-          className="relative mx-6 mt-8 grid grid-cols-1 gap-6 rounded-3xl border border-dashed border-primary-400/30 p-6 sm:grid-cols-2 lg:grid-cols-3 lg:p-10"
-        >
+    <section id="hobbies" className="w-full bg-violet px-5 py-24 text-ink sm:px-8 lg:py-28">
+      <div>
+        <div className="mb-14 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <SectionTitle title="Off the clock" />
+          <p className="max-w-[40ch] text-body">
+            {canDrag ? "What keeps me sane outside of work. Go ahead, drag them around." : "What keeps me sane outside of work."}
+          </p>
+        </div>
+        <div ref={board} className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {hobbies.map((hobby, i) => (
             <motion.div
               key={hobby.title}
@@ -39,22 +37,18 @@ const Hobbies = () => {
               dragTransition={{ bounceStiffness: 300, bounceDamping: 18 }}
               whileHover={{ scale: 1.04, rotate: 0 }}
               whileDrag={{ scale: 1.1, rotate: hobby.tilt * -1.5, zIndex: 20, cursor: "grabbing" }}
-              initial={{ opacity: 0, y: 60, rotate: hobby.tilt * 2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: hobby.tilt }}
-              viewport={{ once: true, amount: 0.4 }}
+              // Visible from the start; the entrance only adds the drop and the tilt.
+              initial={{ y: 40, rotate: hobby.tilt * 2 }}
+              whileInView={{ y: 0, rotate: hobby.tilt }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ type: "spring", bounce: 0.45, duration: 0.8, delay: (i % 3) * 0.08 }}
               data-cursor={canDrag ? "Drag" : undefined}
-              className={`relative flex flex-col ${canDrag ? "cursor-grab touch-none" : ""} gap-3 rounded-2xl bg-primary-400 p-6 text-grayscale-950 shadow-[8px_8px_0_#292D44] select-none`}
-              style={{ fontFamily: "Poppins, sans-serif" }}
+              className={`relative flex min-h-[220px] flex-col justify-end ${canDrag ? "cursor-grab touch-none" : ""} gap-3 bg-ink p-7 text-bg select-none`}
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#292D44] text-2xl text-primary-400">
-                <FontAwesomeIcon icon={hobby.fa} />
-              </span>
-              <h3 className="text-5xl leading-none tracking-wide" style={{ fontFamily: "Morganite Black" }}>
+              <h3 className="text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-none font-extrabold tracking-[-0.035em]">
                 {hobby.title}
               </h3>
-              <p className="text-sm">{hobby.note}</p>
-              <span className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-[-3deg] bg-grayscale-50/50" aria-hidden="true" />
+              <p className="text-body">{hobby.note}</p>
             </motion.div>
           ))}
         </div>

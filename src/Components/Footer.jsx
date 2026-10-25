@@ -1,27 +1,35 @@
 /*
      FileName: Footer.jsx
-     @version: I
+     @version: II
      Creation: 10/25/2026
      Last modification: 10/25/2026
 */
 
-// v1's social bar and credit, plus a giant name that rises into view.
+// The name opens the footer at full width, in the hero's Mario face, so the
+// page ends where it began. Ways to reach me and the site's pages sit under it.
 
 import { useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { socials } from "../Constants/constants";
 import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
-import Magnetic from "./motion/Magnetic";
+import { TransitionLink } from "./motion/PageTransition";
+import { useLenis, scrollToTarget } from "./motion/SmoothScroll";
+
+const pages = [
+  { to: "/", label: "Home" },
+  { to: "/studio", label: "Studio" },
+  { to: "/ai-slop", label: "AI Slop" },
+];
 
 const Footer = () => {
   const scope = useRef(null);
+  const lenis = useLenis();
 
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
         gsap.from(".footer-char", {
-          yPercent: 100,
+          yPercent: 40,
           ease: "expo.out",
           stagger: 0.04,
           duration: 1.2,
@@ -33,45 +41,59 @@ const Footer = () => {
   );
 
   return (
-    <footer ref={scope} className="w-full bg-grayscale-950 text-grayscale-50">
-      <div className="flex h-[100px] items-center justify-center gap-5 p-6">
-        {socials.map((social) => (
-          <Magnetic key={social.label} strength={0.5}>
-            <a
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              className="block p-2"
-            >
-              <FontAwesomeIcon
-                className="text-3xl text-grayscale-50 hover:text-primary-400 hover:scale-[1.1] transition-all duration-75"
-                icon={social.icon}
-              />
-            </a>
-          </Magnetic>
-        ))}
-      </div>
-      <div
+    <footer ref={scope} className="w-full bg-bg px-5 pt-20 pb-8 text-ink sm:px-8">
+      <p
         aria-hidden="true"
-        className="flex justify-center overflow-hidden px-4 text-[25vw] leading-[0.8] text-primary-400"
-        style={{ fontFamily: "Morganite Black" }}
+        className="flex overflow-hidden whitespace-nowrap text-[13.4vw] leading-[0.9] text-ink"
+        style={{ fontFamily: "SuperMario" }}
       >
-        {"AMIYA ISLAM".split("").map((char, i) =>
+        {"Amiya Islam".split("").map((char, i) =>
           char === " " ? (
-            <span key={i} className="inline-block w-[0.18em]" />
+            <span key={i} className="inline-block w-[0.25em]" />
           ) : (
             <span key={i} className="footer-char inline-block">
               {char}
             </span>
           )
         )}
+      </p>
+      <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <ul className="flex flex-col gap-2 lg:col-span-6">
+          {socials.map((social) => (
+            <li key={social.label}>
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link pb-1 text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] font-extrabold tracking-[-0.03em] text-accent"
+              >
+                {social.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <ul className="flex flex-col gap-2 text-body lg:col-span-3 lg:col-start-8">
+          {pages.map((page) => (
+            <li key={page.to}>
+              <TransitionLink to={page.to} label={page.label === "Home" ? "Amiya" : page.label} className="nav-link pb-0.5">
+                {page.label}
+              </TransitionLink>
+            </li>
+          ))}
+        </ul>
       </div>
-      <div className="flex justify-between px-6 py-4 text-xs text-grayscale-50/60" style={{ fontFamily: "Poppins, sans-serif" }}>
-        <span>
-          Made by <em>Amiya Islam</em>
-        </span>
-        <span>© {new Date().getFullYear()}</span>
+      <div className="mt-20 flex items-center justify-between text-small text-muted">
+        <span>Made by Amiya Islam, {new Date().getFullYear()}</span>
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToTarget(lenis, 0);
+          }}
+          className="nav-link pb-0.5"
+        >
+          Back to top
+        </a>
       </div>
     </footer>
   );

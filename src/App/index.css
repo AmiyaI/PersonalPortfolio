@@ -1,6 +1,6 @@
 /*
      FileName: index.css
-     @version: II
+     @version: III
      Creation: 10/23/2023
      Last modification: 10/25/2026
 */
@@ -8,18 +8,36 @@
 
 @import "tailwindcss";
 
-/* v1 replaced Tailwind's whole palette with these tokens, so classes like
-   text-white or bg-primary resolved to nothing. Wiping the defaults keeps
-   that look exactly. */
+/* Swa palette, used flat: one ground, one ink, one action colour (orange),
+   and three brand colours reserved for whole section fields. The legacy
+   primary and grayscale names stay mapped so the Studio and AI Slop pages
+   keep working while they get their own pass. */
 @theme {
   --color-*: initial;
-  --color-primary-400: #cbbde5;
-  --color-primary-500: #5C546B;
-  --color-primary-600: #CDBCEB;
+  --color-bg: #11133a;
+  --color-surface: #1a1d4f;
+  --color-ink: #f5f3ff;
+  --color-muted: #b9bce3;
+  --color-accent: #ef8a52;
+  --color-indigo: #4f46e5; /* taste-skill-ignore: Swa brand indigo, kept on purpose */
+  --color-violet: #7b4bef; /* taste-skill-ignore: Swa brand violet, kept on purpose */
+  --color-teal: #6fc0d6;
+
+  --color-primary-400: #b9bce3;
+  --color-primary-500: #11133a;
+  --color-primary-600: #f5f3ff;
   --color-grayscale-50: #ffffff;
   --color-grayscale-100: #efefef;
-  --color-grayscale-200: #FDFDFF;
-  --color-grayscale-950: #16161b;
+  --color-grayscale-200: #fdfdff;
+  --color-grayscale-950: #0b0c26;
+
+  --font-sans: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mario: "SuperMario", "Cabinet Grotesk", sans-serif;
+
+  --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --text-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-head: clamp(2.5rem, 1.2rem + 5vw, 5.5rem);
 }
 
 /* Tailwind 4's preflight differs from v3 in a few places v1 relied on. */
@@ -32,7 +50,7 @@
   input::placeholder,
   textarea::placeholder {
     opacity: 1;
-    color: #9ca3af;
+    color: #6b6f99;
   }
 
   button,
@@ -48,6 +66,26 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
   }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.5;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
 }
 
 @font-face {
@@ -55,87 +93,54 @@
   src: url(/Fonts/Mario/SuperMario256.ttf);
 }
 
-body {
-  background: url("../assets/textures/noise.png");
-  background-color: #5C546B;
-  position: relative;
-  overflow-x: hidden;
-  -webkit-overflow-x: hidden;
-}
-
 .overflow-hidden-web {
   overflow: hidden;
-  -webkit-overflow: hidden;
 }
 
 .message::after {
   content: " ";
   width: 10px;
   height: 10px;
-  background: #292D44;
+  background: var(--color-surface);
   position: absolute;
   bottom: -10px;
   right: 0;
   border-radius: 0 0 0 100%;
 }
 
-#repulse-div {
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-filter: drop-shadow(0 0 5rem #292D44);
-  filter: drop-shadow(0 0 5rem #292D44);
-}
-
-#repulse-div > h1 {
-  -webkit-filter: drop-shadow(0 0 5rem #292D44);
-  filter: drop-shadow(0 0 5rem #292D44);
-}
-
 .noselect {
-  -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
 .blob {
   animation: morph 3.6s linear infinite;
-  background: #292D44;
-  border-collapse: separate;
+  background: var(--color-surface);
   background-size: cover;
   background-position: center;
-  outline: 1px solid transparent;
 }
 
 @keyframes morph {
   0%,
   100% {
     border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
-    -webkit-border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
-    -moz-border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
   }
   34% {
     border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
-    -webkit-border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
-    -moz-border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
   }
   67% {
     border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
-    -webkit-border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
-    -moz-border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
   }
 }
 
 .bounce {
-  transition: all 0.3s ease-out;
+  transition: color 0.3s ease-out;
 }
 
 .bounce:hover {
   display: inline-block;
   animation: rubberband 0.8s ease-out;
-  color: #cbbde5;
+  color: var(--color-accent);
 }
 
 @keyframes rubberband {
@@ -162,19 +167,10 @@ body {
   }
 }
 
-@media only screen and (min-width: 600px) {
-  .drop-shadow-div {
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-filter: drop-shadow(0 0 1.5rem #cbbde5);
-    filter: drop-shadow(0 0 1.5rem #cbbde5);
-  }
-}
-
 .loader {
   width: 100px;
   height: 100px;
-  border: 5px solid #ecfdf4;
+  border: 5px solid var(--color-ink);
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -190,7 +186,7 @@ body {
   height: 80px;
   border-radius: 50%;
   border: 5px solid;
-  border-color: #cbbde5 transparent;
+  border-color: var(--color-accent) transparent;
 }
 
 @keyframes rotation {
@@ -201,8 +197,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* ---- Phase 2 additions ---- */
 
 /* Lenis' recommended base styles. */
 html.lenis,
@@ -241,8 +235,7 @@ html.lenis * {
 .cursor-dot {
   width: 8px;
   height: 8px;
-  background: #cbbde5;
-  mix-blend-mode: difference;
+  background: var(--color-accent);
 }
 .cursor-ring {
   display: flex;
@@ -250,34 +243,28 @@ html.lenis * {
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: 1.5px solid #cbbde5;
-  mix-blend-mode: normal;
+  border: 1.5px solid var(--color-accent);
 }
 .cursor-label {
-  font-family: Poppins, sans-serif;
-  font-size: 5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #16161b;
+  font-family: var(--font-sans);
+  font-size: 5.5px;
+  font-weight: 800;
+  color: var(--color-bg);
   opacity: 0;
 }
 
-/* Outlined display type for the giant tickers. */
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.5px #cbbde5;
+/* Underline that grows from the left on hover. */
+.nav-link {
+  position: relative;
 }
-
-/* Nav underline that grows from the left on hover and for the active section. */
 .nav-link::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: 0;
   width: 100%;
   height: 2px;
-  background: #cbbde5;
+  background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.5s cubic-bezier(.22, 1, .36, 1);
@@ -286,25 +273,6 @@ html.lenis * {
 .nav-link.is-active::after {
   transform: scaleX(1);
   transform-origin: left;
-}
-
-/* Drawn covers for projects without a screenshot. */
-.cover-agents {
-  background:
-    radial-gradient(circle at 20% 30%, #cbbde5 0 2px, transparent 3px) 0 0 / 22px 22px,
-    radial-gradient(circle at 70% 60%, #f2ead8 0 30%, transparent 31%),
-    linear-gradient(135deg, #cbbde5, #8f7fb3);
-}
-.cover-solo {
-  background:
-    radial-gradient(ellipse at 30% 40%, #ffffff 0 18%, transparent 19%),
-    radial-gradient(ellipse at 68% 62%, #ffffff 0 14%, transparent 15%),
-    linear-gradient(160deg, #a99bd0, #5C546B);
-}
-.cover-marketing {
-  background:
-    repeating-linear-gradient(-45deg, rgba(22, 22, 27, 0.08) 0 12px, transparent 12px 24px),
-    linear-gradient(120deg, #ff8539, #cbbde5);
 }
 
 /* Film grain for the Studio page. */
@@ -335,13 +303,6 @@ html.lenis * {
   translate: 0 -8px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .grain::before,
-  .blob {
-    animation: none;
-  }
-}
-
 /* Morganite's ampersand looks like a euro sign; borrow Poppins' instead. */
 .amp {
   font-family: Poppins, sans-serif;
@@ -349,4 +310,11 @@ html.lenis * {
   font-size: 0.62em;
   margin: 0 0.12em;
   vertical-align: 0.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::before,
+  .blob {
+    animation: none;
+  }
 }

@@ -29,3 +29,6 @@ CLAUDE.md
 
 # Local paths of full-res media originals (for upload); never public
 media-sources.local.json
+
+# taste-skill working files (screenshots, direction sheet)
+.taste-skill/

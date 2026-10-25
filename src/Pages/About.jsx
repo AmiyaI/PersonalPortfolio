@@ -1,12 +1,11 @@
 /*
      FileName: About.jsx
-     @version: II
+     @version: III
      Creation: 10/23/2023
      Last modification: 10/25/2026
 */
 
 import { useRef } from "react";
-import { m, LazyMotion, domAnimation } from "motion/react";
 import SectionTitle from "../Components/SectionTitle";
 import { memoji, introduction, stats } from "../Constants/constants";
 import ImageSlider from "../Components/elements/ImageSlider";
@@ -19,28 +18,27 @@ const About = () => {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        // Each word lights up as the statement scrolls through the viewport.
+        // Each word of the statement lights up as it scrolls through.
         SplitText.create(".about-statement", {
           type: "words",
           autoSplit: true,
           onSplit: (self) =>
             gsap.fromTo(
               self.words,
-              { opacity: 0.12 },
+              { opacity: 0.25 },
               {
                 opacity: 1,
                 stagger: 0.1,
                 ease: "none",
-                scrollTrigger: { trigger: ".about-statement", start: "top 80%", end: "bottom 45%", scrub: true },
+                scrollTrigger: { trigger: ".about-statement", start: "top 85%", end: "bottom 55%", scrub: true },
               }
             ),
         });
 
         gsap.utils.toArray(".stat-value").forEach((el) => {
-          const target = Number(el.dataset.value);
           const counter = { n: 0 };
           gsap.to(counter, {
-            n: target,
+            n: Number(el.dataset.value),
             duration: 1.8,
             ease: "power3.out",
             scrollTrigger: { trigger: el, start: "top 90%", once: true },
@@ -49,13 +47,13 @@ const About = () => {
             },
           });
         });
-        gsap.from(".stat", {
-          y: 40,
-          opacity: 0,
-          stagger: 0.1,
+
+        gsap.from(".about-part", {
+          y: 28,
+          stagger: 0.08,
           duration: 0.9,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".stats-row", start: "top 90%", once: true },
+          scrollTrigger: { trigger: ".about-story", start: "top 85%", once: true },
         });
       });
     },
@@ -63,60 +61,42 @@ const About = () => {
   );
 
   return (
-    <div ref={scope} id="about" className="w-full flex justify-center overflow-hidden-web">
-      <div className="w-full xl:w-[70%] flex flex-col pb-16">
-        <div className="w-full">
-          <SectionTitle title="ABOUT ME" subtitle="Introduction" index="01" />
-        </div>
-        <p
-          className="about-statement px-6 pt-4 pb-10 text-3xl leading-tight text-grayscale-50 sm:text-5xl"
-          style={{ fontFamily: "Poppins, sans-serif", fontWeight: 600 }}
-        >
+    <section ref={scope} id="about" className="w-full overflow-hidden px-5 py-24 sm:px-8 lg:py-28">
+      <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
+        <SectionTitle title="About me" className="lg:col-span-6" />
+        <p className="about-statement text-lead leading-snug text-ink lg:col-span-5 lg:col-start-8">
           {introduction.statement}
         </p>
-        <div className="w-full flex flex-col-reverse sm:flex-row">
-          <div className="w-full md:w-[50%] md:h-full flex items-center mt-10">
-            <LazyMotion features={domAnimation} strict>
-              <m.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                  duration: 0.5,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20,
-                }}
-                style={{ fontFamily: "Poppins, sans-serif" }}
-                className="text-grayscale-50 p-6 text-center flex flex-col gap-6"
-              >
-                <span className="text-primary-400">{introduction.text[0]}</span>
-                <span>{introduction.text[1]}</span>
-                <span>{introduction.text[2]}</span>
-                <span>{introduction.text[3]}</span>
-              </m.p>
-            </LazyMotion>
+      </div>
+
+      <dl className="mt-24 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-32 lg:flex lg:justify-between">
+        {stats.map((stat) => (
+          <div key={stat.label} className="flex flex-col">
+            <dd className="order-1 text-[clamp(2.25rem,1.5rem+2.4vw,3.5rem)] leading-none font-medium tabular-nums text-ink">
+              <span className="stat-value" data-value={stat.value}>
+                {stat.value.toLocaleString()}
+              </span>
+              <span className="text-accent">{stat.suffix}</span>
+            </dd>
+            <dt className="order-2 mt-2 max-w-[22ch] text-small text-muted">{stat.label}</dt>
           </div>
-          <div className="w-full md:w-[50%] flex h-full items-center justify-center">
-            <div className="w-[80%] lg:w-[50%] h-[300px] sm:h-[350px] flex justify-center items-center">
-              <ImageSlider images={memoji.image} />
-            </div>
+        ))}
+      </dl>
+
+      <div className="about-story mt-24 grid grid-cols-1 items-center gap-12 lg:mt-32 lg:grid-cols-12">
+        <div className="flex flex-col gap-5 text-body text-ink lg:col-span-6">
+          <p className="about-part text-lead font-medium text-accent">{introduction.text[0]}</p>
+          <p className="about-part">{introduction.text[1]}</p>
+          <p className="about-part">{introduction.text[2]}</p>
+          <p className="about-part">{introduction.text[3]}</p>
+        </div>
+        <div className="about-part flex justify-center lg:col-span-5 lg:col-start-8">
+          <div className="aspect-[4/5] w-[78%] max-w-[420px]">
+            <ImageSlider images={memoji.image} />
           </div>
         </div>
-        <dl className="stats-row mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-primary-400/20 bg-primary-400/20 mx-6 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="stat flex flex-col gap-2 bg-[#5C546B] p-6" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <dt className="order-2 text-sm text-grayscale-100/70">{stat.label}</dt>
-              <dd className="order-1 text-6xl leading-none text-primary-400" style={{ fontFamily: "Morganite Black" }}>
-                <span className="stat-value" data-value={stat.value}>
-                  {stat.value.toLocaleString()}
-                </span>
-                {stat.suffix}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
-    </div>
+    </section>
   );
 };
 

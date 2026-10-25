@@ -1,6 +1,6 @@
 /*
      FileName: particlesOptions.js
-     @version: II
+     @version: III
      Creation: 10/23/2023
      Last modification: 10/25/2026
 */
@@ -32,7 +32,7 @@ export const heroOptions = {
   interactivity: {
     detectsOn: 'canvas',
     events: {
-      onDiv: [divInteraction('#repulse-div'), divInteraction('#scroller')],
+      onDiv: [divInteraction('#hero-q')],
 
       // v2 configured parallax as onHover.parallax; v4 makes it a hover mode.
       onHover: {
@@ -50,7 +50,7 @@ export const heroOptions = {
         duration: 0.4,
         size: 40,
         color: {
-          value: '#cbbde5',
+          value: '#ef8a52',
         },
         opacity: 8,
         mix: false,
@@ -73,9 +73,10 @@ export const heroOptions = {
       enable: true,
       mode: 'bounce',
     },
+    // Swa palette: teal, orange and lilac glyphs on the blue-ink ground.
     paint: {
       color: {
-        value: '#fff',
+        value: ['#6fc0d6', '#ef8a52', '#b9bce3'],
       },
     },
     move: {
@@ -150,13 +151,13 @@ export const heroOptions = {
     links: {
       blink: false,
       color: {
-        value: '#ffffff',
+        value: '#b9bce3',
       },
       consent: true,
       distance: 100,
       enable: true,
       frequency: 10,
-      opacity: 0.4,
+      opacity: 0.25,
       width: 1,
     },
   },

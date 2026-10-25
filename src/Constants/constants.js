@@ -32,22 +32,9 @@ import {
   phishai,
   portfolio,
   weatherApp,
+  swaSolo,
   avatar,
 } from '../assets';
-
-// Images held behind the preloader until they have decoded.
-const media = {
-  linuxIcon,
-  terraformIcon,
-  securityIcon,
-  awsIcon,
-  githubIcon,
-  projectManagementIcon,
-  dockerIcon,
-  pyIcon,
-  cicdIcon,
-  avatar,
-};
 
 const icons = {
   faGithub,
@@ -199,21 +186,24 @@ const projects = [
     name: 'Swa Agent Platform',
     description: 'A production multi-agent AI platform where agents work alone or together across files, images, video, deep research, browsing and scheduling, in Slack, Teams, SMS, web and mobile.',
     tags: ['Multi-agent', 'RAG', 'AWS'],
-    cover: 'agents',
+    image: '/media/studio/explainer-poster.webp',
+    imageAlt: 'Swa answering a multi-model request inside Slack',
     demo_link: 'https://swa-ai.com',
   },
   {
     name: 'Swa Solo',
     description: 'A standalone AI chat product I built and launched in about a week, then grew with Stripe upgrades, team invites, voice input and streaming responses.',
     tags: ['Next.js', 'Stripe', 'Streaming'],
-    cover: 'solo',
+    image: swaSolo,
+    imageAlt: 'The Swa Solo sign-in screen',
     demo_link: 'https://swa-ai.com',
   },
   {
     name: 'Agentic Marketing Engine',
     description: 'Paste a company URL and a pipeline of AI agents researches the market, writes strategy, produces ads and critiques its own work before anything ships.',
     tags: ['Agents', 'Creative', 'Node'],
-    cover: 'marketing',
+    image: '/media/studio/ads/c17.webp',
+    imageAlt: 'An ad produced by the marketing engine',
   },
   {
     name: 'PhishAI',
@@ -332,6 +322,17 @@ const skills = [
   },
 ];
 
+// The poster list in Skills: one giant word per line, one fact beside it.
+const skillLines = [
+  { word: 'ai agents', fact: 'OpenAI, Claude, Gemini, Grok, RAG' },
+  { word: 'aws', fact: '5 certifications, DevOps Pro' },
+  { word: 'kubernetes', fact: 'Certified administrator' },
+  { word: 'terraform', fact: 'Infrastructure as code, certified' },
+  { word: 'typescript', fact: 'Next.js, React, Node' },
+  { word: 'python', fact: 'Services and automation' },
+  { word: 'security', fact: 'Security+, AWS Specialty' },
+];
+
 // Draft from the resume and the old About text; swap in real photos later.
 const hobbies = [
   { title: 'Powerlifting', note: 'Squat, bench, deadlift. Mostly deadlift.', fa: faDumbbell, tilt: -6 },
@@ -343,7 +344,6 @@ const hobbies = [
 ];
 
 export {
-  media,
   introduction,
   roles,
   stats,
@@ -352,6 +352,7 @@ export {
   projects,
   memoji,
   skills,
+  skillLines,
   hobbies,
   socials,
   icons,

@@ -1,8 +1,8 @@
 /*
      FileName: ImageSlider.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
 import { useEffect, useState, useRef } from "react";
@@ -40,17 +40,18 @@ const ImageSlider = ({ images }) => {
     <LazyMotion features={domAnimation} strict>
       <m.div
         ref={imageRef}
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ x: 200 }}
+        whileInView={{ x: 0 }}
         transition={{
           duration: 0.5,
           type: "spring",
           stiffness: 100,
           damping: 20,
         }}
-        className="w-full h-full blob drop-shadow-div"
-        style={{ backgroundImage: `url(${images[index]})` }}
-      ></m.div>
+        className="w-full h-full blob overflow-hidden"
+      >
+        <img src={images[index]} alt="Amiya Islam" className="h-full w-full object-cover" />
+      </m.div>
     </LazyMotion>
   );
 };

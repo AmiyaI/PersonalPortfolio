@@ -1,31 +1,17 @@
 /*
      FileName: CertTicker.jsx
-     @version: I
+     @version: II
      Creation: 10/25/2026
      Last modification: 10/25/2026
 */
 
-// Two rows of giant outlined certification names drifting in opposite
-// directions. Scrolling speeds them up and flips them with your direction.
+// The page's one signature move: an edge-to-edge line of the certifications,
+// drifting at a constant speed. Scrolling speeds it up and flips it with your
+// direction; hovering pauses it.
 
 import { useRef } from "react";
 import { certifications } from "../Constants/constants";
 import { gsap, useGSAP, ScrollTrigger, MOTION_OK } from "../lib/gsap";
-
-const Row = ({ items, className }) => (
-  <div className={`ticker-row flex w-max whitespace-nowrap ${className}`}>
-    {[0, 1].map((copy) => (
-      <span key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
-        {items.map((item) => (
-          <span key={item} className="flex items-center">
-            <span className="px-6">{item}</span>
-            <span className="text-[0.45em] text-primary-400">✦</span>
-          </span>
-        ))}
-      </span>
-    ))}
-  </div>
-);
 
 const CertTicker = () => {
   const scope = useRef(null);
@@ -34,14 +20,7 @@ const CertTicker = () => {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        const rows = gsap.utils.toArray(".ticker-row");
-        const loops = rows.map((row, i) =>
-          gsap.fromTo(
-            row,
-            { xPercent: i % 2 ? -50 : 0 },
-            { xPercent: i % 2 ? 0 : -50, duration: 40, ease: "none", repeat: -1 }
-          )
-        );
+        const loop = gsap.fromTo(".ticker-row", { xPercent: 0 }, { xPercent: -50, duration: 50, ease: "none", repeat: -1 });
         let direction = 1;
         ScrollTrigger.create({
           trigger: scope.current,
@@ -50,26 +29,38 @@ const CertTicker = () => {
           onUpdate: (self) => {
             direction = self.direction;
             const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 250, 8);
-            loops.forEach((loop) => {
-              gsap.to(loop, { timeScale: boost * direction, duration: 0.2, overwrite: true });
-              gsap.to(loop, { timeScale: direction, duration: 1.2, delay: 0.2, ease: "power2.out", overwrite: false });
-            });
+            gsap.to(loop, { timeScale: boost * direction, duration: 0.2, overwrite: true });
+            gsap.to(loop, { timeScale: direction, duration: 1.2, delay: 0.2, ease: "power2.out", overwrite: false });
           },
         });
+        const el = scope.current;
+        const pause = () => gsap.to(loop, { timeScale: 0, duration: 0.4, overwrite: true });
+        const resume = () => gsap.to(loop, { timeScale: direction, duration: 0.6, overwrite: true });
+        el.addEventListener("pointerenter", pause);
+        el.addEventListener("pointerleave", resume);
+        return () => {
+          el.removeEventListener("pointerenter", pause);
+          el.removeEventListener("pointerleave", resume);
+        };
       });
     },
     { scope }
   );
 
   return (
-    <div
-      ref={scope}
-      className="flex flex-col gap-2 overflow-hidden py-16 text-[16vw] leading-[0.9] uppercase sm:text-[10vw]"
-      style={{ fontFamily: "Morganite Black" }}
-    >
-      <p className="sr-only">Certifications: {certifications.join(", ")}.</p>
-      <Row items={certifications} className="text-outline" />
-      <Row items={[...certifications].reverse()} className="text-primary-600/90" />
+    <div ref={scope} className="overflow-hidden bg-bg py-16 text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-extrabold tracking-[-0.04em] lg:py-24">
+      <p className="sr-only">Certified in: {certifications.join(", ")}.</p>
+      <div className="ticker-row flex w-max whitespace-nowrap" aria-hidden="true">
+        {[0, 1].map((copy) => (
+          <span key={copy} className="flex shrink-0 items-center">
+            {certifications.map((item, i) => (
+              <span key={item} className={`pr-[0.6em] ${i % 2 ? "text-accent" : "text-ink"}`}>
+                {item}
+              </span>
+            ))}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

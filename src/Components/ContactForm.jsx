@@ -1,19 +1,25 @@
 /*
      FileName: ContactForm.jsx
-     @version: II
+     @version: III
      Creation: 10/23/2023
      Last modification: 10/25/2026
 */
 
 import { useRef, useState } from "react";
-import { Typewriter } from "react-simple-typewriter";
 import emailjs from "@emailjs/browser";
-import { noise } from "../assets";
+
+const fields = [
+  { id: "firstname", name: "from_name", label: "First name", type: "text", autoComplete: "given-name" },
+  { id: "lastname", name: "from_last", label: "Last name", type: "text", autoComplete: "family-name" },
+];
+
+const inputClass =
+  "w-full border-2 border-[#d8d6f0] bg-white px-4 py-3 text-body text-bg transition-colors focus:border-indigo focus:outline-none";
 
 const ContactForm = () => {
   const [status, setStatus] = useState("idle");
   const form = useRef();
-  
+
   const sendEmail = (e) => {
     e.preventDefault();
     setStatus("sending");
@@ -34,95 +40,46 @@ const ContactForm = () => {
           setStatus("error");
         }
       );
-  };  
+  };
 
   return (
-    <div
-  style={{
-    backgroundImage:
-      `url(${noise})`,
-    width: "80%",
-    height: "96%",
-    boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)"
-  }}
->
-      <div>
-        <h2
-          style={{ fontFamily: "Morganite Bold, sans-serif" }}
-          className="message text-7xl bg-primary-600 p-2 rounded-xl text-grayscale-200 text-center rounded-br-[0%] relative shadow-2xl"
-        >
-          <Typewriter words={["Let's get in touch!"]} loop={true} />
-          &nbsp;
-        </h2>
+    <form
+      id="contact_form"
+      ref={form}
+      method="POST"
+      onSubmit={sendEmail}
+      className="flex w-full flex-col gap-4 text-bg"
+    >
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {fields.map((field) => (
+          <label key={field.id} htmlFor={field.id} className="flex flex-col gap-1.5 text-small font-medium">
+            {field.label}
+            <input className={inputClass} id={field.id} type={field.type} name={field.name} autoComplete={field.autoComplete} required />
+          </label>
+        ))}
       </div>
-      <div className="w-full flex justify-center">
-        <form
-          id="contact_form"
-          ref={form}
-          method="POST"
-          target="_blank"
-          onSubmit={sendEmail}
-          style={{ fontFamily: "Poppins, sans-serif" }}
-          className="w-[80%] h-full flex flex-col gap-4 pt-4 text-grayscale-200"
+      <label htmlFor="email" className="flex flex-col gap-1.5 text-small font-medium">
+        Email
+        <input className={inputClass} id="email" type="email" name="from_email" autoComplete="email" required />
+      </label>
+      <label htmlFor="message" className="flex flex-col gap-1.5 text-small font-medium">
+        Message
+        <textarea className={`${inputClass} min-h-[140px] resize-y`} id="message" name="message" required />
+      </label>
+      <div className="flex flex-wrap items-center gap-5">
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="rounded-full bg-accent px-7 py-3.5 text-body font-extrabold text-bg transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60"
         >
-          <div className="w-full flex flex-col">
-            <label htmlFor="firstname">First Name</label>
-            <input
-              className="p-[0.5em] rounded-xl text-grayscale-950"
-              placeholder="Enter your First Name"
-              id="firstname"
-              type="text"
-              name="from_name"
-              required
-            />
-          </div>
-          <div className="w-full flex flex-col">
-            <label htmlFor="lastname">Last Name</label>
-            <input
-              className="p-[0.5em] rounded-xl text-grayscale-950"
-              placeholder="Enter your Last Name"
-              id="lastname"
-              type="text"
-              name="from_last"
-              required
-            />
-          </div>
-          <div className="w-full flex flex-col">
-            <label htmlFor="email">E-mail</label>
-            <input
-              className="p-[0.5em] rounded-xl text-grayscale-950"
-              placeholder="Enter your E-mail"
-              id="email"
-              type="email"
-              name="from_email"
-              required
-            />
-          </div>
-          <div className="w-full flex flex-col">
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              className="p-[0.5em] rounded-xl text-grayscale-950"
-              placeholder="Enter your message..."
-              name="message"
-              required
-            ></textarea>
-          </div>
-          <div className="w-full flex flex-col items-center gap-3">
-            <input
-              className="w-[100px] h-[50px] bg-primary-600 rounded-xl cursor-pointer text-grayscale-950 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
-              type="submit"
-              disabled={status === "sending"}
-              value={status === "sending" ? "Sending" : status === "sent" ? "Done!" : "Send"}
-            />
-            <p role="status" aria-live="polite" className="min-h-6 text-center text-sm">
-              {status === "sent" && "Thank you! I'll get back to you as soon as possible :)"}
-              {status === "error" && "That didn't send. Email me at iamiya@vt.edu instead?"}
-            </p>
-          </div>
-        </form>
+          {status === "sending" ? "Sending" : status === "sent" ? "Sent" : "Send message"}
+        </button>
+        <p role="status" aria-live="polite" className="text-body">
+          {status === "sent" && "Thank you! I'll get back to you as soon as I can."}
+          {status === "error" && "That didn't send. Email me directly instead?"}
+        </p>
       </div>
-    </div>
+    </form>
   );
 };
 

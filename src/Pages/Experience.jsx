@@ -1,12 +1,13 @@
 /*
      FileName: Experience.jsx
-     @version: I
+     @version: II
      Creation: 10/25/2026
      Last modification: 10/25/2026
 */
 
-// On desktop the section pins and the chapters slide past sideways as you
-// scroll down. On phones, or with reduced motion, it's a plain vertical list.
+// A full field of Swa indigo. On desktop the section pins and the chapters
+// slide past sideways as you scroll down. On phones, or with reduced motion,
+// it's a plain vertical list.
 
 import { useRef } from "react";
 import SectionTitle from "../Components/SectionTitle";
@@ -23,7 +24,7 @@ const Experience = () => {
       const mm = gsap.matchMedia();
       mm.add(HORIZONTAL, () => {
         const track = scope.current.querySelector(".xp-track");
-        const distance = () => track.scrollWidth - window.innerWidth;
+        const distance = () => track.scrollWidth - track.parentElement.clientWidth;
         const scrollTrigger = {
           trigger: ".xp-pin",
           start: "top top",
@@ -37,27 +38,15 @@ const Experience = () => {
           scrollTrigger: { ...scrollTrigger, pin: true, scrub: 1, anticipatePin: 1 },
         });
         gsap.fromTo(".xp-progress", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { ...scrollTrigger, scrub: true } });
-        gsap.to(".xp-ghost", { xPercent: -30, ease: "none", scrollTrigger: { ...scrollTrigger, scrub: true } });
 
         gsap.utils.toArray(".xp-card").forEach((card) => {
-          gsap.from(card.querySelectorAll(".xp-point, .xp-tag"), {
-            y: 30,
-            opacity: 0,
-            stagger: 0.06,
+          gsap.from(card.querySelectorAll(".xp-point"), {
+            y: 24,
+            stagger: 0.07,
             duration: 0.7,
             ease: "power3.out",
             scrollTrigger: { trigger: card, containerAnimation: slide, start: "left 80%" },
           });
-          gsap.fromTo(
-            card,
-            { rotate: 2.5, scale: 0.94 },
-            {
-              rotate: 0,
-              scale: 1,
-              ease: "none",
-              scrollTrigger: { trigger: card, containerAnimation: slide, start: "left right", end: "left 45%", scrub: true },
-            }
-          );
         });
       });
     },
@@ -65,67 +54,43 @@ const Experience = () => {
   );
 
   return (
-    <section ref={scope} id="experience" className="relative w-full overflow-hidden-web">
-      <div className="mx-auto w-full xl:w-[70%]">
-        <SectionTitle title="EXPERIENCE" subtitle="Where I've built" index="02" />
-      </div>
-      <div className="xp-pin relative flex min-h-screen flex-col justify-center overflow-hidden">
-        <span
-          aria-hidden="true"
-          className="xp-ghost text-outline pointer-events-none absolute top-1/2 left-0 hidden -translate-y-1/2 whitespace-nowrap text-[28vw] leading-none opacity-[0.07] lg:block"
-          style={{ fontFamily: "Morganite Black" }}
-        >
-          SHIPPED · SHIPPED · SHIPPED
-        </span>
-        <ol className="xp-track relative flex flex-col gap-6 px-6 lg:w-max lg:flex-row lg:gap-10 lg:pl-[15vw] lg:pr-[10vw]">
-          {experience.map((job, i) => (
+    <section ref={scope} id="experience" className="relative w-full bg-indigo text-ink">
+      <div className="xp-pin flex min-h-[100svh] flex-col justify-center gap-12 overflow-hidden py-24 lg:py-16">
+        <div className="flex flex-col gap-4 px-5 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
+          <SectionTitle title="Experience" />
+          <p className="max-w-[40ch] text-body">
+            Founding engineer at an AI startup today. Construction engineering before that, which is where I learned to ship on a schedule.
+          </p>
+        </div>
+        {/* The cards slide inside the page margins, not against the screen edge. */}
+        <div className="mx-5 overflow-hidden sm:mx-8">
+        <ol className="xp-track flex flex-col gap-5 lg:w-max lg:flex-row lg:gap-6">
+          {experience.map((job) => (
             <li
               key={job.chapter}
-              className="xp-card group relative flex w-full flex-col rounded-3xl border border-primary-400/25 bg-grayscale-950/70 p-8 text-grayscale-100 shadow-2xl backdrop-blur-sm lg:h-[58vh] lg:w-[min(540px,40vw)]"
-              style={{ fontFamily: "Poppins, sans-serif" }}
+              className="xp-card flex w-full flex-col bg-[#3d35c4] p-8 lg:min-h-[56svh] lg:w-[min(520px,38vw)]"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.25em] text-primary-400">{job.company}</p>
-                  <p className="mt-1 text-sm text-grayscale-100/60">
-                    {job.role} · {job.period}
-                  </p>
-                </div>
-                <span className="text-5xl leading-none text-primary-400/30" style={{ fontFamily: "Morganite Black" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <h3
-                className="mt-6 text-6xl leading-[0.95] tracking-wide text-primary-600 lg:text-7xl"
-                style={{ fontFamily: "Morganite Black" }}
-              >
-                {job.chapter.split("&").map((part, j) => (
-                  <span key={j}>
-                    {j > 0 && <span className="amp">&amp;</span>}
-                    {part}
-                  </span>
-                ))}
+              <p className="text-body font-medium">
+                {job.company}
+                <span className="text-[#d9d6ff]"> · {job.role} · {job.period}</span>
+              </p>
+              <h3 className="mt-5 text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-[0.95] font-extrabold tracking-[-0.03em]">
+                {job.chapter}
               </h3>
-              <ul className="mt-6 flex flex-col gap-3 text-[15px] leading-relaxed">
+              <ul className="mt-6 flex flex-col gap-3 text-body leading-relaxed">
                 {job.points.map((point) => (
-                  <li key={point} className="xp-point flex gap-3">
-                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-400" />
-                    <span>{point}</span>
+                  <li key={point} className="xp-point">
+                    {point}
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto flex flex-wrap gap-2 pt-6">
-                {job.tags.map((tag) => (
-                  <span key={tag} className="xp-tag rounded-full border border-primary-400/30 px-3 py-1 text-xs text-primary-400">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <p className="mt-auto pt-6 text-small text-[#d9d6ff]">{job.tags.join(", ")}</p>
             </li>
           ))}
         </ol>
-        <div className="mx-6 mt-10 hidden h-px bg-primary-400/15 lg:block">
-          <div className="xp-progress h-full origin-left bg-primary-400" />
+        </div>
+        <div className="mx-5 hidden h-1 bg-[#3d35c4] sm:mx-8 lg:block">
+          <div className="xp-progress h-full origin-left bg-accent" />
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 /*
      FileName: HeroParticles.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
 
@@ -11,13 +11,11 @@ import { heroOptions } from "./particlesOptions";
 
 const HeroParticles = () => {
   return (
-    <div className="w-full h-screen min-h-[800px]">
-      <ParticlesComponent
-        id="hero-particles"
-        className="w-full h-screen z-0 min-h-[800px]"
-        particlesOptions={heroOptions}
-      />
-    </div>
+    <ParticlesComponent
+      id="hero-particles"
+      className="h-full w-full"
+      particlesOptions={heroOptions}
+    />
   );
 };
 
