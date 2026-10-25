@@ -72,7 +72,7 @@ const About = () => {
       <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 lg:mt-16 lg:flex lg:justify-between">
         {stats.map((stat) => (
           <div key={stat.label} className="flex flex-col">
-            <dd className="order-1 text-[clamp(2.25rem,1.5rem+2.4vw,3.5rem)] leading-none font-medium tabular-nums text-ink">
+            <dd className="order-1 text-num leading-none font-medium tabular-nums text-ink">
               <span className="stat-value" data-value={stat.value}>
                 {stat.value.toLocaleString()}
               </span>

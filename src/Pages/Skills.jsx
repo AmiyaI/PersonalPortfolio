@@ -12,7 +12,7 @@ import { useRef } from "react";
 import SectionTitle from "../Components/SectionTitle";
 import CertTicker from "../Components/CertTicker";
 import { skillLines } from "../Constants/constants";
-import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
+import { gsap, useGSAP, ScrollTrigger, MOTION_OK } from "../lib/gsap";
 
 const Skills = () => {
   const scope = useRef(null);
@@ -29,6 +29,24 @@ const Skills = () => {
             scrollTrigger: { trigger: line, start: "top 92%", once: true },
           });
         });
+      });
+
+      // The big words lean a few degrees into fast scrolling, then settle.
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+        const words = gsap.utils.toArray(".skill-word", scope.current);
+        const lean = gsap.quickTo(words, "skewX", { duration: 0.5, ease: "power3.out" });
+        let settle = 0;
+        ScrollTrigger.create({
+          trigger: scope.current,
+          start: "top bottom",
+          end: "bottom top",
+          onUpdate: (self) => {
+            lean(gsap.utils.clamp(-4, 4, -self.getVelocity() / 450));
+            clearTimeout(settle);
+            settle = setTimeout(() => lean(0), 120);
+          },
+        });
+        return () => clearTimeout(settle);
       });
     },
     { scope }
@@ -50,7 +68,7 @@ const Skills = () => {
               key={line.word}
               className="skill-line group flex flex-col justify-between gap-1 overflow-hidden pb-4 sm:flex-row sm:items-baseline sm:gap-6 sm:pb-0"
             >
-              <span className="skill-word block text-[clamp(2rem,4.4vw,4.25rem)] leading-[1] font-extrabold tracking-[-0.045em] transition-colors duration-300 group-hover:text-indigo">
+              <span className="skill-word block text-head leading-[1] font-extrabold tracking-[-0.045em] transition-[color,translate] duration-[400ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:translate-x-3 group-hover:text-indigo">
                 {line.word}
               </span>
               <span className="text-lead font-medium tabular-nums sm:text-right">{line.fact}</span>

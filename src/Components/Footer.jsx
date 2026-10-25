@@ -44,7 +44,7 @@ const Footer = () => {
     <footer ref={scope} className="w-full field-deep px-5 pt-14 pb-8 text-white sm:px-8">
       <p
         aria-hidden="true"
-        className="flex justify-center overflow-hidden whitespace-nowrap text-[8vw] leading-[0.9] text-white"
+        className="flex justify-center overflow-hidden whitespace-nowrap text-mega leading-[0.9] text-white"
         style={{ fontFamily: "SuperMario" }}
       >
         {"Amiya Islam".split("").map((char, i) =>
@@ -65,7 +65,7 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nav-link pb-1 text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] font-extrabold tracking-[-0.03em] text-orange"
+                className="nav-link pb-1 text-title font-extrabold tracking-[-0.03em] text-orange"
               >
                 {social.label}
               </a>

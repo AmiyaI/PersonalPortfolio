@@ -12,6 +12,7 @@ import { useRef } from "react";
 import media from "../Constants/media.json";
 import { gsap, useGSAP, SplitText, refreshSoon, MOTION_OK } from "../lib/gsap";
 import { MediaViewerProvider, PreviewCard, formatDuration, useMediaViewer } from "../Components/media/MediaViewer";
+import { useEnterDelay } from "../Components/motion/PageTransition";
 
 const all = media.studio;
 const feature = all[0];
@@ -66,13 +67,14 @@ const StillsWall = () => {
 
 const Studio = () => {
   const scope = useRef(null);
+  const enterDelay = useEnterDelay();
 
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
         gsap
-          .timeline({ delay: 0.9 })
+          .timeline({ delay: enterDelay })
           .from(".studio-title-char", { yPercent: 110, duration: 1.4, ease: "expo.out", stagger: 0.06 })
           .from(".studio-kicker", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out", stagger: 0.1 }, "-=1");
 
@@ -90,15 +92,11 @@ const Studio = () => {
             }),
         });
 
-        // The featured film opens up from a letterbox as it scrolls in.
+        // The featured film grows into place as it scrolls in (transform only).
         gsap.fromTo(
           ".studio-feature",
-          { clipPath: "inset(18% 12% 18% 12% round 24px)" },
-          {
-            clipPath: "inset(0% 0% 0% 0% round 24px)",
-            ease: "none",
-            scrollTrigger: { trigger: ".studio-feature", start: "top 90%", end: "top 25%", scrub: true },
-          }
+          { scale: 0.9 },
+          { scale: 1, ease: "none", scrollTrigger: { trigger: ".studio-feature", start: "top 90%", end: "top 30%", scrub: 0.5 } }
         );
 
         gsap.utils.toArray(".studio-reveal").forEach((el) => {

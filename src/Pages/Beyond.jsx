@@ -11,7 +11,7 @@
 import { useRef } from "react";
 import SectionTitle from "../Components/SectionTitle";
 import { TransitionLink } from "../Components/motion/PageTransition";
-import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
+import { gsap, useGSAP, MOTION_OK, EASE, START } from "../lib/gsap";
 import media from "../Constants/media.json";
 
 const studioFeature = media.studio[0];
@@ -29,14 +29,18 @@ const Beyond = () => {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        gsap.from(".door", {
-          yPercent: 30,
-          rotate: (i) => (i ? 4 : -4),
-          duration: 1.2,
-          ease: "expo.out",
-          stagger: 0.15,
-          scrollTrigger: { trigger: ".doors", start: "top 80%" },
-        });
+        // Each door unveils from the bottom edge up, left to right.
+        gsap.fromTo(
+          ".door",
+          { clipPath: "inset(100% 0% 0% 0%)" },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.1,
+            ease: EASE.inOut,
+            stagger: 0.12,
+            scrollTrigger: { trigger: ".doors", start: START.section, once: true },
+          }
+        );
       });
     },
     { scope }
@@ -86,8 +90,8 @@ const Beyond = () => {
               />
             )}
             <div className="relative -m-8 mt-0 bg-[#0d0b10] p-8 pt-6">
-              <h3 className="text-[clamp(2.75rem,1.6rem+3vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
-                Studio <span className="inline-block transition-transform duration-500 group-hover:translate-x-3 group-hover:-translate-y-3">→</span>
+              <h3 className="text-head leading-[0.9] font-extrabold tracking-[-0.04em]">
+                Studio <span className="inline-block transition-transform duration-[400ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2">→</span>
               </h3>
               <p className="mt-3 max-w-md text-body">
                 Production work: AI short films, UGC ads, product launch videos and campaign creative.
@@ -118,8 +122,8 @@ const Beyond = () => {
               ))}
             </div>
             <div className="relative -m-8 mt-0 bg-[#d2ff00] p-8 pt-6">
-              <h3 className="text-[clamp(2.75rem,1.6rem+3vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
-                AI Slop <span className="inline-block transition-transform duration-500 group-hover:rotate-12">→</span>
+              <h3 className="text-head leading-[0.9] font-extrabold tracking-[-0.04em]">
+                AI Slop <span className="inline-block transition-transform duration-[400ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2">→</span>
               </h3>
               <p className="mt-3 max-w-md text-body font-medium">
                 Games, skits and memes I made with AI purely because I could, on every new tool I get my hands on. Not production grade. No refunds.
@@ -138,8 +142,8 @@ const Beyond = () => {
               className="absolute inset-0 h-full w-full object-cover object-[center_42%] transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"
             />
             <div className="relative -m-8 mt-0 bg-white p-8 pt-6">
-              <h3 className="text-[clamp(2.75rem,1.6rem+3vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
-                Shirts <span className="inline-block transition-transform duration-500 group-hover:translate-x-3">→</span>
+              <h3 className="text-head leading-[0.9] font-extrabold tracking-[-0.04em]">
+                Shirts <span className="inline-block transition-transform duration-[400ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2">→</span>
               </h3>
               <p className="mt-3 max-w-md text-body">
                 Shirts I designed, starting with the mushroom tee. Not in a store yet. Want one? Ask me.

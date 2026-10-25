@@ -49,11 +49,11 @@ const EarlyAI = () => {
         <ol className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {aiJourney.map((step) => (
             <li key={step.title} className="journey-step flex flex-col gap-3">
-              <p className="text-[clamp(2.5rem,1.8rem+2vw,3.5rem)] leading-none font-extrabold tracking-[-0.04em] text-accent tabular-nums">
+              <p className="text-num leading-none font-extrabold tracking-[-0.04em] text-accent tabular-nums">
                 {step.when}
               </p>
               <h3 className="text-lead font-extrabold tracking-[-0.02em] text-ink">{step.title}</h3>
-              <p className="max-w-[34ch] text-[1rem] leading-relaxed text-ink">{step.text}</p>
+              <p className="max-w-[34ch] text-compact leading-relaxed text-ink">{step.text}</p>
             </li>
           ))}
         </ol>

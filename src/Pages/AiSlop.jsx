@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "motion/react";
 import media from "../Constants/media.json";
 import { gsap, useGSAP, MOTION_OK, hasFinePointer } from "../lib/gsap";
 import { MediaViewerProvider, PreviewCard, useMediaViewer } from "../Components/media/MediaViewer";
+import { useEnterDelay } from "../Components/motion/PageTransition";
 
 const byId = Object.fromEntries(media.slop.map((e) => [e.id, e]));
 const subsClips = media.slop.filter((e) => e.id.startsWith("subs-"));
@@ -76,6 +77,7 @@ const ImageGrid = ({ item }) => {
 
 const AiSlop = () => {
   const scope = useRef(null);
+  const enterDelay = useEnterDelay();
   const [chaos, setChaos] = useState(0);
   const brickline = byId.brickline;
 
@@ -89,7 +91,7 @@ const AiSlop = () => {
           duration: 1.1,
           ease: "bounce.out",
           stagger: 0.08,
-          delay: 0.9,
+          delay: enterDelay,
         });
         gsap.to(".slop-title-char", {
           rotate: () => gsap.utils.random(-8, 8),
@@ -99,7 +101,7 @@ const AiSlop = () => {
           repeat: -1,
           yoyo: true,
           repeatRefresh: true,
-          delay: 2.2,
+          delay: enterDelay + 1.3,
           stagger: 0.1,
         });
         gsap.to(".slop-badge", { rotate: 360, duration: 14, ease: "none", repeat: -1 });

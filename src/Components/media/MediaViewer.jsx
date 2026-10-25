@@ -135,7 +135,7 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
               initial={{ y: 40, scale: 0.96 }}
               animate={{ y: 0, scale: 1 }}
               exit={{ y: 40, scale: 0.96 }}
-              transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="relative flex h-full max-h-full w-full items-center justify-center" onClick={(e) => e.stopPropagation()}>
                 {slot?.type === "video" ? (

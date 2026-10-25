@@ -24,6 +24,11 @@ export const prefersReducedMotion = () =>
 export const hasFinePointer = () =>
   window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+// Shared motion vocabulary, so every section moves with the same feel.
+export const EASE = { out: "expo.out", soft: "power3.out", inOut: "power4.inOut" };
+export const DUR = { sm: 0.5, md: 0.8, lg: 1.1 };
+export const START = { section: "top 85%", item: "top 90%" };
+
 // Many images finishing at once would each force a full re-measure; batch them.
 let refreshTimer = 0;
 export const refreshSoon = () => {

@@ -43,10 +43,16 @@
   --font-sans: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mario: "SuperMario", "Cabinet Grotesk", sans-serif;
 
+  /* The type ladder: every size on the main page is one of these. */
   --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-compact: 1rem;
   --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
   --text-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-title: clamp(1.5rem, 1.2rem + 0.8vw, 2rem);
+  --text-quote: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+  --text-num: clamp(2.25rem, 1.6rem + 2vw, 3.5rem);
   --text-head: clamp(2.25rem, 1.4rem + 3vw, 4.25rem);
+  --text-mega: clamp(2.5rem, 6.5vw, 6.5rem);
 }
 
 /* Tailwind 4's preflight differs from v3 in a few places v1 relied on. */

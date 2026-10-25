@@ -126,7 +126,11 @@ export const PageTransitionProvider = ({ children }) => {
         })
         .to(text.current, { yPercent: -110, duration: 0.3, ease: "power3.in" }, "+=0.15")
         .to(panel.current, { clipPath: "inset(0% 0% 100% 0%)", duration: 0.6, ease: "power4.inOut" }, "-=0.15")
-        .add(hidePanel);
+        .add(() => {
+          hidePanel();
+          // Re-assert focus once the page has fully settled under the wipe.
+          if (!document.activeElement || document.activeElement === document.body) focusMain();
+        });
     },
     [lenis, location.pathname, navigate]
   );

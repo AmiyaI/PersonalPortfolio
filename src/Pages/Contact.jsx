@@ -41,7 +41,7 @@ const Contact = () => {
       </h2>
       <a
         href={`mailto:${EMAIL}`}
-        className="contact-part mt-10 block w-fit text-[clamp(2.25rem,7vw,7rem)] leading-[0.95] font-extrabold tracking-[-0.045em] transition-colors duration-300 hover:text-indigo"
+        className="contact-part mt-10 block w-fit text-mega leading-[0.95] font-extrabold tracking-[-0.045em] transition-colors duration-300 hover:text-indigo"
       >
         {EMAIL}
       </a>

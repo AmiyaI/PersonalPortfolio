@@ -9,27 +9,13 @@
 // face, with one sentence and one action under it.
 
 import { useRef } from "react";
-import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 import { TransitionLink } from "./motion/PageTransition";
 import Magnetic from "./motion/Magnetic";
 
 const HeroText = () => {
   const scope = useRef(null);
 
-  // The name rises into its masked lines on load and settles within ~0.7s.
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add(MOTION_OK, () => {
-        gsap
-          .timeline()
-          .from(".name-char", { yPercent: 110, duration: 0.55, ease: "expo.out", stagger: 0.025 })
-          .from(".who-char", { yPercent: -110, rotate: () => gsap.utils.random(-20, 20), duration: 0.6, ease: "back.out(2.2)", stagger: 0.03 }, "<")
-          .from(".hero-line", { y: 24, duration: 0.6, ease: "power3.out", stagger: 0.06 }, "<0.1");
-      });
-    },
-    { scope }
-  );
+  // The entrance itself is choreographed in Pages/Hero.jsx with the particles.
 
   return (
     <div ref={scope} className="hero-title-wrap flex w-full flex-col items-center px-5 text-center sm:px-8">

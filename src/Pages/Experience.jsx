@@ -41,6 +41,15 @@ const Experience = () => {
         gsap.fromTo(".xp-progress", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { ...scrollTrigger, scrub: 1 } });
 
         gsap.utils.toArray(".xp-card").forEach((card) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0.55 },
+            {
+              opacity: 1,
+              ease: "none",
+              scrollTrigger: { trigger: card, containerAnimation: slide, start: "left 80%", end: "left 40%", scrub: true },
+            }
+          );
           gsap.from(card.querySelectorAll(".xp-point"), {
             y: 24,
             stagger: 0.07,
@@ -54,6 +63,15 @@ const Experience = () => {
       // Phones and tablets get a plain vertical list; give its cards an entrance too.
       mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
         gsap.utils.toArray(".xp-card").forEach((card) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0.55 },
+            {
+              opacity: 1,
+              ease: "none",
+              scrollTrigger: { trigger: card, containerAnimation: slide, start: "left 80%", end: "left 40%", scrub: true },
+            }
+          );
           gsap.from(card.querySelectorAll(".xp-point"), {
             y: 24,
             stagger: 0.07,
@@ -91,10 +109,10 @@ const Experience = () => {
                   <span className="text-muted"> · {job.role} · {job.period}</span>
                 )}
               </p>
-              <h3 className="mt-5 text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-[0.95] font-extrabold tracking-[-0.03em]">
+              <h3 className="mt-5 text-title leading-[0.95] font-extrabold tracking-[-0.03em]">
                 {job.chapter}
               </h3>
-              <ul className="mt-5 flex flex-col gap-2.5 text-[1rem] leading-relaxed">
+              <ul className="mt-5 flex flex-col gap-2.5 text-compact leading-relaxed">
                 {job.points.map((point) => (
                   <li key={point} className="xp-point">
                     {point}

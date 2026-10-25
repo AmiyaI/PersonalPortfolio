@@ -49,7 +49,7 @@ const Hobbies = () => {
               data-cursor={canDrag ? "Drag" : undefined}
               className={`relative flex min-h-[150px] flex-col justify-end ${canDrag ? "cursor-grab touch-none" : ""} gap-2 bg-white/80 p-6 text-night select-none`}
             >
-              <h3 className="text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-none font-extrabold tracking-[-0.035em]">
+              <h3 className="text-title leading-none font-extrabold tracking-[-0.035em]">
                 {hobby.title}
               </h3>
               <p className="text-body">{hobby.note}</p>
