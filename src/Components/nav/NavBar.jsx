@@ -53,7 +53,7 @@ const Navbar = () => {
   // A plain solid bar in each page's own ground, so nothing drifts under the links.
   const bar = toggle
     ? "bg-transparent"
-    : { "/studio": "bg-[#0d0b10]", "/ai-slop": "bg-[#d2ff00]" }[pathname] ?? "bg-bg";
+    : { "/studio": "bg-[#0d0b10]", "/ai-slop": "bg-[#d2ff00]" }[pathname] ?? "bg-plum";
 
   return (
     <>

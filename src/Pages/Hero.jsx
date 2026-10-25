@@ -34,7 +34,7 @@ const Hero = () => {
       ref={scope}
       id="hero"
       aria-label="Introduction"
-      className="relative isolate flex h-[100svh] min-h-[640px] w-full flex-col justify-center overflow-hidden bg-bg pt-20"
+      className="relative isolate flex h-[100svh] min-h-[640px] w-full flex-col justify-center overflow-hidden hero-purple pt-20"
     >
       <div className="hero-particles-wrap absolute inset-0 -z-10">
         <HeroParticles />

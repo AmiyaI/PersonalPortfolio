@@ -50,7 +50,7 @@ export const heroOptions = {
         duration: 0.4,
         size: 40,
         color: {
-          value: '#ef8a52',
+          value: '#140d26',
         },
         opacity: 8,
         mix: false,
@@ -73,10 +73,10 @@ export const heroOptions = {
       enable: true,
       mode: 'bounce',
     },
-    // Swa palette: teal, orange and lilac glyphs on the blue-ink ground.
+    // White, night and peach glyphs on the purple hero.
     paint: {
       color: {
-        value: ['#6fc0d6', '#ef8a52', '#b9bce3'],
+        value: ['#ffffff', '#140d26', '#ffd2b3'],
       },
     },
     move: {
@@ -151,7 +151,7 @@ export const heroOptions = {
     links: {
       blink: false,
       color: {
-        value: '#b9bce3',
+        value: '#ffffff',
       },
       consent: true,
       distance: 100,

@@ -19,7 +19,7 @@ const Hobbies = () => {
   const canDrag = hasFinePointer();
 
   return (
-    <section id="hobbies" className="w-full bg-violet px-5 py-24 text-ink sm:px-8 lg:py-28">
+    <section id="hobbies" className="w-full bg-orchid px-5 py-24 text-night sm:px-8 lg:py-28">
       <div>
         <div className="mb-14 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <SectionTitle title="Off the clock" />

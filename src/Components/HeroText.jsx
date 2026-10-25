@@ -38,7 +38,7 @@ const HeroText = () => {
       <div id="repulse-div">
         <h1
           aria-label="Who's Amiya?"
-          className="noselect cursor-default text-[clamp(3.25rem,8.6vw,9.5rem)] leading-[0.9] text-ink"
+          className="noselect cursor-default text-[clamp(3.25rem,8.6vw,9.5rem)] leading-[0.9] text-night"
           style={{ fontFamily: "SuperMario" }}
         >
           <span aria-hidden="true" className="block overflow-hidden">
@@ -48,7 +48,7 @@ const HeroText = () => {
               </span>
             ))}
           </span>
-          <span aria-hidden="true" className="block overflow-hidden whitespace-nowrap pb-[0.06em] text-[1.4em] text-accent">
+          <span aria-hidden="true" className="block overflow-hidden whitespace-nowrap pb-[0.06em] text-[1.4em] text-white">
             {"Amiya ?".split("").map((char, index) =>
               char === " " ? (
                 <span key={index} className="inline-block w-[0.22em]" />
@@ -61,14 +61,14 @@ const HeroText = () => {
           </span>
         </h1>
       </div>
-      <p className="hero-line mt-6 max-w-[40ch] text-lead leading-snug text-ink">
+      <p className="hero-line mt-6 max-w-[40ch] text-lead leading-snug font-medium text-night">
         Amiya Islam, founding engineer building multi-agent AI platforms and the cloud they run on.
       </p>
       <Magnetic strength={0.3} className="hero-line mt-8">
         <TransitionLink
           to="/#contact"
           label="Amiya"
-          className="inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-body font-extrabold text-night transition-transform duration-300 hover:-translate-y-0.5 active:translate-y-0"
+          className="inline-flex items-center gap-3 rounded-full bg-night px-7 py-4 text-body font-extrabold text-white transition-transform duration-300 hover:-translate-y-0.5 active:translate-y-0"
         >
           Let's talk <span aria-hidden="true">→</span>
         </TransitionLink>

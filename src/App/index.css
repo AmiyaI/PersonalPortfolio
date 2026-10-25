@@ -8,21 +8,25 @@
 
 @import "tailwindcss";
 
-/* Swa palette, used flat: one ground, one ink, one action colour (orange),
-   and three brand colours reserved for whole section fields. The legacy
+/* Purple palette sampled from the owner's reference: a deep violet ground,
+   the lavender-to-orchid gradient as the hero, orange for the action, and
+   brand colours for whole section fields. The legacy
    primary and grayscale names stay mapped so the Studio and AI Slop pages
    keep working while they get their own pass. */
 @theme {
   --color-*: initial;
-  --color-bg: #11133a;
-  --color-night: #11133a; /* dark text on light fields; stays put if the ground changes */
-  --color-surface: #1a1d4f;
-  --color-ink: #f5f3ff;
-  --color-muted: #b9bce3;
-  --color-accent: #ef8a52;
+  --color-bg: #3b2c6b;
+  --color-night: #140d26; /* dark text on light fields; stays put if the ground changes */
+  --color-surface: #4a3a80;
+  --color-ink: #f7f3ff;
+  --color-muted: #d6ccf0;
+  --color-accent: #ff9e66;
   --color-indigo: #4f46e5; /* taste-skill-ignore: Swa brand indigo, kept on purpose */
   --color-violet: #7b4bef; /* taste-skill-ignore: Swa brand violet, kept on purpose */
   --color-teal: #6fc0d6;
+  --color-plum: #5d4a91;
+  --color-lavender: #8f66be;
+  --color-orchid: #bd70b1;
 
   --color-primary-400: #b9bce3;
   --color-primary-500: #11133a;
@@ -30,7 +34,7 @@
   --color-grayscale-50: #ffffff;
   --color-grayscale-100: #efefef;
   --color-grayscale-200: #fdfdff;
-  --color-grayscale-950: #0b0c26;
+  --color-grayscale-950: #241a45;
 
   --font-sans: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mario: "SuperMario", "Cabinet Grotesk", sans-serif;
@@ -318,4 +322,9 @@ html.lenis * {
   .blob {
     animation: none;
   }
+}
+
+/* The owner's purple: lavender into orchid, used once, behind the hero. */
+.hero-purple {
+  background: linear-gradient(160deg, #8f66be 0%, #9e6abc 45%, #bd70b1 100%); /* taste-skill-ignore: the owner's chosen purple, one field only */
 }
