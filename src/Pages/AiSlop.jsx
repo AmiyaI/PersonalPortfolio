@@ -166,7 +166,7 @@ const AiSlop = () => {
             )}
           </h1>
           <p className="mt-6 max-w-xl text-lg font-medium" style={sans}>
-            I didn't make slop just to make slop. Whenever a new AI tool drops, I mess with it to see what it can make. A lot of this was made on much older models, some on the newest. Games, skits and memes. Quality not guaranteed.
+            Stuff I made with AI purely because I could. I didn't make slop just to make slop, though: whenever a new AI tool drops, I mess with it to see what it can make. A lot of this was made on much older models, some on the newest. Games, skits and memes. Quality not guaranteed.
           </p>
           <button
             type="button"
