@@ -36,7 +36,7 @@ const EarlyAI = () => {
   return (
     <section ref={scope} id="early-ai" className="field-ground w-full px-5 py-16 sm:px-8 lg:py-20">
       <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <SectionTitle title="Early to AI" />
+        <SectionTitle title="Early to generative AI" />
         <p className="max-w-[40ch] text-body">
           I started on ChatGPT when it launched with GPT-3.5, and I never went back.
         </p>

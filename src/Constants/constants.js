@@ -77,7 +77,7 @@ const stats = [
 
 export const navLinks = [
   { id: 'about', title: 'About' },
-  { id: 'early-ai', title: 'Early to AI' },
+  { id: 'early-ai', title: 'Early to generative AI' },
   { id: 'experience', title: 'Experience' },
   { id: 'projects', title: 'Projects' },
   { id: 'skills', title: 'Skills' },
@@ -335,7 +335,7 @@ const skillLines = [
   { word: 'security', fact: 'Security+, AWS Specialty' },
 ];
 
-// Early to AI: the timeline of how I've worked with AI since GPT-3.5.
+// Early to generative AI: how I've worked with it since GPT-3.5.
 const aiJourney = [
   {
     when: '2022',
