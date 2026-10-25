@@ -15,9 +15,10 @@ import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 import media from "../Constants/media.json";
 
 const studioFeature = media.studio[0];
+const shirt = media.shirts[0];
 const slopShots = [
   media.slop.find((e) => e.id === "brickline")?.poster,
-  media.slop.find((e) => e.id === "mushroom-tee")?.images?.[3],
+  media.slop.find((e) => e.id === "block-vs-jurassic-court")?.poster,
   media.slop.find((e) => e.id === "memes")?.images?.[0],
 ].filter(Boolean);
 
@@ -56,10 +57,10 @@ const Beyond = () => {
         <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <SectionTitle title="Beyond the code" />
           <p className="max-w-[40ch] text-body text-ink">
-            I also direct films and ads with AI, and make plenty of things purely for fun. They live on their own pages.
+            I also direct films and ads with AI, make plenty of things purely for fun, and design shirts.
           </p>
         </div>
-        <div className="doors grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="doors grid grid-cols-1 gap-6 lg:grid-cols-3">
           <TransitionLink
             to="/studio"
             label="Studio"
@@ -125,6 +126,26 @@ const Beyond = () => {
               </p>
             </div>
           </TransitionLink>
+
+          <a
+            href="mailto:iamiya@vt.edu?subject=I%20want%20a%20shirt"
+            data-cursor="Ask"
+            className="door group relative flex min-h-[380px] flex-col justify-end overflow-hidden bg-ink p-8 text-night"
+          >
+            <img
+              src={shirt.images[3]}
+              alt="The mushroom tee, worn in a lookbook shot"
+              className="absolute inset-0 h-full w-full object-cover object-[center_42%] transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"
+            />
+            <div className="relative -m-8 mt-0 bg-ink p-8 pt-6">
+              <h3 className="text-[clamp(2.75rem,1.6rem+3vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
+                Shirts <span className="inline-block transition-transform duration-500 group-hover:translate-x-3">→</span>
+              </h3>
+              <p className="mt-3 max-w-md text-body">
+                Shirts I designed, starting with the mushroom tee. Not in a store yet. Want one? Ask me.
+              </p>
+            </div>
+          </a>
         </div>
       </div>
     </section>

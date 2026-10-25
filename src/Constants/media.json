@@ -458,49 +458,6 @@
       ]
     },
     {
-      "id": "mushroom-tee",
-      "title": "Mushroom Tee Lookbook",
-      "blurb": "Twenty-six AI fashion shots of one very committed mushroom t-shirt.",
-      "kind": "image-set",
-      "aspect": "4:5",
-      "durationSec": null,
-      "poster": "/media/slop/mushroom/ash-blonde-bamboo-olive-skirt.webp",
-      "preview": null,
-      "images": [
-        "/media/slop/mushroom/ash-blonde-bamboo-olive-skirt.webp",
-        "/media/slop/mushroom/blonde-braids-greenhouse-sage.webp",
-        "/media/slop/mushroom/blonde-fog-beach-back.webp",
-        "/media/slop/mushroom/blonde-man-herb-field-ecru.webp",
-        "/media/slop/mushroom/blonde-meadow-ivory-skirt.webp",
-        "/media/slop/mushroom/blonde-redwood-cream-cargos.webp",
-        "/media/slop/mushroom/blonde-waterfall-gray-parachute.webp",
-        "/media/slop/mushroom/honey-blonde-moss-utility.webp",
-        "/media/slop/mushroom/ice-blonde-birch-blue-hour-back.webp",
-        "/media/slop/mushroom/male-neutral-back.webp",
-        "/media/slop/mushroom/male-neutral-front.webp",
-        "/media/slop/mushroom/man-alpine-lake-back-sand-trousers.webp",
-        "/media/slop/mushroom/man-hands-in-pockets.webp",
-        "/media/slop/mushroom/man-side-profile.webp",
-        "/media/slop/mushroom/platinum-coast-back-denim.webp",
-        "/media/slop/mushroom/strawberry-blonde-desert-rust.webp",
-        "/media/slop/mushroom/woman-back.webp",
-        "/media/slop/mushroom/woman-blue-hour-walk.webp",
-        "/media/slop/mushroom/woman-brutalist-plaza.webp",
-        "/media/slop/mushroom/woman-gallery-crouch.webp",
-        "/media/slop/mushroom/woman-industrial-seated.webp",
-        "/media/slop/mushroom/woman-kneeling-look-back.webp",
-        "/media/slop/mushroom/woman-mid-walk.webp",
-        "/media/slop/mushroom/woman-rooftop-back.webp",
-        "/media/slop/mushroom/woman-three-quarter.webp",
-        "/media/slop/mushroom/woman-travertine-courtyard.webp"
-      ],
-      "tags": [
-        "AI fashion",
-        "Image gen",
-        "Lookbook"
-      ]
-    },
-    {
       "id": "memes",
       "title": "AI Governance Memes",
       "blurb": "Six memes about approvals, tool sprawl and waiting on IT.",
@@ -601,6 +558,51 @@
         "Death by a Thousand Subscriptions",
         "AI video",
         "Ad shot"
+      ]
+    }
+  ],
+  "shirts": [
+    {
+      "id": "mushroom-tee",
+      "title": "Mushroom Tee Lookbook",
+      "blurb": "A mushroom tee I designed and shot as an AI lookbook. Not in a store yet.",
+      "kind": "image-set",
+      "aspect": "4:5",
+      "durationSec": null,
+      "poster": "/media/slop/mushroom/ash-blonde-bamboo-olive-skirt.webp",
+      "preview": null,
+      "images": [
+        "/media/slop/mushroom/ash-blonde-bamboo-olive-skirt.webp",
+        "/media/slop/mushroom/blonde-braids-greenhouse-sage.webp",
+        "/media/slop/mushroom/blonde-fog-beach-back.webp",
+        "/media/slop/mushroom/blonde-man-herb-field-ecru.webp",
+        "/media/slop/mushroom/blonde-meadow-ivory-skirt.webp",
+        "/media/slop/mushroom/blonde-redwood-cream-cargos.webp",
+        "/media/slop/mushroom/blonde-waterfall-gray-parachute.webp",
+        "/media/slop/mushroom/honey-blonde-moss-utility.webp",
+        "/media/slop/mushroom/ice-blonde-birch-blue-hour-back.webp",
+        "/media/slop/mushroom/male-neutral-back.webp",
+        "/media/slop/mushroom/male-neutral-front.webp",
+        "/media/slop/mushroom/man-alpine-lake-back-sand-trousers.webp",
+        "/media/slop/mushroom/man-hands-in-pockets.webp",
+        "/media/slop/mushroom/man-side-profile.webp",
+        "/media/slop/mushroom/platinum-coast-back-denim.webp",
+        "/media/slop/mushroom/strawberry-blonde-desert-rust.webp",
+        "/media/slop/mushroom/woman-back.webp",
+        "/media/slop/mushroom/woman-blue-hour-walk.webp",
+        "/media/slop/mushroom/woman-brutalist-plaza.webp",
+        "/media/slop/mushroom/woman-gallery-crouch.webp",
+        "/media/slop/mushroom/woman-industrial-seated.webp",
+        "/media/slop/mushroom/woman-kneeling-look-back.webp",
+        "/media/slop/mushroom/woman-mid-walk.webp",
+        "/media/slop/mushroom/woman-rooftop-back.webp",
+        "/media/slop/mushroom/woman-three-quarter.webp",
+        "/media/slop/mushroom/woman-travertine-courtyard.webp"
+      ],
+      "tags": [
+        "AI fashion",
+        "Image gen",
+        "Lookbook"
       ]
     }
   ]

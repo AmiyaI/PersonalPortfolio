@@ -54,54 +54,10 @@ const Label = ({ kicker, title, children }) => (
   </div>
 );
 
-// A stack of lookbook shots. Throw the top one away to see the next.
-const LookbookDeck = ({ item }) => {
-  const [order, setOrder] = useState(item.images.map((_, i) => i));
-  const open = useMediaViewer();
-  const next = () => setOrder((o) => [...o.slice(1), o[0]]);
-  const draggable = hasFinePointer();
-
-  return (
-    <div className="relative mx-auto aspect-[4/5] w-[78%]">
-      <AnimatePresence initial={false}>
-        {order.slice(0, 4).map((imageIndex, depth) => (
-          <motion.button
-            key={imageIndex}
-            type="button"
-            className="absolute inset-0 overflow-hidden rounded-xl border-4 border-[#111112] bg-white"
-            style={{ zIndex: 10 - depth }}
-            initial={{ scale: 0.9, y: 30, opacity: 0 }}
-            animate={{ scale: 1 - depth * 0.05, y: depth * 14, rotate: depth * (depth % 2 ? 4 : -4), opacity: 1 }}
-            exit={{ x: 400, rotate: 30, opacity: 0, transition: { duration: 0.35 } }}
-            transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
-            drag={depth === 0 && draggable ? "x" : false}
-            dragSnapToOrigin
-            onDragEnd={(_, info) => Math.abs(info.offset.x) > 90 && next()}
-            onClick={() => (depth === 0 ? open(item, imageIndex) : next())}
-            data-cursor={depth === 0 ? (draggable ? "Throw" : "View") : undefined}
-            aria-label={depth === 0 ? `Open lookbook image ${imageIndex + 1}` : "Next image"}
-            tabIndex={depth === 0 ? 0 : -1}
-          >
-            <img src={item.images[imageIndex]} alt="" className="h-full w-full object-cover" draggable={false} />
-          </motion.button>
-        ))}
-      </AnimatePresence>
-      <button
-        type="button"
-        onClick={next}
-        className="absolute -right-4 -bottom-4 z-20 rounded-full border-4 border-[#111112] bg-[#ff5cb8] px-4 py-2 text-sm font-bold shadow-[4px_4px_0_#111112]"
-        style={sans}
-      >
-        Next fit →
-      </button>
-    </div>
-  );
-};
-
 const ImageGrid = ({ item }) => {
   const open = useMediaViewer();
   return (
-    <div className="grid grid-cols-3 gap-2 p-3">
+    <div className="grid grid-cols-3 gap-2 p-3 md:grid-cols-6">
       {item.images.map((src, i) => (
         <button
           key={src}
@@ -210,7 +166,7 @@ const AiSlop = () => {
             )}
           </h1>
           <p className="mt-6 max-w-xl text-lg font-medium" style={sans}>
-            Stuff I made with AI purely because I could. Games, skits, fake photo shoots and memes. Quality not guaranteed.
+            Stuff I made with AI purely because I could. Games, skits and memes. Quality not guaranteed.
           </p>
           <button
             type="button"
@@ -242,14 +198,7 @@ const AiSlop = () => {
             </Label>
           </Sticker>
 
-          <Sticker className="pt-8 md:col-span-3" tilt={-3}>
-            <LookbookDeck item={byId["mushroom-tee"]} />
-            <Label kicker={`AI photo shoot · ${byId["mushroom-tee"].images.length} looks`} title="Mushroom Tee Lookbook">
-              {byId["mushroom-tee"].blurb}
-            </Label>
-          </Sticker>
-
-          <Sticker className="md:col-span-3" tilt={2}>
+          <Sticker className="md:col-span-6" tilt={2}>
             <ImageGrid item={byId.memes} />
             <Label kicker="Memes" title={byId.memes.title}>
               {byId.memes.blurb}
