@@ -70,7 +70,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full bg-accent px-7 py-3.5 text-body font-extrabold text-night transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60"
+          className="rounded-full bg-night px-7 py-3.5 text-body font-extrabold text-white transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60"
         >
           {status === "sending" ? "Sending" : status === "sent" ? "Sent" : "Send message"}
         </button>

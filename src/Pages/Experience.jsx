@@ -68,11 +68,11 @@ const Experience = () => {
           {experience.map((job) => (
             <li
               key={job.chapter}
-              className="xp-card flex w-full flex-col bg-[#3d35c4]/80 p-7 lg:w-[min(420px,29vw)]"
+              className="xp-card flex w-full flex-col bg-white/65 p-7 lg:w-[min(420px,29vw)]"
             >
               <p className="text-body font-medium">
                 {job.company}
-                <span className="text-[#d9d6ff]"> · {job.role} · {job.period}</span>
+                <span className="text-muted"> · {job.role} · {job.period}</span>
               </p>
               <h3 className="mt-5 text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-[0.95] font-extrabold tracking-[-0.03em]">
                 {job.chapter}
@@ -84,12 +84,12 @@ const Experience = () => {
                   </li>
                 ))}
               </ul>
-              <p className="mt-auto pt-6 text-small text-[#d9d6ff]">{job.tags.join(", ")}</p>
+              <p className="mt-auto pt-6 text-small text-muted">{job.tags.join(", ")}</p>
             </li>
           ))}
         </ol>
         </div>
-        <div className="mx-5 hidden h-1 bg-[#3d35c4] sm:mx-8 lg:block">
+        <div className="mx-5 hidden h-1 bg-white/60 sm:mx-8 lg:block">
           <div className="xp-progress h-full origin-left bg-accent" />
         </div>
       </div>

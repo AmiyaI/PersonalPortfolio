@@ -130,14 +130,14 @@ const Beyond = () => {
           <a
             href="mailto:iamiya@vt.edu?subject=I%20want%20a%20shirt"
             data-cursor="Ask"
-            className="door group relative flex min-h-[380px] flex-col justify-end overflow-hidden bg-ink p-8 text-night"
+            className="door group relative flex min-h-[380px] flex-col justify-end overflow-hidden bg-white p-8 text-night"
           >
             <img
               src={shirt.images[3]}
               alt="The mushroom tee, worn in a lookbook shot"
               className="absolute inset-0 h-full w-full object-cover object-[center_42%] transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"
             />
-            <div className="relative -m-8 mt-0 bg-ink p-8 pt-6">
+            <div className="relative -m-8 mt-0 bg-white p-8 pt-6">
               <h3 className="text-[clamp(2.75rem,1.6rem+3vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
                 Shirts <span className="inline-block transition-transform duration-500 group-hover:translate-x-3">→</span>
               </h3>
