@@ -41,10 +41,10 @@ const Footer = () => {
   );
 
   return (
-    <footer ref={scope} className="w-full bg-bg px-5 pt-20 pb-8 text-ink sm:px-8">
+    <footer ref={scope} className="w-full field-ground px-5 pt-14 pb-8 text-ink sm:px-8">
       <p
         aria-hidden="true"
-        className="flex justify-center overflow-hidden whitespace-nowrap text-[10vw] leading-[0.9] text-ink"
+        className="flex justify-center overflow-hidden whitespace-nowrap text-[8vw] leading-[0.9] text-ink"
         style={{ fontFamily: "SuperMario" }}
       >
         {"Amiya Islam".split("").map((char, i) =>
@@ -57,7 +57,7 @@ const Footer = () => {
           )
         )}
       </p>
-      <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
+      <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-12">
         <ul className="flex flex-col gap-2 lg:col-span-6">
           {socials.map((social) => (
             <li key={social.label}>
@@ -82,7 +82,7 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="mt-20 flex items-center justify-between text-small text-muted">
+      <div className="mt-12 flex items-center justify-between text-small text-muted">
         <span>Made by Amiya Islam, {new Date().getFullYear()}</span>
         <a
           href="#top"

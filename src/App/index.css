@@ -324,7 +324,13 @@ html.lenis * {
   }
 }
 
-/* The owner's purple: lavender into orchid, used once, behind the hero. */
-.hero-purple {
-  background: linear-gradient(160deg, #8f66be 0%, #9e6abc 45%, #bd70b1 100%); /* taste-skill-ignore: the owner's chosen purple, one field only */
-}
+/* Soft two-tone fields, all in the style of the owner's purple: each colour
+   melts into a close neighbour along the same 160deg angle. */
+/* taste-skill-ignore-start: the owner chose these gradients */
+.hero-purple { background: linear-gradient(160deg, #8f66be 0%, #9e6abc 45%, #bd70b1 100%); } /* taste-skill-ignore */
+.field-ground { background: linear-gradient(160deg, #3f2f72 0%, #3b2c6b 50%, #34275f 100%); } /* taste-skill-ignore */
+.field-indigo { background: linear-gradient(160deg, #6a5cf2 0%, #5048e2 50%, #6b49d4 100%); } /* taste-skill-ignore */
+.field-teal { background: linear-gradient(160deg, #86d6e4 0%, #6fc0d6 50%, #8aa9e8 100%); } /* taste-skill-ignore */
+.field-orchid { background: linear-gradient(160deg, #c286c9 0%, #bd70b1 50%, #d67fa0 100%); } /* taste-skill-ignore */
+.field-light { background: linear-gradient(160deg, #fbf8ff 0%, #f1e9fc 60%, #f6e6f3 100%); } /* taste-skill-ignore */
+/* taste-skill-ignore-end */

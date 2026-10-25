@@ -44,11 +44,11 @@ const ProjectCard = ({ index, project }) => {
           />
         </a>
       </Tilt>
-      <div className="mt-5 flex flex-col gap-3">
-        <h3 className="text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-none font-extrabold tracking-[-0.03em] text-ink">
+      <div className="mt-4 flex flex-col gap-2.5">
+        <h3 className="text-[clamp(1.5rem,1.2rem+0.8vw,2rem)] leading-none font-extrabold tracking-[-0.03em] text-ink">
           {name}
         </h3>
-        <p className="max-w-[52ch] text-body text-ink">{description}</p>
+        <p className="max-w-[52ch] text-[1rem] leading-relaxed text-ink">{description}</p>
         <p className="text-small text-muted">{tags.join(", ")}</p>
         <div className="mt-1 flex items-center gap-6 text-body font-medium">
           {demo_link && (
@@ -69,7 +69,7 @@ const ProjectCard = ({ index, project }) => {
 
 const ProjectCards = () => {
   return (
-    <ul className="grid grid-cols-1 gap-x-8 gap-y-20 md:grid-cols-2">
+    <ul className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((project, index) => (
         <ProjectCard key={project.name} index={index} project={project} />
       ))}

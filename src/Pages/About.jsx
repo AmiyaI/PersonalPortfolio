@@ -61,7 +61,7 @@ const About = () => {
   );
 
   return (
-    <section ref={scope} id="about" className="w-full overflow-hidden px-5 py-24 sm:px-8 lg:py-28">
+    <section ref={scope} id="about" className="field-ground w-full overflow-hidden px-5 py-16 sm:px-8 lg:py-20">
       <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
         <SectionTitle title="About me" className="lg:col-span-6" />
         <p className="about-statement text-lead leading-snug text-ink lg:col-span-5 lg:col-start-8">
@@ -69,7 +69,7 @@ const About = () => {
         </p>
       </div>
 
-      <dl className="mt-24 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-32 lg:flex lg:justify-between">
+      <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 lg:mt-16 lg:flex lg:justify-between">
         {stats.map((stat) => (
           <div key={stat.label} className="flex flex-col">
             <dd className="order-1 text-[clamp(2.25rem,1.5rem+2.4vw,3.5rem)] leading-none font-medium tabular-nums text-ink">
@@ -83,7 +83,7 @@ const About = () => {
         ))}
       </dl>
 
-      <div className="about-story mt-24 grid grid-cols-1 items-center gap-12 lg:mt-32 lg:grid-cols-12">
+      <div className="about-story mt-12 grid grid-cols-1 items-center gap-10 lg:mt-16 lg:grid-cols-12">
         <div className="flex flex-col gap-5 text-body text-ink lg:col-span-6">
           <p className="about-part text-lead font-medium text-accent">{introduction.text[0]}</p>
           <p className="about-part">{introduction.text[1]}</p>
@@ -91,7 +91,7 @@ const About = () => {
           <p className="about-part">{introduction.text[3]}</p>
         </div>
         <div className="about-part flex justify-center lg:col-span-5 lg:col-start-8">
-          <div className="aspect-[4/5] w-[78%] max-w-[420px]">
+          <div className="aspect-[4/5] w-[60%] max-w-[300px]">
             <ImageSlider images={memoji.image} />
           </div>
         </div>

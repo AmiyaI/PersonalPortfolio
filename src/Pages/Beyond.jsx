@@ -51,9 +51,9 @@ const Beyond = () => {
   };
 
   return (
-    <section ref={scope} id="beyond" className="w-full px-5 py-24 sm:px-8 lg:py-28">
+    <section ref={scope} id="beyond" className="field-ground w-full px-5 py-16 sm:px-8 lg:py-20">
       <div>
-        <div className="mb-14 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <SectionTitle title="Beyond the code" />
           <p className="max-w-[40ch] text-body text-ink">
             I also direct films and ads with AI, and make plenty of things purely for fun. They live on their own pages.
@@ -66,7 +66,7 @@ const Beyond = () => {
             data-cursor="Enter"
             onMouseEnter={playPreview}
             onMouseLeave={stopPreview}
-            className="door group relative flex min-h-[520px] flex-col justify-end overflow-hidden bg-[#0d0b10] p-8 text-[#f2ead8]"
+            className="door group relative flex min-h-[380px] flex-col justify-end overflow-hidden bg-[#0d0b10] p-8 text-[#f2ead8]"
           >
             <img
               src={studioFeature.poster}
@@ -98,7 +98,7 @@ const Beyond = () => {
             to="/ai-slop"
             label="AI Slop"
             data-cursor="Enter"
-            className="door group relative flex min-h-[520px] flex-col justify-end overflow-hidden bg-[#d2ff00] p-8 text-[#111112]"
+            className="door group relative flex min-h-[380px] flex-col justify-end overflow-hidden bg-[#d2ff00] p-8 text-[#111112]"
           >
             <div className="absolute inset-0">
               {slopShots.map((src, i) => (

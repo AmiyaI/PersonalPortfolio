@@ -19,9 +19,9 @@ const Hobbies = () => {
   const canDrag = hasFinePointer();
 
   return (
-    <section id="hobbies" className="w-full bg-orchid px-5 py-24 text-night sm:px-8 lg:py-28">
+    <section id="hobbies" className="w-full field-orchid px-5 py-16 text-night sm:px-8 lg:py-20">
       <div>
-        <div className="mb-14 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <SectionTitle title="Off the clock" />
           <p className="max-w-[40ch] text-body">
             {canDrag ? "What keeps me sane outside of work. Go ahead, drag them around." : "What keeps me sane outside of work."}
@@ -43,7 +43,7 @@ const Hobbies = () => {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ type: "spring", bounce: 0.45, duration: 0.8, delay: (i % 3) * 0.08 }}
               data-cursor={canDrag ? "Drag" : undefined}
-              className={`relative flex min-h-[220px] flex-col justify-end ${canDrag ? "cursor-grab touch-none" : ""} gap-3 bg-ink p-7 text-night select-none`}
+              className={`relative flex min-h-[150px] flex-col justify-end ${canDrag ? "cursor-grab touch-none" : ""} gap-2 bg-ink p-6 text-night select-none`}
             >
               <h3 className="text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-none font-extrabold tracking-[-0.035em]">
                 {hobby.title}

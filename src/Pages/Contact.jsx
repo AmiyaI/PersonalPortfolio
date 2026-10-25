@@ -35,7 +35,7 @@ const Contact = () => {
   );
 
   return (
-    <section ref={scope} id="contact" className="w-full bg-ink px-5 py-24 text-night sm:px-8 lg:py-28">
+    <section ref={scope} id="contact" className="w-full field-light px-5 py-16 text-night sm:px-8 lg:py-20">
       <h2 className="contact-part max-w-[30ch] text-lead font-medium">
         Building with AI agents, or need a hand with the cloud underneath? Write to me.
       </h2>
@@ -45,7 +45,7 @@ const Contact = () => {
       >
         {EMAIL}
       </a>
-      <div className="mt-20 grid grid-cols-1 gap-14 lg:grid-cols-12">
+      <div className="mt-12 grid grid-cols-1 gap-14 lg:grid-cols-12">
         <div className="contact-part flex flex-col justify-between gap-8 text-body lg:col-span-4">
           <p>Based in Miami, FL. Open to relocation.</p>
           <ul className="flex flex-col gap-2">

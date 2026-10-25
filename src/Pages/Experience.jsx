@@ -54,8 +54,8 @@ const Experience = () => {
   );
 
   return (
-    <section ref={scope} id="experience" className="relative w-full bg-indigo text-ink">
-      <div className="xp-pin flex min-h-[100svh] flex-col justify-center gap-12 overflow-hidden py-24 lg:py-16">
+    <section ref={scope} id="experience" className="relative w-full field-indigo text-ink">
+      <div className="xp-pin flex min-h-[100svh] flex-col justify-center gap-10 overflow-hidden py-16 lg:py-12">
         <div className="flex flex-col gap-4 px-5 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionTitle title="Experience" />
           <p className="max-w-[40ch] text-body">
@@ -68,7 +68,7 @@ const Experience = () => {
           {experience.map((job) => (
             <li
               key={job.chapter}
-              className="xp-card flex w-full flex-col bg-[#3d35c4] p-8 lg:min-h-[56svh] lg:w-[min(520px,38vw)]"
+              className="xp-card flex w-full flex-col bg-[#3d35c4]/80 p-7 lg:w-[min(420px,29vw)]"
             >
               <p className="text-body font-medium">
                 {job.company}
@@ -77,7 +77,7 @@ const Experience = () => {
               <h3 className="mt-5 text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-[0.95] font-extrabold tracking-[-0.03em]">
                 {job.chapter}
               </h3>
-              <ul className="mt-6 flex flex-col gap-3 text-body leading-relaxed">
+              <ul className="mt-5 flex flex-col gap-2.5 text-[1rem] leading-relaxed">
                 {job.points.map((point) => (
                   <li key={point} className="xp-point">
                     {point}
