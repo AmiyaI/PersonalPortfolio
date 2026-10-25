@@ -5,7 +5,7 @@
      Last modification: 10/23/2023
 */
 
-import { m } from "framer-motion";
+import { m } from "motion/react";
 
 const HeroScroller = () => {
   return (
@@ -13,7 +13,7 @@ const HeroScroller = () => {
       id="scroller"
       className="absolute xs:bottom-10 bottom-12 flex justify-center items-center"
     >
-      <a href="#about">
+      <a href="#about" aria-label="Scroll to About">
         <div className="w-[35-px] h-[64px] rounded-3xl border-4 border-primary-400 flex justify-center items-start p-2">
           <m.div
             animate={{

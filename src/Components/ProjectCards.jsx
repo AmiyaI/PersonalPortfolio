@@ -1,17 +1,17 @@
 /*
      FileName: ProjectCards.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { styles } from '../styles'
 import { projects } from "../Constants/constants";
-import { Tilt } from "react-tilt";
+import Tilt from "./elements/Tilt";
 import { githubIcon } from "../assets";
 
-export const staggerContainer = (staggerChildren, delayChildren) => {
+const staggerContainer = (staggerChildren, delayChildren) => {
   return {
     hidden: {},
     show: {
@@ -23,25 +23,7 @@ export const staggerContainer = (staggerChildren, delayChildren) => {
   };
 };
 
-export const textVariant = (delay) => {
-  return {
-    hidden: {
-      y: -50,
-      opacity: 0,
-    },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        duration: 1.25,
-        delay: delay,
-      },
-    },
-  };
-};
-
-export const fadeIn = (direction, type, delay, duration) => {
+const fadeIn = (direction, type, delay, duration) => {
   return {
     hidden: {
       x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
@@ -54,6 +36,8 @@ export const fadeIn = (direction, type, delay, duration) => {
       opacity: 1,
       transition: {
         type: type,
+        // framer-motion 10's default spring bounce; motion 14 defaults to 0.3.
+        bounce: 0.25,
         delay: delay,
         duration: duration,
         ease: "easeOut",
@@ -62,45 +46,7 @@ export const fadeIn = (direction, type, delay, duration) => {
   };
 };
 
-export const zoomIn = (delay, duration) => {
-  return {
-    hidden: {
-      scale: 0,
-      opacity: 0,
-    },
-    show: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "tween",
-        delay: delay,
-        duration: duration,
-        ease: "easeOut",
-      },
-    },
-  };
-};
-
-export const slideIn = (direction, type, delay, duration) => {
-  return {
-    hidden: {
-      x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
-      y: direction === "up" ? "100%" : direction === "down" ? "100%" : 0,
-    },
-    show: {
-      x: 0,
-      y: 0,
-      transition: {
-        type: type,
-        delay: delay,
-        duration: duration,
-        ease: "easeOut",
-      },
-    },
-  };
-};
-
-const SectionWrapper = (Component, idName) => 
+const SectionWrapper = (Component, idName) =>
   function HOC() {
     return (
       <motion.section
@@ -119,7 +65,7 @@ const SectionWrapper = (Component, idName) =>
     )
   };
 
-  const ProjectCard = ({ index, name, description, tags, image, source_code_link, demo_link }) => {
+  const ProjectCard = ({ index, name, description, image, source_code_link, demo_link }) => {
     return (
       <motion.div
         variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
@@ -136,43 +82,42 @@ const SectionWrapper = (Component, idName) =>
           <div
             className="relative w-full h-[180px]"
           >
-            <img 
+            <img
               src={image}
               alt={name}
               className="w-full h-full object-cover rounded-lg"
             />
             <div
-              className="absolute inset-0 flex justify-end m-3 card-img_hover"
+              className="absolute inset-0 flex justify-end m-3"
             >
               <div
                 onClick={() => window.open
-                (source_code_link, "_blank")}
-                className="black-gradient w-8 h-8 rounded-full flex justify-center items-center cursor-pointer"
+                (source_code_link, "_blank", "noopener,noreferrer")}
+                className="w-8 h-8 rounded-full flex justify-center items-center cursor-pointer"
               >
-               <img 
+               <img
                 src={githubIcon}
                 alt="github"
-                className="w-15 h-15 object-contain"
+                className="object-contain"
                 />
               </div>
             </div>
           </div>
-  
+
           <div className="mt-3">
-            <h3 className="text-white font-bold text-[20px]">{name}</h3>
-            <p className="mt-2 text-secondary text-[14px] leading-[18px]">{description}</p>
+            <h3 className="font-bold text-[20px]">{name}</h3>
+            <p className="mt-2 text-[14px] leading-[18px]">{description}</p>
           </div>
+          {/* Empty tag row from v1; its margin sets the card height. */}
+          <div className="mt-2 flex flex-wrap gap-1"></div>
           <div
-            className="mt-2 flex flex-wrap gap-1"
-          >
-          </div>
-          <div 
             className="mt-3 flex justify-center items-center"
           >
-            <a 
-              className="shadow-md shadow-primary m-3 p-2 bg-tertiary w-[60%] rounded-lg flex justify-center"
+            <a
+              className="shadow-md m-3 p-2 w-[60%] rounded-lg flex justify-center"
               href={demo_link}
               target='_blank'
+              rel='noopener noreferrer'
             >
               See the Demo
             </a>
@@ -180,22 +125,19 @@ const SectionWrapper = (Component, idName) =>
         </Tilt>
       </motion.div>
     )
-  }  
+  }
 
 const Works = () => {
   return (
     <>
+      {/* Empty in v1 too; kept because its margin is part of the card offset. */}
       <div className="w-full flex">
-        <motion.p
-          variants={fadeIn('', '', 0.1, 1)}
-          className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
-        >
-        </motion.p>
+        <p className="mt-3 max-w-3xl"></p>
       </div>
 
       <div className="mt-20 flex flex-wrap gap-7">
         {projects.map((project, index) => (
-          <ProjectCard 
+          <ProjectCard
             key={`project-${index}`}
             index={index}
             {...project}

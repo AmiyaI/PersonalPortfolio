@@ -1,40 +1,33 @@
 /*
      FileName: ParticlesComponent.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
 
-import { useCallback } from "react";
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import { loadTextShape } from "@tsparticles/shape-text";
+
+// The slim bundle covers every mode the hero uses (bubble, parallax, repulse,
+// bounce, links, collisions); the text shape draws the brand glyphs.
+const initEngine = async (engine) => {
+  await loadSlim(engine);
+  await loadTextShape(engine);
+};
 
 const ParticlesComponent = (props) => {
   const { particlesOptions, className, id } = props;
 
-  let isInitialized = false;
-
-  const particlesInit = useCallback(async (engine) => {
-    if(!isInitialized) {
-      await loadFull(engine);
-      isInitialized = true;
-    }
-
-  }, []);
-
-  const particlesLoaded = useCallback(async (container) => {
-      await container
-  }, []);
-
   return (
-    <Particles
-      id={id}
-      className={className}
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={particlesOptions}
-    />
+    <ParticlesProvider init={initEngine}>
+      <Particles
+        id={id}
+        className={className}
+        options={particlesOptions}
+      />
+    </ParticlesProvider>
   );
 };
 

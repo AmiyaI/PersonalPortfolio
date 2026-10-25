@@ -1,13 +1,14 @@
 /*
      FileName: ContactForm.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
 import { useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import emailjs from "@emailjs/browser";
+import { noise } from "../assets";
 
 const ContactForm = () => {
   const [isSent, setIsSent] = useState(false);
@@ -20,7 +21,7 @@ const ContactForm = () => {
       "amiya_personalport",
       "template1",
       e.target,
-      "cdoSytMf3BqCdBI3H"
+      { publicKey: "cdoSytMf3BqCdBI3H" }
     )
       .then(
         (result) => {
@@ -39,7 +40,7 @@ const ContactForm = () => {
     <div
   style={{
     backgroundImage:
-      "url(https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png)",
+      `url(${noise})`,
     width: "80%",
     height: "96%",
     boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)"
@@ -98,8 +99,9 @@ const ContactForm = () => {
             />
           </div>
           <div className="w-full flex flex-col">
-            <label>Message</label>
+            <label htmlFor="message">Message</label>
             <textarea
+              id="message"
               className="p-[0.5em] rounded-xl text-grayscale-950"
               placeholder="Enter your message..."
               name="message"
@@ -108,7 +110,7 @@ const ContactForm = () => {
           </div>
           <div className="w-full flex justify-center">
             <input
-              className="w-[100px] h-[50px] bg-primary-600 rounded-xl cursor-pointer hover:bg-primary-700"
+              className="w-[100px] h-[50px] bg-primary-600 rounded-xl cursor-pointer "
               type="submit"
               value={!isSent ? 'Send' : 'Done!'}
               

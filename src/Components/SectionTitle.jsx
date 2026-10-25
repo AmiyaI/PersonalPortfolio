@@ -5,7 +5,7 @@
      Last modification: 10/23/2023
 */
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "motion/react";
 
 const SectionTitle = (props) => {
   const { title, subtitle } = props;
@@ -15,7 +15,7 @@ const SectionTitle = (props) => {
       <m.div
         initial={{ x: -350 }}
         whileInView={{ x: 0 }}
-        transition={{ duration: 0.6, type: "spring" }}
+        transition={{ duration: 0.6, type: "spring", bounce: 0.25 }}
         className="text-primary-600 p-6 noselect"
       >
         <span

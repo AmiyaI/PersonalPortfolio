@@ -13,6 +13,9 @@ dist-ssr
 *.local
 .env
 
+# Local-only AI assistant notes (contains infra IDs; not for the public repo)
+CLAUDE.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

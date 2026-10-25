@@ -1,10 +1,20 @@
 /*
      FileName: particlesOptions.js
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
+// tsparticles v4 schema. Every number matches what v1 (tsparticles v2) resolved
+// to at runtime, measured from the live v1 container, so the hero feels the same.
+// Where the v2 option read differently from what it did, the comment says so.
+
+const divInteraction = (selectors) => ({
+  selectors,
+  enable: true,
+  mode: ['repulse', 'bounce'],
+  type: 'circle',
+});
 
 export const heroOptions = {
   autoPlay: true,
@@ -17,72 +27,17 @@ export const heroOptions = {
   detectRetina: true,
   fpsLimit: 120,
 
+  // v1 passed detectsOn: '#hero', which v2 did not recognize, so it fell back
+  // to the canvas. The canvas is what the mouse is tracked on.
   interactivity: {
-    detectsOn: '#hero',
+    detectsOn: 'canvas',
     events: {
-      onDiv: [
-        {
-          selectors: '#repulse-div',
-          enable: true,
-          mode: 'bounce',
-          type: 'circle',
-        },
-        {
-          selectors: '#repulse-div',
-          enable: true,
-          mode: 'repulse',
-          type: 'circle',
-        },
-        {
-          selectors: '#repulse-span',
-          enable: true,
-          mode: 'repulse',
-          type: 'circle',
-        },
-        {
-          selectors: '#repulse-span',
-          enable: true,
-          mode: 'bounce',
-          type: 'circle',
-        },
-        {
-          selectors: '#togglebutton',
-          enable: true,
-          mode: 'repulse',
-          type: 'circle',
-        },
-        {
-          selectors: '#togglebutton',
-          enable: true,
-          mode: 'bounce',
-          type: 'circle',
-        },
-        {
-          selectors: '#scroller',
-          enable: true,
-          mode: 'repulse',
-          type: 'circle',
-        },
-        {
-          selectors: '#scroller',
-          enable: true,
-          mode: 'bounce',
-          type: 'circle',
-        },
-      ],
+      onDiv: [divInteraction('#repulse-div'), divInteraction('#scroller')],
 
+      // v2 configured parallax as onHover.parallax; v4 makes it a hover mode.
       onHover: {
         enable: true,
-        mode: 'bubble',
-        parallax: {
-          enable: true,
-          force: 350,
-          smooth: 20,
-        },
-      },
-      resize: {
-        delay: 0.5,
-        enable: true,
+        mode: ['bubble', 'parallax'],
       },
     },
 
@@ -100,7 +55,10 @@ export const heroOptions = {
         opacity: 8,
         mix: false,
       },
-
+      parallax: {
+        force: 350,
+        smooth: 20,
+      },
       repulse: {
         distance: 200,
         factor: 200,
@@ -115,8 +73,10 @@ export const heroOptions = {
       enable: true,
       mode: 'bounce',
     },
-    color: {
-      value: '#fff',
+    paint: {
+      color: {
+        value: '#fff',
+      },
     },
     move: {
       angle: {
@@ -129,26 +89,26 @@ export const heroOptions = {
         mode: 'percent',
         radius: 0,
       },
-      direction: ['top-left', 'bottom-left', 'bottom-right', 'top-right'],
+      // v1 listed four diagonals; both engines treat a list as "random angle".
+      direction: 'none',
       drift: 0,
       enable: true,
       random: false,
       size: false,
       speed: 0.8,
-      outMode: 'bounce',
+      outModes: {
+        default: 'bounce',
+      },
     },
     number: {
-      limit: 0,
+      limit: {
+        value: 0,
+      },
       value: 30,
     },
 
     opacity: {
-      random: {
-        enable: true,
-        minimumValue: 0.4,
-        maxValue: 0.6,
-      },
-      value: 0.6,
+      value: { min: 0.4, max: 0.6 },
       animation: {
         count: 0,
         enable: true,
@@ -162,44 +122,20 @@ export const heroOptions = {
 
     shape: {
       type: 'character',
-      character: [
-        {
-          fill: true,
-          font: 'Font Awesome 6 Brands',
-          style: '',
-          value: ['\uf375'],
-          weight: '400',
-        },
-        {
-          fill: true,
-          font: 'Font Awesome 6 Brands',
-          style: '',
-          value: ['\uf3e2'],
-          weight: '400',
-        },
-        {
-          fill: true,
-          font: 'Font Awesome 6 Brands',
-          style: '',
-          value: ['\uf17c'],
-          weight: '400',
-        },
-        {
-          fill: true,
-          font: 'Font Awesome 6 Brands',
-          style: '',
-          value: ['\uf395'],
-          weight: '400',
-        },
-      ],
+      options: {
+        character: [
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
+        ],
+      },
     },
 
+    // v1 wrote random { min 25, max 35 } without a value, which v2 resolved to
+    // a 3-25 range. 3-25 is what actually rendered, so that is kept.
     size: {
-      random: {
-        enable: true,
-        minimumValue: 25,
-        maxValue: 35,
-      },
+      value: { min: 3, max: 25 },
       animation: {
         count: 0,
         enable: true,
@@ -211,7 +147,7 @@ export const heroOptions = {
       },
     },
 
-    lineLinked: {
+    links: {
       blink: false,
       color: {
         value: '#ffffff',
@@ -223,6 +159,11 @@ export const heroOptions = {
       opacity: 0.4,
       width: 1,
     },
+  },
+
+  resize: {
+    delay: 0.5,
+    enable: true,
   },
   pauseOnBlur: true,
   pauseOnOutsideViewport: true,

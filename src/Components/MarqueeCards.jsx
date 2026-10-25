@@ -1,11 +1,15 @@
 /*
      FileName: MarqueeCards.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
-import Marquee from "react-fast-marquee";
+import MarqueeModule from "react-fast-marquee";
+
+// react-fast-marquee ships CommonJS; Vite 8 hands back its default export
+// wrapped in another { default }, so unwrap it.
+const Marquee = MarqueeModule.default ?? MarqueeModule;
 
 const MarqueeCards = ({children, direction}) => {
 

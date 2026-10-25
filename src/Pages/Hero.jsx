@@ -5,7 +5,7 @@
      Last modification: 10/23/2023
 */
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "motion/react";
 import HeroText from "../Components/HeroText";
 import HeroParticles from "../Components/Particles/HeroParticles";
 import HeroScroller from "../Components/elements/HeroScroller";

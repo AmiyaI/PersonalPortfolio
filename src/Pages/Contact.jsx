@@ -5,7 +5,7 @@
      Last modification: 10/23/2023
 */
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "motion/react";
 import SectionTitle from "../Components/SectionTitle";
 import ContactForm from "../Components/ContactForm";
 import SocialLinks from "../Components/SocialLinks";
@@ -25,7 +25,7 @@ const Contact = () => {
             <m.div
               initial={{ x: 200 }}
               whileInView={{ x: 0 }}
-              transition={{ duration: 0.6, type: "spring" }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.25 }}
               className="w-full sm:w-[90%] md:w-[80%] sm:h-[600px] p-4 flex flex-col sm:flex-row gap-4"
             >
               <div className="flex justify-center"></div>

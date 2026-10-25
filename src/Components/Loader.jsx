@@ -1,10 +1,9 @@
 /*
      FileName: Loader.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
-import React from "react";
 
 const Loader = () => {
   return (
@@ -13,7 +12,7 @@ const Loader = () => {
         style={{ fontFamily: "SuperMario" }}
         className="absolute text-primary-400 text-xl"
       >
-        b
+        A
       </span>
       <div className="loader"></div>
     </div>

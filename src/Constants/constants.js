@@ -1,77 +1,50 @@
 /*
      FileName: constants.js
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faX,
-  faBars,
-  faWindowRestore,
-  faBagShopping,
-  faDiceD6,
-  faEnvelope,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faReact,
-  faGithub,
-  faLinkedin,
-} from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 import {
-  htmlIcon,
-  cssIcon,
-  jsIcon,
-  reactIcon,
+  linuxIcon,
+  jenkinsIcon,
+  terraformIcon,
+  securityIcon,
   awsIcon,
   javaIcon,
   gitIcon,
   githubIcon,
-  psqlIcon,
-  eslintIcon,
+  projectManagementIcon,
+  dockerIcon,
   pyIcon,
-  viteIcon,
-  nodeIcon,
-  raspIcon,
-  neoIcon,
-  figmaIcon,
-  pawsitivePrototype,
-  calculator,
-  memoryGame,
+  cicdIcon,
+  phishai,
+  portfolio,
+  weatherApp,
   avatar,
 } from '../assets';
 
-library.add(faX, faBars, faWindowRestore, faBagShopping, faDiceD6);
-
+// Images held behind the loader until they have decoded.
 const media = {
-  htmlIcon,
-  cssIcon,
-  jsIcon,
-  reactIcon,
+  linuxIcon,
+  jenkinsIcon,
+  terraformIcon,
+  securityIcon,
   awsIcon,
   javaIcon,
   gitIcon,
   githubIcon,
-  psqlIcon,
-  eslintIcon,
+  projectManagementIcon,
+  dockerIcon,
   pyIcon,
-  viteIcon,
-  nodeIcon,
-  raspIcon,
-  neoIcon,
-  figmaIcon,
+  cicdIcon,
   avatar,
 };
 
 const icons = {
-  faBars,
-  faX,
-  faWindowRestore,
-  faBagShopping,
-  faDiceD6,
-  faReact,
   faGithub,
   faLinkedin,
   faEnvelope,
@@ -113,21 +86,21 @@ const projects = [
   {
     name: "Weather App",
     description: 'AWS ETL pipeline for collecting and transforming weather data, utilizing Python and Docker for processing and deployment, Jenkins for CI/CD, and Terraform for infrastructure management. All components are secured with best practices in cloud security. Currently enhancing the system with a user-friendly interface',
-    image: memoryGame,
+    image: weatherApp,
     source_code_link: 'https://github.com/AmiyaI/WeatherApp',
     demo_link: 'https://github.com/AmiyaI/WeatherApp/blob/main/README.md',
   },
   {
     name: 'PhishAI',
     description: 'A generative AI-powered cybersecurity training platform that simulates evolving phishing scenarios. Uses AWS (SageMaker, Bedrock, Polly), Terraform, and CI/CD to produce dynamic voice, images, and prompts, empowering users to detect and respond to threats.',
-    image: pawsitivePrototype,
+    image: phishai,
     source_code_link: 'https://github.com/AmiyaI/PhishAI',
     demo_link: 'https://phishai.co/',
   },
   {
     name: 'Personal Portfolio Website',
     description: 'A website hosted on AWS Amplify that includes a brief introduction about me, my projects, the technologies I have worked with, and my experience.',
-    image: calculator,
+    image: portfolio,
     source_code_link: 'https://github.com/AmiyaI/PersonalPortfolio',
     demo_link: 'https://www.amiyaislam.com',
   },
@@ -139,30 +112,30 @@ const memoji = {
 
 const skills = [
   {
-    id: 'html',
+    id: 'linux',
     title: 'Linux',
-    icon: htmlIcon,
+    icon: linuxIcon,
     description:
       'I have an in-depth understanding of the Linux operating system, encompassing its kernel, command-line utilities, and system administration.',
   },
   {
-    id: 'css',
+    id: 'jenkins',
     title: 'Jenkins',
-    icon: cssIcon,
+    icon: jenkinsIcon,
     description:
     'Proficient in Jenkins with a solid grasp of its core concepts and functionalities. My growing hands-on experience is complemented by a strong appreciation for its role in CI/CD.',
   },
   {
-    id: 'javascript',
+    id: 'terraform',
     title: 'Infrastructure as Code',
-    icon: jsIcon,
+    icon: terraformIcon,
     description:
     'I am a HashiCorp Terraform Associate certified with substantial experience in employing IaC to deploy efficient and consistent infrastructures in the cloud.',
   },
   {
-    id: 'react',
+    id: 'security',
     title: 'Networking & Security',
-    icon: reactIcon,
+    icon: securityIcon,
     description:
       'I possess a comprehensive understanding of the OSI model, coupled with in-depth knowledge of cloud security practices.',
   },
@@ -181,9 +154,9 @@ const skills = [
       '6x AWS Certified with proficiency in a wide range of AWS services, expertly navigating cloud solutions for scalable and reliable infrastructure.',
   },
   {
-    id: 'figma',
+    id: 'project-management',
     title: 'Project Management',
-    icon: figmaIcon,
+    icon: projectManagementIcon,
     description:
     'As a Virginia Tech graduate in Construction Engineering and Management, I excel in project management with skills in estimating, scheduling, team coordination, and more.',
   },
@@ -202,9 +175,9 @@ const skills = [
       'I am skilled in using GitHub for seamless project collaboration, code sharing, and issue tracking.',
   },
   {
-    id: 'psql',
+    id: 'docker',
     title: 'Docker',
-    icon: psqlIcon,
+    icon: dockerIcon,
     description:
       'Experienced with Docker, adept at its essential concepts and practical applications, including integration with AWS for enhanced containerized solutions.',
   },
@@ -216,19 +189,14 @@ const skills = [
       'Proficient in Python, I specialize in developing cloud-specific coding solutions, leveraging the language\'s versatility and power.',
   },
   {
-    id: 'node',
+    id: 'cicd',
     title: 'CI/CD',
-    icon: nodeIcon,
+    icon: cicdIcon,
     description:
       'Skilled in CI/CD methodologies, I excel in optimizing development pipelines for efficiency and reliability in a DevOps framework.',
   },
 
 ];
-
-const markerSvg = `<svg viewBox="-4 0 36 36">
-    <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
-    <circle fill="black" cx="14" cy="14" r="7"></circle>
-  </svg>`;
 
 export {
   media,
@@ -236,6 +204,5 @@ export {
   projects,
   memoji,
   skills,
-  markerSvg,
   icons,
 };

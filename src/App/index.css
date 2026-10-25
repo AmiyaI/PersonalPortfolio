@@ -1,30 +1,62 @@
 /*
      FileName: index.css
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* v1 replaced Tailwind's whole palette with these tokens, so classes like
+   text-white or bg-primary resolved to nothing. Wiping the defaults keeps
+   that look exactly. */
+@theme {
+  --color-*: initial;
+  --color-primary-400: #cbbde5;
+  --color-primary-500: #5C546B;
+  --color-primary-600: #CDBCEB;
+  --color-grayscale-50: #ffffff;
+  --color-grayscale-100: #efefef;
+  --color-grayscale-200: #FDFDFF;
+  --color-grayscale-950: #16161b;
+}
+
+/* Tailwind 4's preflight differs from v3 in a few places v1 relied on. */
+@layer base {
+  input:where(:not([type="submit"])),
+  textarea {
+    background-color: #ffffff;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    opacity: 1;
+    color: #9ca3af;
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  /* Must stay in the base layer: unlayered, it would beat every margin and
+     padding utility (in v3, utilities won on specificity). */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+}
 
 @font-face {
   font-family: "SuperMario";
   src: url(/Fonts/Mario/SuperMario256.ttf);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-
-}
-
 body {
-  background: url("https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png");
+  background: url("../assets/textures/noise.png");
   background-color: #5C546B;
   position: relative;
   overflow-x: hidden;
@@ -57,27 +89,6 @@ body {
 #repulse-div > h1 {
   -webkit-filter: drop-shadow(0 0 5rem #292D44);
   filter: drop-shadow(0 0 5rem #292D44);
-}
-
-#journey-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-#journey-scroll {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.arrowpath,
-polyline {
-  fill: none;
-  stroke: #515152;
-  vector-effect: non-scaling-stroke;
-  stroke-width: 2;
-}
-
-.arrowpath {
-  stroke-dasharray: 11, 5;
 }
 
 .noselect {
@@ -170,7 +181,7 @@ polyline {
   animation: rotation 1s linear infinite;
 }
 .loader::after {
-  content: '';  
+  content: '';
   position: absolute;
   left: 50%;
   top: 50%;
@@ -189,4 +200,4 @@ polyline {
   100% {
     transform: rotate(360deg);
   }
-} 
+}

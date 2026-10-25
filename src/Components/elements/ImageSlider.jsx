@@ -6,7 +6,7 @@
 */
 
 import { useEffect, useState, useRef } from "react";
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "motion/react";
 
 const ImageSlider = ({ images }) => {
   const [index, setIndex] = useState(0);
