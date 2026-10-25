@@ -201,3 +201,152 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* ---- Phase 2 additions ---- */
+
+/* Lenis' recommended base styles. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+/* Lenis does the smoothing; native smooth scrolling would fight it. */
+html.lenis,
+html.lenis * {
+  scroll-behavior: auto;
+}
+
+/* Custom cursor (mouse and trackpad only; see Cursor.jsx). */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  translate: -50% -50%;
+}
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #cbbde5;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #cbbde5;
+  mix-blend-mode: normal;
+}
+.cursor-label {
+  font-family: Poppins, sans-serif;
+  font-size: 5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #16161b;
+  opacity: 0;
+}
+
+/* Outlined display type for the giant tickers. */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #cbbde5;
+}
+
+/* Nav underline that grows from the left on hover and for the active section. */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #cbbde5;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(.22, 1, .36, 1);
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Drawn covers for projects without a screenshot. */
+.cover-agents {
+  background:
+    radial-gradient(circle at 20% 30%, #cbbde5 0 2px, transparent 3px) 0 0 / 22px 22px,
+    radial-gradient(circle at 70% 60%, #f2ead8 0 30%, transparent 31%),
+    linear-gradient(135deg, #cbbde5, #8f7fb3);
+}
+.cover-solo {
+  background:
+    radial-gradient(ellipse at 30% 40%, #ffffff 0 18%, transparent 19%),
+    radial-gradient(ellipse at 68% 62%, #ffffff 0 14%, transparent 15%),
+    linear-gradient(160deg, #a99bd0, #5C546B);
+}
+.cover-marketing {
+  background:
+    repeating-linear-gradient(-45deg, rgba(22, 22, 27, 0.08) 0 12px, transparent 12px 24px),
+    linear-gradient(120deg, #ff8539, #cbbde5);
+}
+
+/* Film grain for the Studio page. */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 50;
+  pointer-events: none;
+  background-image: url("../assets/textures/noise.png");
+  opacity: 0.14;
+  animation: grain 0.9s steps(6) infinite;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+}
+
+/* Stickers on the AI Slop door (Beyond.jsx). */
+.door-sticker {
+  rotate: var(--r, 0deg);
+}
+.group:hover .door-sticker {
+  rotate: var(--r-hover, 0deg);
+  translate: 0 -8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::before,
+  .blob {
+    animation: none;
+  }
+}
+
+/* Morganite's ampersand looks like a euro sign; borrow Poppins' instead. */
+.amp {
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+  font-size: 0.62em;
+  margin: 0 0.12em;
+  vertical-align: 0.12em;
+}

@@ -1,0 +1,607 @@
+{
+  "studio": [
+    {
+      "id": "halloween-paranormal-productivity",
+      "title": "Paranormal Productivity",
+      "blurb": "A found-footage office haunting where the ghost mostly just wants better workflows.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 200,
+      "poster": "/media/studio/halloween-paranormal-productivity-poster.webp",
+      "preview": "/media/studio/halloween-paranormal-productivity-preview.mp4",
+      "images": [
+        "/media/studio/halloween-bts-dale.webp",
+        "/media/studio/halloween-bts-mari.webp",
+        "/media/studio/halloween-bts-style-frames.webp",
+        "/media/studio/halloween-bts-contact-day.webp",
+        "/media/studio/halloween-bts-contact-night.webp",
+        "/media/studio/halloween-bts-contact-people.webp"
+      ],
+      "tags": [
+        "AI film",
+        "Halloween",
+        "CCTV look",
+        "Swa"
+      ]
+    },
+    {
+      "id": "enterprise-film-shadow-ai",
+      "title": "Enterprise Film A: Shadow AI",
+      "blurb": "What your team is already doing with AI, shown before IT finds out.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 66,
+      "poster": "/media/studio/enterprise-film-shadow-ai-poster.webp",
+      "preview": "/media/studio/enterprise-film-shadow-ai-preview.mp4",
+      "images": [],
+      "tags": [
+        "Motion graphics",
+        "Product film",
+        "Swa"
+      ]
+    },
+    {
+      "id": "enterprise-film-switchboard",
+      "title": "Enterprise Film B: The Switchboard",
+      "blurb": "One control panel for who gets which model, and how much they can spend.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 66,
+      "poster": "/media/studio/enterprise-film-switchboard-poster.webp",
+      "preview": "/media/studio/enterprise-film-switchboard-preview.mp4",
+      "images": [],
+      "tags": [
+        "Motion graphics",
+        "Product film",
+        "Swa"
+      ]
+    },
+    {
+      "id": "enterprise-film-cat-video-bill",
+      "title": "Enterprise Film C: The Cat Video Bill",
+      "blurb": "The bill nobody explains, and the controls that finally do.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 67,
+      "poster": "/media/studio/enterprise-film-cat-video-bill-poster.webp",
+      "preview": "/media/studio/enterprise-film-cat-video-bill-preview.mp4",
+      "images": [],
+      "tags": [
+        "Motion graphics",
+        "Product film",
+        "Swa"
+      ]
+    },
+    {
+      "id": "partner-film-someone-phone",
+      "title": "Partner Film A: The Someone Phone",
+      "blurb": "A reseller story told from the phone in your pocket.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 54,
+      "poster": "/media/studio/partner-film-someone-phone-poster.webp",
+      "preview": "/media/studio/partner-film-someone-phone-preview.mp4",
+      "images": [],
+      "tags": [
+        "Motion graphics",
+        "Partner program",
+        "Swa"
+      ]
+    },
+    {
+      "id": "partner-film-mine",
+      "title": "Partner Film B: Mine",
+      "blurb": "Build agents, set your own rates, keep the margin.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 56,
+      "poster": "/media/studio/partner-film-mine-poster.webp",
+      "preview": "/media/studio/partner-film-mine-preview.mp4",
+      "images": [],
+      "tags": [
+        "Motion graphics",
+        "Partner program",
+        "Swa"
+      ]
+    },
+    {
+      "id": "partner-film-pay-vs-sell",
+      "title": "Partner Film C: Pay vs. Sell",
+      "blurb": "The difference between buying AI and selling it.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 53,
+      "poster": "/media/studio/partner-film-pay-vs-sell-poster.webp",
+      "preview": "/media/studio/partner-film-pay-vs-sell-preview.mp4",
+      "images": [],
+      "tags": [
+        "Motion graphics",
+        "Partner program",
+        "Swa"
+      ]
+    },
+    {
+      "id": "ugc-office",
+      "title": "UGC Ad: The Office Pitch",
+      "blurb": "A talking-head ad that swaps a pile of subscriptions for one line item.",
+      "kind": "ad",
+      "aspect": "9:16",
+      "durationSec": 36,
+      "poster": "/media/studio/ugc-office-poster.webp",
+      "preview": "/media/studio/ugc-office-preview.mp4",
+      "images": [],
+      "tags": [
+        "AI UGC",
+        "Social ad",
+        "Swa"
+      ]
+    },
+    {
+      "id": "second-opinion",
+      "title": "Ad: The Second Opinion",
+      "blurb": "Ask one model, double-check with another, never leave the thread.",
+      "kind": "ad",
+      "aspect": "9:16",
+      "durationSec": 47,
+      "poster": "/media/studio/second-opinion-poster.webp",
+      "preview": "/media/studio/second-opinion-preview.mp4",
+      "images": [],
+      "tags": [
+        "Social ad",
+        "Screen demo",
+        "Swa"
+      ]
+    },
+    {
+      "id": "knights-of-the-model-table",
+      "title": "Ad: Knights of the Model Table",
+      "blurb": "A tavern knight discovers he never had to pick a single chatbot.",
+      "kind": "ad",
+      "aspect": "9:16",
+      "durationSec": 25,
+      "poster": "/media/studio/knights-of-the-model-table-poster.webp",
+      "preview": "/media/studio/knights-of-the-model-table-preview.mp4",
+      "images": [],
+      "tags": [
+        "AI video",
+        "Social ad",
+        "Swa"
+      ]
+    },
+    {
+      "id": "doom-spiral",
+      "title": "Ad: Doom Spiral",
+      "blurb": "One missed deadline later, a man is sharing a tent with a raccoon.",
+      "kind": "ad",
+      "aspect": "9:16",
+      "durationSec": 35,
+      "poster": "/media/studio/doom-spiral-poster.webp",
+      "preview": "/media/studio/doom-spiral-preview.mp4",
+      "images": [],
+      "tags": [
+        "AI video",
+        "Social ad",
+        "Swa"
+      ]
+    },
+    {
+      "id": "ugc-testimonial",
+      "title": "UGC Ad: The Testimonial",
+      "blurb": "One app, every model, and no menu to think about.",
+      "kind": "ad",
+      "aspect": "9:16",
+      "durationSec": 38,
+      "poster": "/media/studio/ugc-testimonial-poster.webp",
+      "preview": "/media/studio/ugc-testimonial-preview.mp4",
+      "images": [],
+      "tags": [
+        "AI UGC",
+        "Social ad",
+        "Swa"
+      ]
+    },
+    {
+      "id": "death-by-1000-cut",
+      "title": "Ad: Death by 1000 Seats",
+      "blurb": "Every seat, another bill, until the tower falls over.",
+      "kind": "ad",
+      "aspect": "9:16",
+      "durationSec": 17,
+      "poster": "/media/studio/death-by-1000-cut-poster.webp",
+      "preview": "/media/studio/death-by-1000-cut-preview.mp4",
+      "images": [],
+      "tags": [
+        "AI video",
+        "Social ad",
+        "Swa"
+      ]
+    },
+    {
+      "id": "kill-the-bill",
+      "title": "Ad: Kill the Bill",
+      "blurb": "A mountain of receipts goes up in smoke.",
+      "kind": "ad",
+      "aspect": "9:16",
+      "durationSec": 18,
+      "poster": "/media/studio/kill-the-bill-poster.webp",
+      "preview": "/media/studio/kill-the-bill-preview.mp4",
+      "images": [],
+      "tags": [
+        "Social ad",
+        "Motion graphics",
+        "Swa"
+      ]
+    },
+    {
+      "id": "discovery",
+      "title": "Film: Discovery",
+      "blurb": "A late night, a window ledge, and a cheaper way to run AI.",
+      "kind": "ad",
+      "aspect": "16:9",
+      "durationSec": 38,
+      "poster": "/media/studio/discovery-poster.webp",
+      "preview": "/media/studio/discovery-preview.mp4",
+      "images": [],
+      "tags": [
+        "AI video",
+        "Brand film",
+        "Swa"
+      ]
+    },
+    {
+      "id": "explainer",
+      "title": "Film: Explainer",
+      "blurb": "Slack, Teams, WhatsApp and SMS, all pointing at one assistant.",
+      "kind": "ad",
+      "aspect": "16:9",
+      "durationSec": 41,
+      "poster": "/media/studio/explainer-poster.webp",
+      "preview": "/media/studio/explainer-preview.mp4",
+      "images": [],
+      "tags": [
+        "Explainer",
+        "Motion graphics",
+        "Swa"
+      ]
+    },
+    {
+      "id": "i-didnt-film-this",
+      "title": "I Didn't Film This",
+      "blurb": "A voice clone, a script and one prompt turned into a finished video.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 45,
+      "poster": "/media/studio/i-didnt-film-this-poster.webp",
+      "preview": "/media/studio/i-didnt-film-this-preview.mp4",
+      "images": [],
+      "tags": [
+        "HyperFrames",
+        "ElevenLabs",
+        "Claude",
+        "AI film"
+      ]
+    },
+    {
+      "id": "policy-to-practice",
+      "title": "Policy to Practice",
+      "blurb": "An AI policy is a PDF until you decide where people can actually use it.",
+      "kind": "reel",
+      "aspect": "9:16",
+      "durationSec": 22,
+      "poster": "/media/studio/policy-to-practice-poster.webp",
+      "preview": "/media/studio/policy-to-practice-preview.mp4",
+      "images": [],
+      "tags": [
+        "Social reel",
+        "Compliance",
+        "Swa"
+      ]
+    },
+    {
+      "id": "clickup-video-system",
+      "title": "ClickUp Application: The System",
+      "blurb": "A walkthrough of an AI marketing system built to apply for a role.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 86,
+      "poster": "/media/studio/clickup-video-system-poster.webp",
+      "preview": "/media/studio/clickup-video-system-preview.mp4",
+      "images": [],
+      "tags": [
+        "Application video",
+        "Multi-agent",
+        "Codex",
+        "Claude"
+      ]
+    },
+    {
+      "id": "clickup-video-rejection",
+      "title": "ClickUp Application: The Rejection",
+      "blurb": "What the system does when a batch fails review, and how it recovers.",
+      "kind": "film",
+      "aspect": "16:9",
+      "durationSec": 79,
+      "poster": "/media/studio/clickup-video-rejection-poster.webp",
+      "preview": "/media/studio/clickup-video-rejection-preview.mp4",
+      "images": [],
+      "tags": [
+        "Application video",
+        "Multi-agent",
+        "Codex",
+        "Claude"
+      ]
+    },
+    {
+      "id": "clickup-paid-static",
+      "title": "ClickUp Paid Static",
+      "blurb": "A text-free base layer for a paid social static.",
+      "kind": "image-set",
+      "aspect": "4:5",
+      "durationSec": null,
+      "poster": "/media/studio/clickup-paid-static.webp",
+      "preview": null,
+      "images": [
+        "/media/studio/clickup-paid-static.webp"
+      ],
+      "tags": [
+        "Paid social",
+        "Static ad",
+        "ClickUp"
+      ]
+    },
+    {
+      "id": "static-ad-campaign",
+      "title": "Static Ad Campaign",
+      "blurb": "Eighteen static ads, each one making a single point about governed AI.",
+      "kind": "ad",
+      "aspect": "16:9",
+      "durationSec": null,
+      "poster": "/media/studio/ads/c01.webp",
+      "preview": null,
+      "images": [
+        "/media/studio/ads/c01.webp",
+        "/media/studio/ads/c02.webp",
+        "/media/studio/ads/c03.webp",
+        "/media/studio/ads/c04.webp",
+        "/media/studio/ads/c05.webp",
+        "/media/studio/ads/c06.webp",
+        "/media/studio/ads/c07.webp",
+        "/media/studio/ads/c08.webp",
+        "/media/studio/ads/c09.webp",
+        "/media/studio/ads/c10.webp",
+        "/media/studio/ads/c11.webp",
+        "/media/studio/ads/c12.webp",
+        "/media/studio/ads/c13.webp",
+        "/media/studio/ads/c14.webp",
+        "/media/studio/ads/c15.webp",
+        "/media/studio/ads/c16.webp",
+        "/media/studio/ads/c17.webp",
+        "/media/studio/ads/c18.webp"
+      ],
+      "tags": [
+        "Static ads",
+        "Paid social",
+        "Swa"
+      ]
+    },
+    {
+      "id": "signalcut-sample",
+      "title": "SignalCut Sample",
+      "blurb": "A short vertical explainer rendered end to end from a template.",
+      "kind": "reel",
+      "aspect": "9:16",
+      "durationSec": 12,
+      "poster": "/media/studio/signalcut-sample-poster.webp",
+      "preview": "/media/studio/signalcut-sample-preview.mp4",
+      "images": [],
+      "tags": [
+        "SignalCut",
+        "Template render",
+        "Short-form"
+      ]
+    },
+    {
+      "id": "signalcut-long-render",
+      "title": "SignalCut Long Render",
+      "blurb": "The longest local render, with a multi-step workflow told in cards.",
+      "kind": "reel",
+      "aspect": "9:16",
+      "durationSec": 43,
+      "poster": "/media/studio/signalcut-long-render-poster.webp",
+      "preview": "/media/studio/signalcut-long-render-preview.mp4",
+      "images": [],
+      "tags": [
+        "SignalCut",
+        "Template render",
+        "Short-form"
+      ]
+    }
+  ],
+  "slop": [
+    {
+      "id": "block-vs-jurassic-court",
+      "title": "The Block vs. the Jurassic Court",
+      "blurb": "A street fight, a castle, a T. rex and a knight who has clearly lost the plot.",
+      "kind": "skit",
+      "aspect": "16:9",
+      "durationSec": 40,
+      "poster": "/media/slop/block-vs-jurassic-court-poster.webp",
+      "preview": "/media/slop/block-vs-jurassic-court-preview.mp4",
+      "images": [],
+      "tags": [
+        "AI video",
+        "Chaos",
+        "Voice chat"
+      ]
+    },
+    {
+      "id": "brickline",
+      "title": "BRICKLINE",
+      "blurb": "A playable 3D block-life basketball game built in the browser with no engine but three.js.",
+      "kind": "game",
+      "aspect": "16:9",
+      "durationSec": null,
+      "poster": "/media/slop/brickline-preview.webp",
+      "preview": null,
+      "images": [
+        "/media/slop/brickline-preview.webp",
+        "/media/slop/brickline-miami.webp",
+        "/media/slop/brickline-chicago.webp",
+        "/media/slop/brickline-night.webp",
+        "/media/slop/brickline-court.webp",
+        "/media/slop/brickline-character.webp"
+      ],
+      "tags": [
+        "Browser game",
+        "three.js",
+        "AI-built"
+      ]
+    },
+    {
+      "id": "mushroom-tee",
+      "title": "Mushroom Tee Lookbook",
+      "blurb": "Twenty-six AI fashion shots of one very committed mushroom t-shirt.",
+      "kind": "image-set",
+      "aspect": "4:5",
+      "durationSec": null,
+      "poster": "/media/slop/mushroom/ash-blonde-bamboo-olive-skirt.webp",
+      "preview": null,
+      "images": [
+        "/media/slop/mushroom/ash-blonde-bamboo-olive-skirt.webp",
+        "/media/slop/mushroom/blonde-braids-greenhouse-sage.webp",
+        "/media/slop/mushroom/blonde-fog-beach-back.webp",
+        "/media/slop/mushroom/blonde-man-herb-field-ecru.webp",
+        "/media/slop/mushroom/blonde-meadow-ivory-skirt.webp",
+        "/media/slop/mushroom/blonde-redwood-cream-cargos.webp",
+        "/media/slop/mushroom/blonde-waterfall-gray-parachute.webp",
+        "/media/slop/mushroom/honey-blonde-moss-utility.webp",
+        "/media/slop/mushroom/ice-blonde-birch-blue-hour-back.webp",
+        "/media/slop/mushroom/male-neutral-back.webp",
+        "/media/slop/mushroom/male-neutral-front.webp",
+        "/media/slop/mushroom/man-alpine-lake-back-sand-trousers.webp",
+        "/media/slop/mushroom/man-hands-in-pockets.webp",
+        "/media/slop/mushroom/man-side-profile.webp",
+        "/media/slop/mushroom/platinum-coast-back-denim.webp",
+        "/media/slop/mushroom/strawberry-blonde-desert-rust.webp",
+        "/media/slop/mushroom/woman-back.webp",
+        "/media/slop/mushroom/woman-blue-hour-walk.webp",
+        "/media/slop/mushroom/woman-brutalist-plaza.webp",
+        "/media/slop/mushroom/woman-gallery-crouch.webp",
+        "/media/slop/mushroom/woman-industrial-seated.webp",
+        "/media/slop/mushroom/woman-kneeling-look-back.webp",
+        "/media/slop/mushroom/woman-mid-walk.webp",
+        "/media/slop/mushroom/woman-rooftop-back.webp",
+        "/media/slop/mushroom/woman-three-quarter.webp",
+        "/media/slop/mushroom/woman-travertine-courtyard.webp"
+      ],
+      "tags": [
+        "AI fashion",
+        "Image gen",
+        "Lookbook"
+      ]
+    },
+    {
+      "id": "memes",
+      "title": "AI Governance Memes",
+      "blurb": "Six memes about approvals, tool sprawl and waiting on IT.",
+      "kind": "image-set",
+      "aspect": "4:5",
+      "durationSec": null,
+      "poster": "/media/slop/meme-this-is-fine.webp",
+      "preview": null,
+      "images": [
+        "/media/slop/meme-this-is-fine.webp",
+        "/media/slop/meme-roll-safe.webp",
+        "/media/slop/meme-waiting.webp",
+        "/media/slop/meme-two-buttons.webp",
+        "/media/slop/meme-distracted-tools.webp",
+        "/media/slop/meme-reject-approve.webp"
+      ],
+      "tags": [
+        "Memes",
+        "Social",
+        "Swa"
+      ]
+    },
+    {
+      "id": "subs-chaos-blizzard",
+      "title": "Subscriptions 1: Chaos Blizzard",
+      "blurb": "A man gets buried in a blizzard of glowing credit cards.",
+      "kind": "skit",
+      "aspect": "9:16",
+      "durationSec": 5,
+      "poster": "/media/slop/subs-chaos-blizzard-poster.webp",
+      "preview": "/media/slop/subs-chaos-blizzard-preview.mp4",
+      "images": [],
+      "tags": [
+        "Death by a Thousand Subscriptions",
+        "AI video",
+        "Ad shot"
+      ]
+    },
+    {
+      "id": "subs-scale-reveal",
+      "title": "Subscriptions 2: Scale Reveal",
+      "blurb": "One tiny human, one very large tower of seat licenses.",
+      "kind": "skit",
+      "aspect": "9:16",
+      "durationSec": 5,
+      "poster": "/media/slop/subs-scale-reveal-poster.webp",
+      "preview": "/media/slop/subs-scale-reveal-preview.mp4",
+      "images": [],
+      "tags": [
+        "Death by a Thousand Subscriptions",
+        "AI video",
+        "Ad shot"
+      ]
+    },
+    {
+      "id": "subs-avalanche-buried",
+      "title": "Subscriptions 3: Avalanche",
+      "blurb": "The subscription pile reaches the ceiling and keeps going.",
+      "kind": "skit",
+      "aspect": "9:16",
+      "durationSec": 5,
+      "poster": "/media/slop/subs-avalanche-buried-poster.webp",
+      "preview": "/media/slop/subs-avalanche-buried-preview.mp4",
+      "images": [],
+      "tags": [
+        "Death by a Thousand Subscriptions",
+        "AI video",
+        "Ad shot"
+      ]
+    },
+    {
+      "id": "subs-vacuum-snap",
+      "title": "Subscriptions 4: Vacuum Snap",
+      "blurb": "Everything gets sucked into one point and pays out in coins.",
+      "kind": "skit",
+      "aspect": "9:16",
+      "durationSec": 3,
+      "poster": "/media/slop/subs-vacuum-snap-poster.webp",
+      "preview": "/media/slop/subs-vacuum-snap-preview.mp4",
+      "images": [],
+      "tags": [
+        "Death by a Thousand Subscriptions",
+        "AI video",
+        "Ad shot"
+      ]
+    },
+    {
+      "id": "subs-calm-orb-hero",
+      "title": "Subscriptions 5: Calm Orb",
+      "blurb": "One calm man, one glowing orb, zero extra bills.",
+      "kind": "skit",
+      "aspect": "9:16",
+      "durationSec": 4,
+      "poster": "/media/slop/subs-calm-orb-hero-poster.webp",
+      "preview": "/media/slop/subs-calm-orb-hero-preview.mp4",
+      "images": [],
+      "tags": [
+        "Death by a Thousand Subscriptions",
+        "AI video",
+        "Ad shot"
+      ]
+    }
+  ]
+}

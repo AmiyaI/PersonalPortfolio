@@ -11,11 +11,12 @@ import emailjs from "@emailjs/browser";
 import { noise } from "../assets";
 
 const ContactForm = () => {
-  const [isSent, setIsSent] = useState(false);
+  const [status, setStatus] = useState("idle");
   const form = useRef();
   
   const sendEmail = (e) => {
     e.preventDefault();
+    setStatus("sending");
 
     emailjs.sendForm(
       "amiya_personalport",
@@ -24,14 +25,13 @@ const ContactForm = () => {
       { publicKey: "cdoSytMf3BqCdBI3H" }
     )
       .then(
-        (result) => {
-          document.getElementById("contact_form").reset();
-          setIsSent(true);
-          alert('Thank you I will get back to you as soon as possible ! (:');
+        () => {
+          form.current.reset();
+          setStatus("sent");
         },
         (error) => {
           console.error(error);
-          setIsSent(false);
+          setStatus("error");
         }
       );
   };  
@@ -108,13 +108,17 @@ const ContactForm = () => {
               required
             ></textarea>
           </div>
-          <div className="w-full flex justify-center">
+          <div className="w-full flex flex-col items-center gap-3">
             <input
-              className="w-[100px] h-[50px] bg-primary-600 rounded-xl cursor-pointer "
+              className="w-[100px] h-[50px] bg-primary-600 rounded-xl cursor-pointer text-grayscale-950 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
               type="submit"
-              value={!isSent ? 'Send' : 'Done!'}
-              
+              disabled={status === "sending"}
+              value={status === "sending" ? "Sending" : status === "sent" ? "Done!" : "Send"}
             />
+            <p role="status" aria-live="polite" className="min-h-6 text-center text-sm">
+              {status === "sent" && "Thank you! I'll get back to you as soon as possible :)"}
+              {status === "error" && "That didn't send. Email me at iamiya@vt.edu instead?"}
+            </p>
           </div>
         </form>
       </div>

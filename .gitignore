@@ -26,3 +26,6 @@ CLAUDE.md
 *.njsproj
 *.sln
 *.sw?
+
+# Local paths of full-res media originals (for upload); never public
+media-sources.local.json

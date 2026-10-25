@@ -1,14 +1,13 @@
 /*
      FileName: Contact.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
 import { m, LazyMotion, domAnimation } from "motion/react";
 import SectionTitle from "../Components/SectionTitle";
 import ContactForm from "../Components/ContactForm";
-import SocialLinks from "../Components/SocialLinks";
 
 const Contact = () => {
   return (
@@ -18,7 +17,7 @@ const Contact = () => {
     >
       <div className="w-full min-h-[800px] flex flex-col xl:w-[70%]">
         <div className="w-full">
-          <SectionTitle title="CONTACT" subtitle="Get in touch" />
+          <SectionTitle title="CONTACT" subtitle="Get in touch" index="07" />
         </div>
         <div className="w-full flex justify-center items-center">
           <LazyMotion features={domAnimation} strict>
@@ -26,20 +25,12 @@ const Contact = () => {
               initial={{ x: 200 }}
               whileInView={{ x: 0 }}
               transition={{ duration: 0.6, type: "spring", bounce: 0.25 }}
-              className="w-full sm:w-[90%] md:w-[80%] sm:h-[600px] p-4 flex flex-col sm:flex-row gap-4"
+              className="w-full sm:w-[90%] md:w-[80%] sm:h-[640px] p-4 flex flex-col sm:flex-row gap-4"
             >
               <div className="flex justify-center"></div>
               <ContactForm />
             </m.div>
           </LazyMotion>
-        </div>
-      </div>
-      <div className="w-full flex flex-col">
-        <SocialLinks />
-        <div className="bg-grayscale-950 flex justify-center pb-4 text-grayscale-50">
-          <span>
-            Made by <em>Amiya Islam</em>
-          </span>
         </div>
       </div>
     </div>

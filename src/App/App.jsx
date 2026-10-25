@@ -1,39 +1,71 @@
 /*
      FileName: app.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
+import { lazy, Suspense, useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router";
 import NavBar from "../Components/nav/NavBar";
+import Footer from "../Components/Footer";
+import Cursor from "../Components/motion/Cursor";
+import { ScrollTrigger } from "../lib/gsap";
 import Hero from "../Pages/Hero";
-import Projects from "../Pages/Projects";
 import About from "../Pages/About";
+import Experience from "../Pages/Experience";
+import Projects from "../Pages/Projects";
 import Skills from "../Pages/Skills";
+import Beyond from "../Pages/Beyond";
+import Hobbies from "../Pages/Hobbies";
 import Contact from "../Pages/Contact";
 
+// The creative pages carry their own media and code, so they load on demand.
+const Studio = lazy(() => import("../Pages/Studio"));
+const AiSlop = lazy(() => import("../Pages/AiSlop"));
+
+const Home = () => (
+  <main>
+    <Hero />
+    <About />
+    <Experience />
+    <Projects />
+    <Skills />
+    <Beyond />
+    <Hobbies />
+    <Contact />
+  </main>
+);
+
+const TITLES = {
+  "/": "Who's Amiya ?",
+  "/studio": "Studio · Amiya Islam",
+  "/ai-slop": "AI Slop · Amiya Islam",
+};
+
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    document.title = TITLES[pathname] ?? TITLES["/"];
+    // New page, new layout: let every ScrollTrigger re-measure.
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => cancelAnimationFrame(id);
+  }, [pathname]);
+
   return (
     <>
-      {/* TEMP: stale-content banner — remove once the site is refreshed */}
-      <div className="fixed top-0 left-0 right-0 z-30 bg-grayscale-950 text-grayscale-50 text-center py-2 px-4 text-xs sm:text-sm">
-        <span className="hidden sm:inline">Heads up — site last updated <strong>Feb 2025</strong>, currently being refreshed. For my latest: </span>
-        <span className="sm:hidden">Last updated Feb 2025 · latest: </span>
-        <a
-          href="https://linkedin.com/in/amiya-islam"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-primary-400 font-medium"
-        >
-          linkedin.com/in/amiya-islam
-        </a>
-      </div>
+      <Cursor />
       <NavBar />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
+      <Suspense fallback={<div className="h-screen" />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/studio" element={<Studio />} />
+          <Route path="/ai-slop" element={<AiSlop />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Suspense>
+      <Footer />
     </>
   );
 }

@@ -1,21 +1,29 @@
 /*
      FileName: constants.js
-     @version: II
+     @version: III
      Creation: 10/23/2023
      Last modification: 10/25/2026
 */
 
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {
+  faEnvelope,
+  faRobot,
+  faDharmachakra,
+  faChartLine,
+  faDumbbell,
+  faMountainSun,
+  faMusic,
+  faBasketball,
+  faHandHoldingHeart,
+  faArrowTrendUp,
+} from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin, faReact } from '@fortawesome/free-brands-svg-icons';
 
 import {
   linuxIcon,
-  jenkinsIcon,
   terraformIcon,
   securityIcon,
   awsIcon,
-  javaIcon,
-  gitIcon,
   githubIcon,
   projectManagementIcon,
   dockerIcon,
@@ -27,15 +35,12 @@ import {
   avatar,
 } from '../assets';
 
-// Images held behind the loader until they have decoded.
+// Images held behind the preloader until they have decoded.
 const media = {
   linuxIcon,
-  jenkinsIcon,
   terraformIcon,
   securityIcon,
   awsIcon,
-  javaIcon,
-  gitIcon,
   githubIcon,
   projectManagementIcon,
   dockerIcon,
@@ -50,56 +55,186 @@ const icons = {
   faEnvelope,
 };
 
+const socials = [
+  { label: 'GitHub', href: 'https://github.com/AmiyaI', icon: faGithub },
+  { label: 'Email', href: 'mailto:iamiya@vt.edu', icon: faEnvelope },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amiya-islam', icon: faLinkedin },
+];
+
+const roles = [
+  'Founding Engineer',
+  'AI agent builder',
+  'Cloud & DevOps engineer',
+  'AI filmmaker',
+];
+
 const introduction = {
   text: [
-    "Hello and welcome! I'm thrilled you're here :)",
-       
-    "I'm Amiya, a Virginia Tech Master's in Information Technology student from Blacksburg, VA, deeply passionate about Cloud Engineering.",
-       
-    "When I'm not immersed in technology, you'll find me powerlifting, exploring nature, sports betting, or playing the piano.",
-       
-    "I'm always excited to collaborate with individuals and teams who share my enthusiasm for creating remarkable experiences. Thank you for visiting my portfolio!",
+    "Hey, I'm Amiya. Thanks for stopping by :)",
+
+    "I'm the Founding Engineer at SWA AI, an early-stage startup founded by former Nike executives. I build the multi-agent AI platform our customers use inside Slack, Microsoft Teams, SMS, web and mobile.",
+
+    "I came to software from construction engineering at Virginia Tech, picked up DevOps, Kubernetes and a stack of AWS certifications along the way, and now ship everything from billing systems to autonomous agents.",
+
+    "Off the clock I'm lifting, outside, at the piano, or making AI films and experiments. Some are serious. Some are pure slop.",
   ],
+  statement:
+    "I build AI agents that do real work, and the cloud infrastructure that keeps them fast, safe and cheap to run.",
 };
 
+const stats = [
+  { value: 1000, suffix: '+', label: 'production changes shipped in 5 months' },
+  { value: 35, suffix: '', label: 'codebases touched' },
+  { value: 121, suffix: '', label: 'business apps agents can connect to' },
+  { value: 10, suffix: '', label: 'cloud & security certifications' },
+];
 
 export const navLinks = [
+  { id: 'about', title: 'About' },
+  { id: 'experience', title: 'Experience' },
+  { id: 'projects', title: 'Projects' },
+  { id: 'skills', title: 'Skills' },
+  { id: 'contact', title: 'Contact' },
+];
+
+export const pageLinks = [
+  { to: '/studio', title: 'Studio' },
+  { to: '/ai-slop', title: 'AI Slop' },
+];
+
+const experience = [
   {
-    id: 'about',
-    title: 'About',
+    company: 'SWA AI',
+    role: 'Founding Engineer',
+    period: 'Feb 2025 – Present',
+    chapter: 'AI agents & platform',
+    points: [
+      'Built a production multi-agent AI platform used in Slack, Microsoft Teams, SMS, web and mobile, powered by OpenAI, Claude, Gemini, Grok, Perplexity and DeepSeek.',
+      'Launched a marketplace that connects 121 business apps to agents in one click, with lazy tool loading so agents only load what a request needs.',
+      'Built the autonomous scheduler end to end on AWS serverless: Lambda, DynamoDB, EventBridge and SQS.',
+      'Shipped a no-code agent builder: pick instructions, model, knowledge and per-app permissions.',
+    ],
+    tags: ['Multi-agent', 'RAG', 'AWS serverless'],
   },
   {
-    id: 'projects',
-    title: 'Projects',
+    company: 'SWA AI',
+    role: 'Founding Engineer',
+    period: 'Feb 2025 – Present',
+    chapter: 'Enterprise, billing & data',
+    points: [
+      'Built AI governance: per-person and per-team spend limits enforced on every message, plus model access controls at every level.',
+      'Built billing end to end and led the move from Chargebee to Stripe, with usage-based overage and 300+ tests.',
+      'Consolidated login across 4 web apps onto Auth0 with Google, Slack and Apple sign-in.',
+      'Redesigned the schema across 9+ services for multi-tenant orgs and migrated live data with zero downtime.',
+    ],
+    tags: ['Stripe', 'Auth0', 'Postgres'],
   },
   {
-    id: 'skills',
-    title: 'Skills',
+    company: 'SWA AI',
+    role: 'Founding Engineer',
+    period: 'Feb 2025 – Present',
+    chapter: 'Products & channels',
+    points: [
+      'Built and launched Swa Solo, a standalone AI chat product, in about one week, frontend and backend.',
+      'Architected three web portals: customer admin, internal admin and a reseller partner portal.',
+      'Built the SMS and WhatsApp assistant on Twilio with carrier compliance, plus a Telegram channel.',
+      'Co-built a partner reseller program with wholesale pricing, revenue sharing and automated invoicing.',
+    ],
+    tags: ['Next.js', 'Twilio', 'Product'],
   },
   {
-    id: 'contact',
-    title: 'Contact',
+    company: 'SWA AI',
+    role: 'Founding Engineer',
+    period: 'Feb 2025 – Present',
+    chapter: 'Leadership & operations',
+    points: [
+      'Manage 2 engineers in India across time zones and work daily with the CEO, CTO and COO.',
+      'Helped design an AI pull-request reviewer that checks every PR across 30+ repos with specialist reviewers.',
+      'Own production reliability: a pre-production environment in infrastructure as code, incidents and security audits.',
+      'Lead company-wide AI tool rollout and the NVIDIA Inception program.',
+    ],
+    tags: ['Leadership', 'IaC', 'AI tooling'],
   },
+  {
+    company: 'DPR Construction',
+    role: 'Project Engineer',
+    period: 'May – Aug 2022',
+    chapter: 'A $100M civic build',
+    points: [
+      'Helped lead the design-build of a $100 million Municipal Center for the City of Tampa.',
+      'Coordinated RFIs, meetings and documents across a diverse team to hit tight milestones.',
+      'Kept quality and schedule on track with PlanGrid, Bluebeam, CMiC and Navisworks.',
+    ],
+    tags: ['Construction', 'Coordination'],
+  },
+  {
+    company: 'Virginia Tech',
+    role: 'B.S., DevOps Certificate & M.S.',
+    period: '2019 – Present',
+    chapter: 'Education & first team',
+    points: [
+      'B.S. in Construction Engineering and Management (2023).',
+      'Certificate in DevOps Engineering with a 4.0 GPA (2023).',
+      'M.S. in Information Technology, paused to build full time.',
+      'Supervised a campus operations team of 30 and tripled its efficiency.',
+    ],
+    tags: ['Education', 'Leadership'],
+  },
+];
+
+const certifications = [
+  'AWS DevOps Engineer Pro',
+  'AWS Security Specialty',
+  'Certified Kubernetes Administrator',
+  'AWS Solutions Architect',
+  'Linux Foundation Sysadmin',
+  'AWS Developer',
+  'CompTIA Security+',
+  'AWS SysOps Administrator',
+  'Terraform Associate',
 ];
 
 const projects = [
   {
-    name: "Weather App",
-    description: 'AWS ETL pipeline for collecting and transforming weather data, utilizing Python and Docker for processing and deployment, Jenkins for CI/CD, and Terraform for infrastructure management. All components are secured with best practices in cloud security. Currently enhancing the system with a user-friendly interface',
-    image: weatherApp,
-    source_code_link: 'https://github.com/AmiyaI/WeatherApp',
-    demo_link: 'https://github.com/AmiyaI/WeatherApp/blob/main/README.md',
+    name: 'Swa Agent Platform',
+    description: 'A production multi-agent AI platform where agents work alone or together across files, images, video, deep research, browsing and scheduling, in Slack, Teams, SMS, web and mobile.',
+    tags: ['Multi-agent', 'RAG', 'AWS'],
+    cover: 'agents',
+    demo_link: 'https://swa-ai.com',
+  },
+  {
+    name: 'Swa Solo',
+    description: 'A standalone AI chat product I built and launched in about a week, then grew with Stripe upgrades, team invites, voice input and streaming responses.',
+    tags: ['Next.js', 'Stripe', 'Streaming'],
+    cover: 'solo',
+    demo_link: 'https://swa-ai.com',
+  },
+  {
+    name: 'Agentic Marketing Engine',
+    description: 'Paste a company URL and a pipeline of AI agents researches the market, writes strategy, produces ads and critiques its own work before anything ships.',
+    tags: ['Agents', 'Creative', 'Node'],
+    cover: 'marketing',
   },
   {
     name: 'PhishAI',
-    description: 'A generative AI-powered cybersecurity training platform that simulates evolving phishing scenarios. Uses AWS (SageMaker, Bedrock, Polly), Terraform, and CI/CD to produce dynamic voice, images, and prompts, empowering users to detect and respond to threats.',
+    description: 'A generative AI cybersecurity trainer that simulates evolving phishing scenarios with dynamic voice, images and prompts on AWS SageMaker, Bedrock and Polly.',
+    tags: ['Bedrock', 'Terraform', 'Security'],
     image: phishai,
     source_code_link: 'https://github.com/AmiyaI/PhishAI',
     demo_link: 'https://phishai.co/',
   },
   {
-    name: 'Personal Portfolio Website',
-    description: 'A website hosted on AWS Amplify that includes a brief introduction about me, my projects, the technologies I have worked with, and my experience.',
+    name: 'Weather App',
+    description: 'An AWS ETL pipeline that collects and transforms weather data with Python and Docker, Jenkins for CI/CD and Terraform for infrastructure.',
+    tags: ['Python', 'Docker', 'Jenkins'],
+    image: weatherApp,
+    source_code_link: 'https://github.com/AmiyaI/WeatherApp',
+    demo_link: 'https://github.com/AmiyaI/WeatherApp/blob/main/README.md',
+  },
+  {
+    name: 'This Website',
+    description: 'The site you are on: React 19, GSAP, Lenis and a particle hero, deployed on AWS Amplify.',
+    tags: ['React', 'GSAP', 'Amplify'],
     image: portfolio,
     source_code_link: 'https://github.com/AmiyaI/PersonalPortfolio',
     demo_link: 'https://www.amiyaislam.com',
@@ -112,97 +247,112 @@ const memoji = {
 
 const skills = [
   {
-    id: 'linux',
-    title: 'Linux',
-    icon: linuxIcon,
+    id: 'ai-agents',
+    title: 'AI Agents & LLMs',
+    fa: faRobot,
     description:
-      'I have an in-depth understanding of the Linux operating system, encompassing its kernel, command-line utilities, and system administration.',
-  },
-  {
-    id: 'jenkins',
-    title: 'Jenkins',
-    icon: jenkinsIcon,
-    description:
-    'Proficient in Jenkins with a solid grasp of its core concepts and functionalities. My growing hands-on experience is complemented by a strong appreciation for its role in CI/CD.',
-  },
-  {
-    id: 'terraform',
-    title: 'Infrastructure as Code',
-    icon: terraformIcon,
-    description:
-    'I am a HashiCorp Terraform Associate certified with substantial experience in employing IaC to deploy efficient and consistent infrastructures in the cloud.',
-  },
-  {
-    id: 'security',
-    title: 'Networking & Security',
-    icon: securityIcon,
-    description:
-      'I possess a comprehensive understanding of the OSI model, coupled with in-depth knowledge of cloud security practices.',
-  },
-  {
-    id: 'java',
-    title: 'Java',
-    icon: javaIcon,
-    description:
-      'I have foundational knowledge of Java, with hands-on experience in object-oriented programming (OOP) and data structures utilizing BlueJay.',
+      'Multi-agent orchestration, tool calling, RAG with Pinecone and conversation memory across OpenAI, Claude, Gemini, Grok and Perplexity.',
   },
   {
     id: 'aws',
     title: 'Amazon Web Services',
     icon: awsIcon,
     description:
-      '6x AWS Certified with proficiency in a wide range of AWS services, expertly navigating cloud solutions for scalable and reliable infrastructure.',
+      'Lambda, API Gateway, DynamoDB, S3, ECS, EventBridge, SQS, IAM and Amplify, with 5 AWS certifications including DevOps Pro.',
   },
   {
-    id: 'project-management',
-    title: 'Project Management',
-    icon: projectManagementIcon,
+    id: 'terraform',
+    title: 'Infrastructure as Code',
+    icon: terraformIcon,
     description:
-    'As a Virginia Tech graduate in Construction Engineering and Management, I excel in project management with skills in estimating, scheduling, team coordination, and more.',
+      'Terraform Associate certified. Terraform, CloudFormation and SAM for environments that are rebuilt, not hand-tuned.',
   },
   {
-    id: 'git',
-    title: 'Git',
-    icon: gitIcon,
+    id: 'kubernetes',
+    title: 'Kubernetes',
+    fa: faDharmachakra,
     description:
-    'I am proficient in Git, managing code changes, collaborating with others, and resolving conflicts effectively.',
-  },
-  {
-    id: 'github',
-    title: 'GitHub',
-    icon: githubIcon,
-    description:
-      'I am skilled in using GitHub for seamless project collaboration, code sharing, and issue tracking.',
+      'Certified Kubernetes Administrator, comfortable running and debugging workloads on real clusters.',
   },
   {
     id: 'docker',
     title: 'Docker',
     icon: dockerIcon,
     description:
-      'Experienced with Docker, adept at its essential concepts and practical applications, including integration with AWS for enhanced containerized solutions.',
+      'Containerized services from local dev to ECS, with images that stay small and builds that stay fast.',
   },
   {
     id: 'py',
     title: 'Python',
     icon: pyIcon,
     description:
-      'Proficient in Python, I specialize in developing cloud-specific coding solutions, leveraging the language\'s versatility and power.',
+      'Backend services, automation and cloud tooling, plus Bash for everything in between.',
+  },
+  {
+    id: 'typescript',
+    title: 'TypeScript & React',
+    fa: faReact,
+    description:
+      'Next.js, React and Node.js for portals, products and this site, with Playwright tests behind them.',
   },
   {
     id: 'cicd',
     title: 'CI/CD',
     icon: cicdIcon,
     description:
-      'Skilled in CI/CD methodologies, I excel in optimizing development pipelines for efficiency and reliability in a DevOps framework.',
+      'GitHub Actions, Jenkins and n8n pipelines, plus an AI reviewer that checks every pull request.',
   },
+  {
+    id: 'linux',
+    title: 'Linux',
+    icon: linuxIcon,
+    description:
+      'LFCS certified, from kernel basics and command-line tooling to day-to-day system administration.',
+  },
+  {
+    id: 'security',
+    title: 'Networking & Security',
+    icon: securityIcon,
+    description:
+      'AWS Security Specialty and Security+ certified. Auth0, tenant isolation, access controls and audits in production.',
+  },
+  {
+    id: 'observability',
+    title: 'Observability',
+    fa: faChartLine,
+    description:
+      'Prometheus, Grafana and CloudWatch, plus usage analytics over millions of records.',
+  },
+  {
+    id: 'project-management',
+    title: 'Project Management',
+    icon: projectManagementIcon,
+    description:
+      'Construction engineering roots: estimating, scheduling and coordinating teams, now applied to shipping software.',
+  },
+];
 
+// Draft from the resume and the old About text; swap in real photos later.
+const hobbies = [
+  { title: 'Powerlifting', note: 'Squat, bench, deadlift. Mostly deadlift.', fa: faDumbbell, tilt: -6 },
+  { title: 'Trading', note: 'Charts, theses and the occasional humbling.', fa: faArrowTrendUp, tilt: 4 },
+  { title: 'The outdoors', note: 'Trails, water and anywhere without Wi-Fi.', fa: faMountainSun, tilt: -3 },
+  { title: 'Piano', note: 'Slowly, enthusiastically, mostly by ear.', fa: faMusic, tilt: 7 },
+  { title: 'Rec sports', note: 'Pickup games and whatever league will have me.', fa: faBasketball, tilt: -8 },
+  { title: 'Volunteering', note: 'Fitness and cooking classes for seniors at Warm Hearth Village since 2022.', fa: faHandHoldingHeart, tilt: 3 },
 ];
 
 export {
   media,
   introduction,
+  roles,
+  stats,
+  experience,
+  certifications,
   projects,
   memoji,
   skills,
+  hobbies,
+  socials,
   icons,
 };

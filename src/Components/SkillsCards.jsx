@@ -1,11 +1,12 @@
 /*
      FileName: SkillsCards.jsx
-     @version: I
+     @version: II
      Creation: 10/23/2023
-     Last modification: 10/23/2023
+     Last modification: 10/25/2026
 */
 
 import { m, LazyMotion, domAnimation } from "motion/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { skills } from "../Constants/constants";
 
 const SkillsCards = () => {
@@ -30,11 +31,17 @@ const SkillsCards = () => {
           className="card w-[300px] h-[300px] flex flex-col items-center  bg-primary-400 rounded-xl border-4 border-primary-600 cursor-pointer"
         >
           <div className="w-full h-[60px] flex items-center gap-2 p-1 flex-col">
-            <img
-              className="h-[50px] flex justify-center items-center w-[50px]  bg-primary-600 rounded-[50%] p-1 object-contain"
-              src={skill.icon}
-              alt={skill.title}
-            />
+            {skill.icon ? (
+              <img
+                className="h-[50px] flex justify-center items-center w-[50px]  bg-primary-600 rounded-[50%] p-1 object-contain"
+                src={skill.icon}
+                alt=""
+              />
+            ) : (
+              <span className="h-[50px] w-[50px] flex shrink-0 items-center justify-center rounded-[50%] bg-primary-600 text-2xl text-[#292D44]">
+                <FontAwesomeIcon icon={skill.fa} />
+              </span>
+            )}
             <span
               className="text-xl"
               style={{
