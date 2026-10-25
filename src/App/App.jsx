@@ -18,6 +18,7 @@ import Projects from "../Pages/Projects";
 import Skills from "../Pages/Skills";
 import Beyond from "../Pages/Beyond";
 import Hobbies from "../Pages/Hobbies";
+import HotTakes from "../Pages/HotTakes";
 import Contact from "../Pages/Contact";
 
 // The creative pages carry their own media and code, so they load on demand.
@@ -33,6 +34,7 @@ const Home = () => (
     <Skills />
     <Beyond />
     <Hobbies />
+    <HotTakes />
     <Contact />
   </main>
 );

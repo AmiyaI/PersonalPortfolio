@@ -80,6 +80,7 @@ export const navLinks = [
   { id: 'experience', title: 'Experience' },
   { id: 'projects', title: 'Projects' },
   { id: 'skills', title: 'Skills' },
+  { id: 'takes', title: 'Hot takes' },
   { id: 'contact', title: 'Contact' },
 ];
 
@@ -333,6 +334,12 @@ const skillLines = [
   { word: 'security', fact: 'Security+, AWS Specialty' },
 ];
 
+// Favourite quotes and controversial takes. Add new ones to the end.
+const hotTakes = [
+  "People who say they like animals more than people are not good people. They think they have a deep well of compassion, but really they just want a relationship of unequal status.",
+  "If you think you're open-minded but never consider that you might be closed-minded, you're not as open-minded as you think.",
+];
+
 // Draft from the resume and the old About text; swap in real photos later.
 const hobbies = [
   { title: 'Powerlifting', note: 'Squat, bench, deadlift. Mostly deadlift.', fa: faDumbbell, tilt: -6 },
@@ -354,6 +361,7 @@ export {
   skills,
   skillLines,
   hobbies,
+  hotTakes,
   socials,
   icons,
 };
