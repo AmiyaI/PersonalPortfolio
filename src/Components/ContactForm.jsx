@@ -14,7 +14,7 @@ const fields = [
 ];
 
 const inputClass =
-  "w-full border-2 border-[#d8d6f0] bg-white px-4 py-3 text-body text-bg transition-colors focus:border-indigo focus:outline-none";
+  "w-full border-2 border-[#d8d6f0] bg-white px-4 py-3 text-body text-night transition-colors focus:border-indigo focus:outline-none";
 
 const ContactForm = () => {
   const [status, setStatus] = useState("idle");
@@ -48,7 +48,7 @@ const ContactForm = () => {
       ref={form}
       method="POST"
       onSubmit={sendEmail}
-      className="flex w-full flex-col gap-4 text-bg"
+      className="flex w-full flex-col gap-4 text-night"
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {fields.map((field) => (
@@ -70,7 +70,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full bg-accent px-7 py-3.5 text-body font-extrabold text-bg transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60"
+          className="rounded-full bg-accent px-7 py-3.5 text-body font-extrabold text-night transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60"
         >
           {status === "sending" ? "Sending" : status === "sent" ? "Sent" : "Send message"}
         </button>

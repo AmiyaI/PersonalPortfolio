@@ -15,6 +15,7 @@
 @theme {
   --color-*: initial;
   --color-bg: #11133a;
+  --color-night: #11133a; /* dark text on light fields; stays put if the ground changes */
   --color-surface: #1a1d4f;
   --color-ink: #f5f3ff;
   --color-muted: #b9bce3;
@@ -37,7 +38,7 @@
   --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
   --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
   --text-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-  --text-head: clamp(2.5rem, 1.2rem + 5vw, 5.5rem);
+  --text-head: clamp(2.25rem, 1.4rem + 3vw, 4.25rem);
 }
 
 /* Tailwind 4's preflight differs from v3 in a few places v1 relied on. */
@@ -79,7 +80,7 @@
 
   ::selection {
     background: var(--color-accent);
-    color: var(--color-bg);
+    color: var(--color-night);
   }
 
   :focus-visible {
@@ -249,7 +250,7 @@ html.lenis * {
   font-family: var(--font-sans);
   font-size: 5.5px;
   font-weight: 800;
-  color: var(--color-bg);
+  color: var(--color-night);
   opacity: 0;
 }
 

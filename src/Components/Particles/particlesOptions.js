@@ -32,7 +32,7 @@ export const heroOptions = {
   interactivity: {
     detectsOn: 'canvas',
     events: {
-      onDiv: [divInteraction('#hero-q')],
+      onDiv: [divInteraction('#repulse-div')],
 
       // v2 configured parallax as onHover.parallax; v4 makes it a hover mode.
       onHover: {

@@ -48,7 +48,7 @@ const CertTicker = () => {
   );
 
   return (
-    <div ref={scope} className="overflow-hidden bg-bg py-16 text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-extrabold tracking-[-0.04em] lg:py-24">
+    <div ref={scope} className="overflow-hidden bg-bg py-12 text-[clamp(2.5rem,5.5vw,5.5rem)] leading-none font-extrabold tracking-[-0.04em] lg:py-16">
       <p className="sr-only">Certified in: {certifications.join(", ")}.</p>
       <div className="ticker-row flex w-max whitespace-nowrap" aria-hidden="true">
         {[0, 1].map((copy) => (

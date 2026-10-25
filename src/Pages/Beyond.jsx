@@ -85,7 +85,7 @@ const Beyond = () => {
               />
             )}
             <div className="relative -m-8 mt-0 bg-[#0d0b10] p-8 pt-6">
-              <h3 className="text-[clamp(3.5rem,2rem+5vw,7rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
+              <h3 className="text-[clamp(2.75rem,1.6rem+3vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
                 Studio <span className="inline-block transition-transform duration-500 group-hover:translate-x-3 group-hover:-translate-y-3">→</span>
               </h3>
               <p className="mt-3 max-w-md text-body">
@@ -117,7 +117,7 @@ const Beyond = () => {
               ))}
             </div>
             <div className="relative -m-8 mt-0 bg-[#d2ff00] p-8 pt-6">
-              <h3 className="text-[clamp(3.5rem,2rem+5vw,7rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
+              <h3 className="text-[clamp(2.75rem,1.6rem+3vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
                 AI Slop <span className="inline-block transition-transform duration-500 group-hover:rotate-12">→</span>
               </h3>
               <p className="mt-3 max-w-md text-body font-medium">

@@ -35,13 +35,13 @@ const Contact = () => {
   );
 
   return (
-    <section ref={scope} id="contact" className="w-full bg-ink px-5 py-24 text-bg sm:px-8 lg:py-28">
+    <section ref={scope} id="contact" className="w-full bg-ink px-5 py-24 text-night sm:px-8 lg:py-28">
       <h2 className="contact-part max-w-[30ch] text-lead font-medium">
         Building with AI agents, or need a hand with the cloud underneath? Write to me.
       </h2>
       <a
         href={`mailto:${EMAIL}`}
-        className="contact-part mt-10 block w-fit text-[clamp(3rem,11.5vw,12rem)] leading-[0.95] font-extrabold tracking-[-0.045em] transition-colors duration-300 hover:text-indigo"
+        className="contact-part mt-10 block w-fit text-[clamp(2.25rem,7vw,7rem)] leading-[0.95] font-extrabold tracking-[-0.045em] transition-colors duration-300 hover:text-indigo"
       >
         {EMAIL}
       </a>

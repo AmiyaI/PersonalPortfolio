@@ -43,7 +43,7 @@ const Hobbies = () => {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ type: "spring", bounce: 0.45, duration: 0.8, delay: (i % 3) * 0.08 }}
               data-cursor={canDrag ? "Drag" : undefined}
-              className={`relative flex min-h-[220px] flex-col justify-end ${canDrag ? "cursor-grab touch-none" : ""} gap-3 bg-ink p-7 text-bg select-none`}
+              className={`relative flex min-h-[220px] flex-col justify-end ${canDrag ? "cursor-grab touch-none" : ""} gap-3 bg-ink p-7 text-night select-none`}
             >
               <h3 className="text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-none font-extrabold tracking-[-0.035em]">
                 {hobby.title}

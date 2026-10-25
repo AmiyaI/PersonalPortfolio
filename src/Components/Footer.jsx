@@ -44,7 +44,7 @@ const Footer = () => {
     <footer ref={scope} className="w-full bg-bg px-5 pt-20 pb-8 text-ink sm:px-8">
       <p
         aria-hidden="true"
-        className="flex overflow-hidden whitespace-nowrap text-[13.4vw] leading-[0.9] text-ink"
+        className="flex justify-center overflow-hidden whitespace-nowrap text-[10vw] leading-[0.9] text-ink"
         style={{ fontFamily: "SuperMario" }}
       >
         {"Amiya Islam".split("").map((char, i) =>
