@@ -23,9 +23,9 @@ const Hobbies = () => {
   return (
     <section id="hobbies" className="w-full field-orchid px-5 py-16 text-night sm:px-8 lg:py-20">
       <div>
-        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-10 flex max-w-3xl flex-col gap-3">
           <SectionTitle title="Off the clock" />
-          <p className="max-w-[40ch] text-body">
+          <p className="max-w-[52ch] text-body">
             {canDrag ? "What keeps me sane outside of work. Go ahead, drag them around." : "What keeps me sane outside of work."}
           </p>
         </div>
@@ -40,10 +40,10 @@ const Hobbies = () => {
               whileHover={{ scale: 1.03 }}
               onDragStart={() => setOnTop(hobby.title)}
               style={{ zIndex: onTop === hobby.title ? 20 : 1 }}
-              whileDrag={{ scale: 1.08, rotate: hobby.tilt * -1.2, cursor: "grabbing" }}
+              whileDrag={{ scale: 1.06, rotate: hobby.tilt * -0.6, cursor: "grabbing" }}
               // Visible from the start; the entrance only adds the drop and the tilt.
-              initial={{ y: 40, rotate: hobby.tilt * 2 }}
-              whileInView={{ y: 0, rotate: hobby.tilt }}
+              initial={{ y: 40, rotate: hobby.tilt * 0.8 }}
+              whileInView={{ y: 0, rotate: hobby.tilt * 0.4 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ type: "spring", bounce: 0.45, duration: 0.8, delay: (i % 3) * 0.08 }}
               data-cursor={canDrag ? "Drag" : undefined}

@@ -116,7 +116,7 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
               onClick={(e) => e.stopPropagation()}
             >
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] opacity-60">{item.tags?.join(" · ")}</p>
+                <p className="text-small opacity-75">{item.tags?.join(", ")}</p>
                 <h2 className="text-5xl leading-none sm:text-6xl" style={{ fontFamily: "Morganite Black" }}>
                   {item.title}
                 </h2>
@@ -161,7 +161,7 @@ export const MediaViewerProvider = ({ children, theme = "dark" }) => {
               </div>
             </motion.div>
             <div className="flex flex-col gap-3 px-6 pb-6" onClick={(e) => e.stopPropagation()} style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p className="max-w-2xl text-sm opacity-80">
+              <p className="max-w-2xl text-compact opacity-85">
                 {item.blurb}
                 {hasVideo && !item.src && <span className="opacity-60"> Full cut coming soon; this is the preview loop.</span>}
               </p>
@@ -235,6 +235,7 @@ export const PreviewCard = ({ item, className = "", children, cursor = "Play" })
         <video
           ref={video}
           src={item.preview}
+          poster={item.poster}
           muted
           loop
           playsInline

@@ -13,6 +13,7 @@ import media from "../Constants/media.json";
 import { gsap, useGSAP, SplitText, refreshSoon, MOTION_OK } from "../lib/gsap";
 import { MediaViewerProvider, PreviewCard, formatDuration, useMediaViewer } from "../Components/media/MediaViewer";
 import { useEnterDelay } from "../Components/motion/PageTransition";
+import { scrollToTarget, useLenis } from "../Components/motion/SmoothScroll";
 
 const all = media.studio;
 const feature = all[0];
@@ -31,9 +32,9 @@ const Meta = ({ item }) => (
       <h3 className="text-lg leading-tight" style={serif}>
         {item.title}
       </h3>
-      <p className="text-xs uppercase tracking-[0.2em] text-[#f2ead8]/50">{item.tags?.slice(0, 2).join(" · ")}</p>
+      <p className="text-small text-[#f2ead8]/70">{item.tags?.slice(0, 2).join(", ")}</p>
     </div>
-    {item.durationSec && <span className="text-xs tabular-nums text-[#ff8539]">{formatDuration(item.durationSec)}</span>}
+    {item.durationSec && <span className="shrink-0 text-small tabular-nums text-[#ff9a5c]">{formatDuration(item.durationSec)}</span>}
   </div>
 );
 
@@ -68,6 +69,7 @@ const StillsWall = () => {
 const Studio = () => {
   const scope = useRef(null);
   const enterDelay = useEnterDelay();
+  const lenis = useLenis();
 
   useGSAP(
     () => {
@@ -127,10 +129,10 @@ const Studio = () => {
 
   return (
     <MediaViewerProvider>
-      <main ref={scope} id="main" tabIndex={-1} className="outline-none studio-page grain relative min-h-screen overflow-hidden bg-[#0d0b10] pb-24 text-[#f2ead8]">
-        <header className="relative flex min-h-[92vh] flex-col justify-end px-6 pt-32 pb-10 sm:px-16">
-          <p className="studio-kicker text-xs uppercase tracking-[0.4em] text-[#ff8539]" style={sans}>
-            Amiya Islam · Studio
+      <main ref={scope} id="main" tabIndex={-1} className="outline-none studio-page grain relative min-h-[100svh] overflow-hidden bg-[#0d0b10] pb-24 text-[#f2ead8]">
+        <header className="relative flex min-h-[64svh] flex-col justify-end px-5 pt-28 sm:min-h-[78svh] pb-10 sm:px-8">
+          <p className="studio-kicker mb-4 text-small text-[#ff9a5c]" style={sans}>
+            Amiya Islam, Studio
           </p>
           <h1 className="overflow-hidden text-[34vw] leading-[0.78] sm:text-[26vw]" style={display} aria-label="Studio">
             {"STUDIO".split("").map((char, i) => (
@@ -140,52 +142,64 @@ const Studio = () => {
             ))}
           </h1>
           <div className="mt-6 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <p className="studio-kicker max-w-xl text-3xl leading-tight italic sm:text-4xl" style={serif}>
+            <p className="studio-kicker max-w-xl text-2xl leading-tight italic sm:text-3xl lg:text-4xl" style={serif}>
               Films, ads and launch videos, directed by me and generated with AI.
             </p>
-            <dl className="studio-kicker flex gap-8 text-sm" style={sans}>
+            <div className="studio-kicker flex items-end justify-between gap-6 sm:gap-8" style={sans}>
+            <dl className="flex gap-6 text-sm sm:gap-8">
               <div>
-                <dt className="text-[#f2ead8]/50">Pieces</dt>
+                <dt className="whitespace-nowrap text-[#f2ead8]/70">Pieces</dt>
                 <dd className="text-3xl" style={display}>{all.length}</dd>
               </div>
               <div>
-                <dt className="text-[#f2ead8]/50">Minutes of film</dt>
+                <dt className="whitespace-nowrap text-[#f2ead8]/70">Minutes of film</dt>
                 <dd className="text-3xl" style={display}>{totalMinutes}</dd>
               </div>
             </dl>
+            <a
+              href="#feature"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTarget(lenis, "#feature", { offset: -80 });
+              }}
+              className="rounded-full border-2 border-[#f2ead8] px-5 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-300 hover:bg-[#f2ead8] hover:text-[#0d0b10]"
+            >
+              Watch the film
+            </a>
+            </div>
           </div>
         </header>
 
-        <section className="px-6 sm:px-16" aria-labelledby="feature-title">
-          <PreviewCard item={feature} className="studio-feature rounded-3xl" cursor="Watch">
-            <span className="absolute inset-0 bg-gradient-to-t from-[#0d0b10] via-transparent to-transparent" />
-            <span className="absolute bottom-0 left-0 flex w-full flex-col gap-2 p-6 sm:p-10" style={sans}>
-              <span className="text-xs uppercase tracking-[0.35em] text-[#ff8539]">Featured film · {formatDuration(feature.durationSec)}</span>
-              <span id="feature-title" className="text-5xl leading-none sm:text-8xl" style={display}>
-                {feature.title}
+        {/* The film burns its own title into the frame, so the caption sits below it like a credit. */}
+        <section id="feature" className="px-5 sm:px-8" aria-labelledby="feature-title">
+          <PreviewCard item={feature} className="studio-feature rounded-3xl" cursor="Watch" />
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between" style={sans}>
+            <h2 id="feature-title" className="text-5xl leading-none sm:text-7xl" style={display}>
+              {feature.title}
+            </h2>
+            <p className="max-w-md text-lg italic text-[#f2ead8]/80 sm:text-right" style={serif}>
+              {feature.blurb}{" "}
+              <span className="not-italic text-small text-[#ff9a5c]" style={sans}>
+                {formatDuration(feature.durationSec)}
               </span>
-              <span className="max-w-xl text-lg italic text-[#f2ead8]/80" style={serif}>
-                {feature.blurb}
-              </span>
-            </span>
-          </PreviewCard>
+            </p>
+          </div>
         </section>
 
-        <section className="mt-32 px-6 sm:px-16">
-          <p className="studio-lede max-w-4xl text-4xl leading-[1.1] sm:text-6xl" style={serif}>
-            Every piece here was written, cut and finished like a real production: scripts, storyboards, voice, music and a
-            <em className="text-[#ff8539]"> lot </em>
-            of takes.
+        <section className="mt-32 px-5 sm:px-8">
+          <p className="studio-lede max-w-3xl text-2xl leading-[1.15] sm:text-5xl" style={serif}>
+            Written, storyboarded, voiced, scored and cut like a real production.
           </p>
         </section>
 
-        <section className="mt-24 px-6 sm:px-16" aria-labelledby="films-title">
+        <section className="mt-24 px-5 sm:px-8" aria-labelledby="films-title">
           <h2 id="films-title" className="mb-8 text-7xl leading-none" style={display}>
             Films <span className="align-top text-2xl text-[#ff8539]">{films.length}</span>
           </h2>
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2">
-            {films.map((item) => (
-              <article key={item.id} className="studio-reveal">
+            {/* With an odd count, the first film runs wide so the pairs below come out even. */}
+            {films.map((item, i) => (
+              <article key={item.id} className={`studio-reveal ${i === 0 && films.length % 2 ? "md:col-span-2" : ""}`}>
                 <PreviewCard item={item} className="rounded-xl" />
                 <Meta item={item} />
               </article>
@@ -194,11 +208,11 @@ const Studio = () => {
         </section>
 
         <section className="studio-reel mt-32 overflow-hidden" aria-labelledby="ads-title">
-          <h2 id="ads-title" className="mb-8 px-6 text-7xl leading-none sm:px-16" style={display}>
+          <h2 id="ads-title" className="mb-8 px-5 text-7xl leading-none sm:px-8" style={display}>
             Ads <span className="amp">&amp;</span> UGC <span className="align-top text-2xl text-[#ff8539]">{verticals.length}</span>
           </h2>
           <div className="overflow-x-auto pb-4 lg:overflow-visible">
-            <div className="studio-reel-track flex w-max snap-x snap-mandatory gap-5 px-6 sm:px-16 lg:snap-none">
+            <div className="studio-reel-track flex w-max snap-x snap-mandatory gap-5 px-5 sm:px-8 lg:snap-none">
             {verticals.map((item) => (
               <article key={item.id} className="w-[58vw] snap-start sm:w-[260px]">
                 <PreviewCard item={item} className="rounded-xl" />
@@ -209,7 +223,7 @@ const Studio = () => {
           </div>
         </section>
 
-        <section className="mt-32 px-6 sm:px-16" aria-labelledby="stills-title">
+        <section className="mt-32 px-5 sm:px-8" aria-labelledby="stills-title">
           <h2 id="stills-title" className="mb-8 text-7xl leading-none" style={display}>
             Campaign stills
           </h2>

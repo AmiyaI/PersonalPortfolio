@@ -58,9 +58,9 @@ const Beyond = () => {
   return (
     <section ref={scope} id="beyond" className="field-ground w-full px-5 py-16 sm:px-8 lg:py-20">
       <div>
-        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-10 flex max-w-3xl flex-col gap-3">
           <SectionTitle title="Beyond the code" />
-          <p className="max-w-[40ch] text-body text-ink">
+          <p className="max-w-[52ch] text-body text-ink">
             I also direct films and ads with AI, make plenty of things purely for fun, and design shirts.
           </p>
         </div>

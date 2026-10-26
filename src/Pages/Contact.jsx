@@ -10,7 +10,6 @@
 
 import { useRef } from "react";
 import ContactForm from "../Components/ContactForm";
-import { socials } from "../Constants/constants";
 import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 
 const EMAIL = "iamiya@vt.edu";
@@ -46,17 +45,9 @@ const Contact = () => {
         {EMAIL}
       </a>
       <div className="mt-12 grid grid-cols-1 gap-14 lg:grid-cols-12">
-        <div className="contact-part flex flex-col justify-between gap-8 text-body lg:col-span-4">
+        <div className="contact-part flex flex-col gap-4 text-body lg:col-span-4">
           <p>Based in Miami, FL. Open to relocation.</p>
-          <ul className="flex flex-col gap-2">
-            {socials.map((social) => (
-              <li key={social.label}>
-                <a href={social.href} target="_blank" rel="noopener noreferrer" className="nav-link pb-0.5 font-medium">
-                  {social.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <p className="text-muted">I usually reply within a day or two.</p>
         </div>
         <div className="contact-part lg:col-span-7 lg:col-start-6">
           <ContactForm />

@@ -47,11 +47,11 @@ const Sticker = ({ children, className = "", tilt = 0 }) => (
 
 const Label = ({ kicker, title, children }) => (
   <div className="p-4" style={sans}>
-    <p className="text-[11px] font-bold uppercase tracking-[0.25em] opacity-60">{kicker}</p>
+    <p className="text-small font-bold opacity-75">{kicker}</p>
     <h3 className="text-4xl leading-none" style={display}>
       {title}
     </h3>
-    {children && <p className="mt-1 text-sm">{children}</p>}
+    {children && <p className="mt-1 text-compact leading-relaxed">{children}</p>}
   </div>
 );
 
@@ -139,21 +139,21 @@ const AiSlop = () => {
 
   return (
     <MediaViewerProvider theme="light">
-      <main ref={scope} id="main" tabIndex={-1} className="outline-none slop-page relative min-h-screen overflow-hidden bg-[#d2ff00] pb-24 text-[#111112]">
+      <main ref={scope} id="main" tabIndex={-1} className="outline-none slop-page relative min-h-[100svh] overflow-hidden bg-[#d2ff00] pb-24 text-[#111112]">
         <header className="relative flex min-h-[88vh] flex-col items-center justify-center px-6 pt-28 text-center">
-          <svg viewBox="0 0 200 200" className="slop-badge absolute top-28 right-[6%] hidden w-40 sm:block" aria-hidden="true">
+          <svg viewBox="0 0 200 200" className="slop-badge absolute top-20 right-[3%] hidden w-32 lg:block" aria-hidden="true">
             <defs>
               <path id="badge-circle" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0" />
             </defs>
             <circle cx="100" cy="100" r="98" fill="#111112" />
-            <text fill="#d2ff00" fontSize="17" fontWeight="700" letterSpacing="3" style={sans}>
+            <text fill="#d2ff00" fontSize="13.5" fontWeight="700" letterSpacing="1.5" style={sans}>
               <textPath href="#badge-circle">100% HUMAN SUPERVISED • NOT PRODUCTION GRADE •</textPath>
             </text>
             <text x="100" y="112" textAnchor="middle" fill="#ff5cb8" fontSize="34" style={mario}>
               ✺
             </text>
           </svg>
-          <p className="mb-4 rounded-full border-4 border-[#111112] bg-white px-4 py-1 text-sm font-bold" style={sans}>
+          <p className="relative z-10 mb-10 rounded-full border-4 border-[#111112] bg-white px-4 py-1 text-compact font-bold" style={sans}>
             Warning: contents may be generated
           </p>
           <h1 className="whitespace-nowrap text-[16vw] leading-[0.85] sm:text-[17vw]" style={mario} aria-label="AI Slop">

@@ -39,9 +39,9 @@ const HotTakes = () => {
         if (e.key === "ArrowLeft") step(-1);
       }}
     >
-      <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-10 flex max-w-3xl flex-col gap-3">
         <SectionTitle title="Hot takes" />
-        <p className="max-w-[40ch] text-body">Opinions I'll defend at dinner. Disagree with me, I dare you.</p>
+        <p className="max-w-[52ch] text-body">Opinions I'll defend at dinner. Disagree with me, I dare you.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">

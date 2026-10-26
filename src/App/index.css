@@ -291,6 +291,13 @@ html.lenis * {
   vertical-align: 0.12em;
 }
 
+/* Animated grain repaints the whole screen; keep it still on phones. */
+@media (pointer: coarse) {
+  .grain::before {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .grain::before,
   .blob,
@@ -302,7 +309,7 @@ html.lenis * {
 /* Soft two-tone fields, all in the style of the owner's purple: each colour
    melts into a close neighbour along the same 160deg angle. */
 /* taste-skill-ignore-start: the owner chose these gradients */
-.hero-purple { background: linear-gradient(160deg, #8f66be 0%, #9e6abc 45%, #bd70b1 100%); } /* taste-skill-ignore */
+.hero-purple { background: linear-gradient(160deg, #9a72c8 0%, #a674c4 45%, #bd70b1 100%); } /* taste-skill-ignore */
 .field-ground { background: linear-gradient(160deg, #fbf8ff 0%, #f4eefd 55%, #f8eff9 100%); } /* taste-skill-ignore */
 .field-indigo { background: linear-gradient(160deg, #d6d1fd 0%, #c5bdf8 50%, #d8c6f6 100%); } /* taste-skill-ignore */
 .field-teal { background: linear-gradient(160deg, #c9eef4 0%, #c0e1f0 50%, #cbd5f7 100%); } /* taste-skill-ignore */
@@ -310,3 +317,9 @@ html.lenis * {
 .field-light { background: linear-gradient(160deg, #ffe9d9 0%, #fbdfe2 55%, #f3dbf0 100%); } /* taste-skill-ignore */
 .field-deep { background: linear-gradient(160deg, #3d2d70 0%, #2d2152 55%, #3b2462 100%); } /* taste-skill-ignore */
 /* taste-skill-ignore-end */
+
+/* The ticker fades out at the screen edges instead of slicing words. */
+.edge-fade {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); /* taste-skill-ignore: an edge mask, not a fill */
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); /* taste-skill-ignore */
+}

@@ -122,8 +122,10 @@ const Navbar = () => {
                 <a
                   href="/#contact"
                   onClick={jump("contact")}
-                  className={`inline-block rounded-full px-5 py-2.5 font-extrabold transition-transform duration-300 hover:-translate-y-0.5 ${
-                    onDark ? "bg-white text-night" : "bg-night text-white"
+                  className={`inline-block rounded-full border-2 px-5 py-2 font-extrabold transition-colors duration-300 ${
+                    onDark
+                      ? "border-white text-white hover:bg-white hover:text-night"
+                      : "border-night text-night hover:bg-night hover:text-white"
                   }`}
                 >
                   Let's talk
@@ -138,7 +140,7 @@ const Navbar = () => {
             aria-expanded={toggle}
             aria-label={toggle ? "Close menu" : "Open menu"}
           >
-            <img className={`h-[28px] ${invertLogo}`} src={toggle ? close : menu} alt="" />
+            <img className={`h-[22px] ${invertLogo}`} src={toggle ? close : menu} alt="" />
           </button>
         </div>
       </nav>

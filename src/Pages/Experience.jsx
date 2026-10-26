@@ -63,15 +63,6 @@ const Experience = () => {
       // Phones and tablets get a plain vertical list; give its cards an entrance too.
       mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
         gsap.utils.toArray(".xp-card").forEach((card) => {
-          gsap.fromTo(
-            card,
-            { opacity: 0.55 },
-            {
-              opacity: 1,
-              ease: "none",
-              scrollTrigger: { trigger: card, containerAnimation: slide, start: "left 80%", end: "left 40%", scrub: true },
-            }
-          );
           gsap.from(card.querySelectorAll(".xp-point"), {
             y: 24,
             stagger: 0.07,
@@ -88,9 +79,9 @@ const Experience = () => {
   return (
     <section ref={scope} id="experience" className="relative w-full field-indigo text-ink">
       <div className="xp-pin flex min-h-[100svh] flex-col justify-center gap-10 overflow-hidden py-16 lg:py-12">
-        <div className="flex flex-col gap-4 px-5 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex max-w-3xl flex-col gap-3 px-5 sm:px-8">
           <SectionTitle title="Experience" />
-          <p className="max-w-[40ch] text-body">
+          <p className="max-w-[52ch] text-body">
             Founding engineer at an AI startup today. Construction engineering before that, which is where I learned to ship on a schedule.
           </p>
         </div>

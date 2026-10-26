@@ -62,9 +62,9 @@ const About = () => {
 
   return (
     <section ref={scope} id="about" className="field-ground w-full overflow-hidden px-5 py-16 sm:px-8 lg:py-20">
-      <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-        <SectionTitle title="About me" className="lg:col-span-6" />
-        <p className="about-statement text-lead leading-snug text-ink lg:col-span-5 lg:col-start-8">
+      <div className="flex max-w-3xl flex-col gap-3">
+        <SectionTitle title="About me" />
+        <p className="about-statement max-w-[40ch] text-lead leading-snug text-ink">
           {introduction.statement}
         </p>
       </div>
