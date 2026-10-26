@@ -12,7 +12,7 @@ import { useRef } from "react";
 import media from "../Constants/media.json";
 import { gsap, useGSAP, SplitText, refreshSoon, MOTION_OK } from "../lib/gsap";
 import { MediaViewerProvider, PreviewCard, formatDuration, useMediaViewer } from "../Components/media/MediaViewer";
-import { useEnterDelay } from "../Components/motion/PageTransition";
+import { TransitionLink, useEnterDelay } from "../Components/motion/PageTransition";
 import { scrollToTarget, useLenis } from "../Components/motion/SmoothScroll";
 
 const all = media.studio;
@@ -20,6 +20,11 @@ const feature = all[0];
 const films = all.filter((e) => e !== feature && e.aspect === "16:9" && e.preview);
 const verticals = all.filter((e) => e.aspect === "9:16");
 const stills = all.filter((e) => !e.preview);
+const slopShots = [
+  media.slop.find((e) => e.id === "brickline")?.poster,
+  media.slop.find((e) => e.id === "block-vs-jurassic-court")?.poster,
+  media.slop.find((e) => e.id === "memes")?.images?.[0],
+].filter(Boolean);
 const totalMinutes = Math.round(all.reduce((sum, e) => sum + (e.durationSec ?? 0), 0) / 60);
 
 const serif = { fontFamily: "'Instrument Serif', serif" };
@@ -228,6 +233,46 @@ const Studio = () => {
             Campaign stills
           </h2>
           <StillsWall />
+        </section>
+
+        {/* The fun experiments live one click past the serious work, not in the main nav. */}
+        <section className="mt-32 px-5 sm:px-8" aria-labelledby="slop-title">
+          <TransitionLink
+            to="/ai-slop"
+            label="AI Slop"
+            data-cursor="Enter"
+            className="studio-reveal group grid overflow-hidden rounded-3xl bg-[#d2ff00] text-[#111112] lg:grid-cols-2"
+          >
+            <div className="flex flex-col justify-end gap-4 p-8 sm:p-12">
+              <h2 id="slop-title" className="text-7xl leading-none sm:text-8xl" style={display}>
+                AI Slop{" "}
+                <span className="inline-block transition-transform duration-[400ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2" style={sans}>
+                  →
+                </span>
+              </h2>
+              <p className="max-w-md text-lg font-medium" style={sans}>
+                The after-hours side: games, skits and memes I made with AI purely because I could, on every new tool I
+                get my hands on. Not production grade. No refunds.
+              </p>
+            </div>
+            <div className="relative min-h-[260px] sm:min-h-[340px]" aria-hidden="true">
+              {slopShots.map((src, i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt=""
+                  loading="lazy"
+                  className="door-sticker absolute w-[42%] border-4 border-[#111112] transition-[rotate,translate] duration-700 ease-[cubic-bezier(.34,1.56,.64,1)]"
+                  style={{
+                    top: `${10 + i * 8}%`,
+                    left: `${4 + i * 26}%`,
+                    "--r": `${[-9, 6, -4][i]}deg`,
+                    "--r-hover": `${[-16, 12, -10][i]}deg`,
+                  }}
+                />
+              ))}
+            </div>
+          </TransitionLink>
         </section>
       </main>
     </MediaViewerProvider>

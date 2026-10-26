@@ -46,7 +46,6 @@ export const navLinks = [
 
 export const pageLinks = [
   { to: '/studio', title: 'Studio' },
-  { to: '/ai-slop', title: 'AI Slop' },
 ];
 
 const experience = [

@@ -298,40 +298,6 @@
       ]
     },
     {
-      "id": "clickup-video-system",
-      "title": "ClickUp Application: The System",
-      "blurb": "A walkthrough of an AI marketing system built to apply for a role.",
-      "kind": "film",
-      "aspect": "16:9",
-      "durationSec": 86,
-      "poster": "/media/studio/clickup-video-system-poster.webp",
-      "preview": "/media/studio/clickup-video-system-preview.mp4",
-      "images": [],
-      "tags": [
-        "Application video",
-        "Multi-agent",
-        "Codex",
-        "Claude"
-      ]
-    },
-    {
-      "id": "clickup-video-rejection",
-      "title": "ClickUp Application: The Rejection",
-      "blurb": "What the system does when a batch fails review, and how it recovers.",
-      "kind": "film",
-      "aspect": "16:9",
-      "durationSec": 79,
-      "poster": "/media/studio/clickup-video-rejection-poster.webp",
-      "preview": "/media/studio/clickup-video-rejection-preview.mp4",
-      "images": [],
-      "tags": [
-        "Application video",
-        "Multi-agent",
-        "Codex",
-        "Claude"
-      ]
-    },
-    {
       "id": "clickup-paid-static",
       "title": "ClickUp Paid Static",
       "blurb": "A text-free base layer for a paid social static.",

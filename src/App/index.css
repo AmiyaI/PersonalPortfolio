@@ -273,7 +273,7 @@ html.lenis * {
   80% { transform: translate(3%, 3%); }
 }
 
-/* Stickers on the AI Slop door (Beyond.jsx). */
+/* Stickers on the AI Slop panel at the end of Studio (Studio.jsx). */
 .door-sticker {
   rotate: var(--r, 0deg);
 }

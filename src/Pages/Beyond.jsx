@@ -5,8 +5,8 @@
      Last modification: 10/25/2026
 */
 
-// Two doors off the career page: the serious creative work (Studio) and the
-// fun experiments (AI Slop). Each previews its page on hover.
+// Doors off the career page: the creative work (Studio, which also leads on
+// to the AI Slop experiments) and the shirts. Studio previews its film on hover.
 
 import { useRef } from "react";
 import SectionTitle from "../Components/SectionTitle";
@@ -16,11 +16,6 @@ import media from "../Constants/media.json";
 
 const studioFeature = media.studio[0];
 const shirt = media.shirts[0];
-const slopShots = [
-  media.slop.find((e) => e.id === "brickline")?.poster,
-  media.slop.find((e) => e.id === "block-vs-jurassic-court")?.poster,
-  media.slop.find((e) => e.id === "memes")?.images?.[0],
-].filter(Boolean);
 
 const Beyond = () => {
   const scope = useRef(null);
@@ -61,10 +56,10 @@ const Beyond = () => {
         <div className="mb-10 flex max-w-3xl flex-col gap-3">
           <SectionTitle title="Beyond the code" />
           <p className="max-w-[52ch] text-body text-ink">
-            I also direct films and ads with AI, make plenty of things purely for fun, and design shirts.
+            I also direct films and ads with AI, and I design shirts.
           </p>
         </div>
-        <div className="doors grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="doors grid grid-cols-1 gap-6 md:grid-cols-2">
           <TransitionLink
             to="/studio"
             label="Studio"
@@ -95,38 +90,6 @@ const Beyond = () => {
               </h3>
               <p className="mt-3 max-w-md text-body">
                 Production work: AI short films, UGC ads, product launch videos and campaign creative.
-              </p>
-            </div>
-          </TransitionLink>
-
-          <TransitionLink
-            to="/ai-slop"
-            label="AI Slop"
-            data-cursor="Enter"
-            className="door group relative flex min-h-[380px] flex-col justify-end overflow-hidden bg-[#d2ff00] p-8 text-[#111112]"
-          >
-            <div className="absolute inset-0">
-              {slopShots.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt=""
-                  className="door-sticker absolute w-[40%] border-4 border-[#111112] transition-[rotate,translate] duration-700 ease-[cubic-bezier(.34,1.56,.64,1)]"
-                  style={{
-                    top: `${6 + i * 6}%`,
-                    left: `${6 + i * 24}%`,
-                    "--r": `${[-9, 6, -4][i]}deg`,
-                    "--r-hover": `${[-16, 12, -10][i]}deg`,
-                  }}
-                />
-              ))}
-            </div>
-            <div className="relative -m-8 mt-0 bg-[#d2ff00] p-8 pt-6">
-              <h3 className="text-head leading-[0.9] font-extrabold tracking-[-0.04em]">
-                AI Slop <span className="inline-block transition-transform duration-[400ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2">→</span>
-              </h3>
-              <p className="mt-3 max-w-md text-body font-medium">
-                Games, skits and memes I made with AI purely because I could, on every new tool I get my hands on. Not production grade. No refunds.
               </p>
             </div>
           </TransitionLink>

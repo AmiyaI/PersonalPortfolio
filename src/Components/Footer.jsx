@@ -17,7 +17,6 @@ import { useLenis, scrollToTarget } from "./motion/SmoothScroll";
 const pages = [
   { to: "/", label: "Home" },
   { to: "/studio", label: "Studio" },
-  { to: "/ai-slop", label: "AI Slop" },
 ];
 
 const Footer = () => {
