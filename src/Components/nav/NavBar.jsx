@@ -28,6 +28,11 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const go = usePageTransition();
   const lenis = useLenis();
+  // A section picked in the phone menu waits here until the menu has closed:
+  // restarting Lenis resets it, which would cancel a scroll started earlier.
+  const pendingJump = useRef(null);
+  const goRef = useRef(go);
+  goRef.current = go;
   // Studio is a dark room, so the nav goes light-on-dark there; everywhere
   // else (and in the open phone menu) it is dark ink on a light ground.
   const onDark = pathname === "/studio" && !toggle;
@@ -61,13 +66,20 @@ const Navbar = () => {
       html.style.overflow = "";
       window.removeEventListener("keydown", onKey);
       wide.removeEventListener("change", onWide);
+      const id = pendingJump.current;
+      pendingJump.current = null;
+      if (id) goRef.current(`/#${id}`, "Amiya");
     };
   }, [toggle, lenis]);
 
   const jump = (id) => (e) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
-    setToggle(false);
+    if (toggle) {
+      pendingJump.current = id;
+      setToggle(false);
+      return;
+    }
     go(`/#${id}`, "Amiya");
   };
 

@@ -81,6 +81,12 @@
     box-sizing: border-box;
   }
 
+  /* Keep the scrollbar's space when the phone menu locks scrolling, so the
+     page doesn't reflow and shift the scroll position under a menu jump. */
+  html {
+    scrollbar-gutter: stable;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;

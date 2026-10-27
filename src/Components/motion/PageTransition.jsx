@@ -71,9 +71,17 @@ export const PageTransitionProvider = ({ children }) => {
       const path = to.split("#")[0] || "/";
       const target = hash ?? (to.includes("#") ? `#${to.split("#")[1]}` : null);
 
-      const land = () => {
+      // The router renders the new page a little after navigate(), so wait a
+      // few frames for the target section to exist before scrolling to it.
+      const land = (tries = 30) => {
         requestAnimationFrame(() => {
           const el = target ? document.querySelector(target) : null;
+          if (target && !el && tries > 0) {
+            land(tries - 1);
+            return;
+          }
+          // Lenis still holds the old page's scroll limit until it re-measures.
+          lenis?.resize();
           if (lenis) lenis.scrollTo(el ?? 0, { immediate: true, force: true });
           else if (el) el.scrollIntoView();
           else window.scrollTo(0, 0);
