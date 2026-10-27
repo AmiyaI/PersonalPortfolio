@@ -31,7 +31,7 @@ const stats = [
   { value: 1000, suffix: '+', label: 'production changes shipped in 5 months' },
   { value: 35, suffix: '', label: 'codebases touched' },
   { value: 121, suffix: '', label: 'business apps agents can connect to' },
-  { value: 10, suffix: '', label: 'cloud & security certifications' },
+  { value: 9, suffix: '', label: 'cloud & security certifications' },
 ];
 
 export const navLinks = [
@@ -115,7 +115,7 @@ const experience = [
   },
   {
     company: 'Virginia Tech',
-    role: 'B.S., DevOps Certificate & M.S.',
+    role: 'B.S., DevOps Certificate & M.S. (paused)',
     period: '2019 – Present',
     chapter: 'Education & first team',
     points: [

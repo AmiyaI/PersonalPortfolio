@@ -47,7 +47,8 @@ const HeroText = () => {
           </span>
         </h1>
       </div>
-      <p className="hero-line mt-6 max-w-[40ch] text-lead leading-snug font-medium text-night">
+      {/* A soft halo in the hero's own purple keeps the drifting icons from crossing the words. */}
+      <p className="hero-line relative mt-6 max-w-[40ch] text-lead leading-snug font-medium text-night before:absolute before:-inset-x-16 before:-inset-y-8 before:-z-10 before:bg-[radial-gradient(closest-side,#a674c4_55%,transparent)] before:content-['']">
         Amiya Islam, founding engineer building multi-agent AI platforms and the cloud they run on.
       </p>
       <Magnetic strength={0.3} className="hero-line mt-8">
