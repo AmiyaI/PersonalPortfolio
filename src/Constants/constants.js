@@ -48,6 +48,9 @@ export const pageLinks = [
   { to: '/studio', title: 'Studio' },
 ];
 
+// A copy of the resume without the phone number, served from public/.
+export const resumeLink = '/Amiya_Islam_Resume.pdf';
+
 const experience = [
   {
     company: 'SWA AI',

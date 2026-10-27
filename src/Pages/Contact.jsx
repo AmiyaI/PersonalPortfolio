@@ -10,6 +10,7 @@
 
 import { useRef } from "react";
 import ContactForm from "../Components/ContactForm";
+import { resumeLink } from "../Constants/constants";
 import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 
 const EMAIL = "iamiya@vt.edu";
@@ -48,6 +49,9 @@ const Contact = () => {
         <div className="contact-part flex flex-col gap-4 text-body lg:col-span-4">
           <p>Based in Miami, FL. Open to relocation.</p>
           <p className="text-muted">I usually reply within a day or two.</p>
+          <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="nav-link self-start pb-0.5 font-semibold text-accent">
+            Download my résumé (PDF) ↓
+          </a>
         </div>
         <div className="contact-part lg:col-span-7 lg:col-start-6">
           <ContactForm />
