@@ -51,15 +51,27 @@ const HeroText = () => {
       <p className="hero-line relative mt-6 max-w-[40ch] text-lead leading-snug font-medium text-night before:absolute before:-inset-x-16 before:-inset-y-8 before:-z-10 before:bg-[radial-gradient(closest-side,#a674c4_55%,transparent)] before:content-['']">
         Amiya Islam, founding engineer building multi-agent AI platforms and the cloud they run on.
       </p>
-      <Magnetic strength={0.3} className="hero-line mt-8">
-        <TransitionLink
-          to="/#contact"
-          label="Amiya"
-          className="inline-flex items-center gap-3 rounded-full bg-night px-7 py-4 text-body font-extrabold text-white transition-transform duration-300 hover:-translate-y-0.5 active:translate-y-0"
-        >
-          Let's talk <span aria-hidden="true">→</span>
-        </TransitionLink>
-      </Magnetic>
+      {/* The work leads; the nav already carries a second "Let's talk". */}
+      <div className="hero-line mt-8 flex flex-wrap items-center justify-center gap-3">
+        <Magnetic strength={0.3}>
+          <TransitionLink
+            to="/#projects"
+            label="Amiya"
+            className="inline-flex items-center gap-3 rounded-full bg-night px-7 py-4 text-body font-extrabold text-white transition-transform duration-300 hover:-translate-y-0.5 active:translate-y-0"
+          >
+            See my work <span aria-hidden="true">↓</span>
+          </TransitionLink>
+        </Magnetic>
+        <Magnetic strength={0.3}>
+          <TransitionLink
+            to="/#contact"
+            label="Amiya"
+            className="inline-flex items-center gap-3 rounded-full border-2 border-night px-7 py-3.5 text-body font-extrabold text-night transition-[transform,background-color,color] duration-300 hover:-translate-y-0.5 hover:bg-night hover:text-white active:translate-y-0"
+          >
+            Let's talk <span aria-hidden="true">→</span>
+          </TransitionLink>
+        </Magnetic>
+      </div>
     </div>
   );
 };
