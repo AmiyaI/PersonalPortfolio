@@ -39,7 +39,13 @@ const Meta = ({ item }) => (
       </h3>
       <p className="text-small text-[#f2ead8]/70">{item.tags?.slice(0, 2).join(", ")}</p>
     </div>
-    {item.durationSec && <span className="shrink-0 text-small tabular-nums text-[#ff9a5c]">{formatDuration(item.durationSec)}</span>}
+    {/* The running time is the full cut's; the card itself plays a short preview. */}
+    {item.durationSec && (
+      <span className="shrink-0 text-small tabular-nums text-[#ff9a5c]">
+        {item.src ? "" : "Full cut "}
+        {formatDuration(item.durationSec)}
+      </span>
+    )}
   </div>
 );
 
@@ -155,11 +161,11 @@ const Studio = () => {
             <dl className="flex gap-6 text-sm sm:gap-8">
               <div>
                 <dt className="whitespace-nowrap text-[#f2ead8]/70">Pieces</dt>
-                <dd className="text-3xl" style={display}>{all.length}</dd>
+                <dd className="text-2xl font-semibold tabular-nums">{all.length}</dd>
               </div>
               <div>
                 <dt className="whitespace-nowrap text-[#f2ead8]/70">Minutes of film</dt>
-                <dd className="text-3xl" style={display}>{totalMinutes}</dd>
+                <dd className="text-2xl font-semibold tabular-nums">{totalMinutes}</dd>
               </div>
             </dl>
             <a
@@ -170,7 +176,7 @@ const Studio = () => {
               }}
               className="rounded-full border-2 border-[#f2ead8] px-5 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-300 hover:bg-[#f2ead8] hover:text-[#0d0b10]"
             >
-              Watch the film
+              {feature.src ? "Watch the film" : "Watch the preview"}
             </a>
             </div>
           </div>

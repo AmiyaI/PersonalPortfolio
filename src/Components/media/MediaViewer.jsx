@@ -222,7 +222,7 @@ export const PreviewCard = ({ item, className = "", children, cursor = "Play" })
       onFocus={play}
       onBlur={stop}
       data-cursor={item.preview ? cursor : "View"}
-      aria-label={`Open ${item.title}`}
+      aria-label={`Open ${item.title}${item.preview && !item.src ? " preview" : ""}`}
       className={`group relative block w-full overflow-hidden text-left ${aspectClass(item.aspect)} ${className}`}
     >
       <img
@@ -242,6 +242,12 @@ export const PreviewCard = ({ item, className = "", children, cursor = "Play" })
           preload="none"
           className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100 [@media(pointer:coarse)]:opacity-100"
         />
+      )}
+      {/* Until full cuts are hosted, say up front that the click opens a short loop. */}
+      {item.preview && !item.src && (
+        <span className="absolute bottom-3 left-3 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white uppercase backdrop-blur-sm">
+          Preview
+        </span>
       )}
       {children}
     </button>
