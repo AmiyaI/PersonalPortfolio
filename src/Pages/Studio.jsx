@@ -82,7 +82,7 @@ const Studio = () => {
       mm.add(MOTION_OK, () => {
         gsap
           .timeline({ delay: enterDelay })
-          .from(".studio-title-char", { yPercent: 110, duration: 1.4, ease: "expo.out", stagger: 0.06 })
+          .from(".studio-title-char", { yPercent: 125, duration: 1.4, ease: "expo.out", stagger: 0.06 })
           .from(".studio-kicker", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out", stagger: 0.1 }, "-=1");
 
         SplitText.create(".studio-lede", {
@@ -139,7 +139,8 @@ const Studio = () => {
           <p className="studio-kicker mb-4 text-small text-[#ff9a5c]" style={sans}>
             Amiya Islam, Studio
           </p>
-          <h1 className="overflow-hidden text-[34vw] leading-[0.78] sm:text-[26vw]" style={display} aria-label="Studio">
+          {/* The tight leading crops the letter tops; the top padding keeps them inside the mask. */}
+          <h1 className="overflow-hidden pt-[0.09em] text-[34vw] leading-[0.78] sm:text-[26vw]" style={display} aria-label="Studio">
             {"STUDIO".split("").map((char, i) => (
               <span key={i} aria-hidden="true" className="studio-title-char inline-block">
                 {char}
