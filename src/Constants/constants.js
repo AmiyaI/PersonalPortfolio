@@ -155,7 +155,7 @@ const projects = [
     tags: ['AI video', 'HyperFrames', 'ElevenLabs'],
     image: '/media/studio/i-didnt-film-this-poster.webp',
     imageAlt: "A frame from I Didn't Film This",
-    demo_link: '/studio',
+    demo_link: '/studio#i-didnt-film-this',
     demo_label: 'Watch it in Studio',
   },
   {
@@ -164,6 +164,8 @@ const projects = [
     tags: ['Agents', 'Creative', 'Node'],
     image: '/media/studio/ads/c17.webp',
     imageAlt: 'An ad produced by the marketing engine',
+    demo_link: '/studio#stills',
+    demo_label: 'See its ads in Studio',
   },
   {
     name: 'PhishAI',
@@ -179,7 +181,6 @@ const projects = [
     tags: ['Python', 'Docker', 'Jenkins'],
     image: weatherApp,
     source_code_link: 'https://github.com/AmiyaI/WeatherApp',
-    demo_link: 'https://github.com/AmiyaI/WeatherApp/blob/main/README.md',
   },
   {
     name: 'This Website',

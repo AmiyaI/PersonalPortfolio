@@ -205,9 +205,13 @@ const Studio = () => {
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2">
             {/* With an odd count, the first film runs wide so the pairs below come out even. */}
             {films.map((item, i) => (
-              <article key={item.id} className={`studio-reveal ${i === 0 && films.length % 2 ? "md:col-span-2" : ""}`}>
-                <PreviewCard item={item} className="rounded-xl" />
-                <Meta item={item} />
+              // The reveal sits on an inner wrapper so the linkable article (/studio#id) isn't
+              // shifted by the entrance when a deep link measures where to scroll.
+              <article key={item.id} id={item.id} className={`scroll-mt-24 ${i === 0 && films.length % 2 ? "md:col-span-2" : ""}`}>
+                <div className="studio-reveal">
+                  <PreviewCard item={item} className="rounded-xl" />
+                  <Meta item={item} />
+                </div>
               </article>
             ))}
           </div>
@@ -220,7 +224,7 @@ const Studio = () => {
           <div className="overflow-x-auto pb-4 lg:overflow-visible">
             <div className="studio-reel-track flex w-max snap-x snap-mandatory gap-5 px-5 sm:px-8 lg:snap-none">
             {verticals.map((item) => (
-              <article key={item.id} className="w-[58vw] snap-start sm:w-[260px]">
+              <article key={item.id} id={item.id} className="w-[58vw] scroll-mt-24 snap-start sm:w-[260px]">
                 <PreviewCard item={item} className="rounded-xl" />
                 <Meta item={item} />
               </article>
@@ -229,7 +233,7 @@ const Studio = () => {
           </div>
         </section>
 
-        <section className="mt-32 px-5 sm:px-8" aria-labelledby="stills-title">
+        <section id="stills" className="mt-32 scroll-mt-24 px-5 sm:px-8" aria-labelledby="stills-title">
           <h2 id="stills-title" className="mb-8 text-7xl leading-none" style={display}>
             Campaign stills
           </h2>
