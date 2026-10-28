@@ -35,7 +35,8 @@ const saveChoice = (value) => {
 const SoundToggle = () => {
   const audio = useRef(null);
   const button = useRef(null);
-  // "playing", "paused", or "waiting" (wants to play, the browser needs a gesture first).
+  // "playing", "paused", "waiting" (wants to play, the browser needs a gesture
+  // first), or "nudge" (still waiting, and a scroll attempt was just refused).
   const [state, setState] = useState("paused");
 
   // Raise the volume gently instead of starting at full level.
@@ -60,23 +61,32 @@ const SoundToggle = () => {
   useEffect(() => {
     if (readChoice() === "off") return undefined;
 
-    const onGesture = (e) => {
+    // Every interaction tries to start the music; the listeners only go away
+    // once it is actually playing. A press, the end of a touch, a click or a
+    // key always works. Scrolling only works where the browser already allows
+    // sound for this site (e.g. Chrome for returning visitors); elsewhere a
+    // refused scroll attempt just makes the button more noticeable.
+    // One attempt at a time, since scroll and wheel fire continuously.
+    let trying = false;
+    const attempt = (e) => {
       // A press on the button itself is handled by its own click.
-      if (button.current?.contains(e.target)) return;
-      play().catch(() => {});
-      removeGestures();
+      if (trying || button.current?.contains(e.target)) return;
+      trying = true;
+      play()
+        .then(removeListeners)
+        .catch(() => setState("nudge"))
+        .finally(() => {
+          trying = false;
+        });
     };
-    // The events browsers accept as permission to start sound: a mouse press,
-    // the end of a touch (touchstart does not count on phones), a click or a key.
-    // Scrolling never counts.
-    const events = ["pointerdown", "pointerup", "touchend", "click", "keydown"];
-    const removeGestures = () => events.forEach((type) => window.removeEventListener(type, onGesture));
+    const events = ["pointerdown", "pointerup", "touchend", "click", "keydown", "wheel", "scroll", "touchmove"];
+    const removeListeners = () => events.forEach((type) => window.removeEventListener(type, attempt));
 
     play().catch(() => {
       setState("waiting");
-      events.forEach((type) => window.addEventListener(type, onGesture, { passive: true }));
+      events.forEach((type) => window.addEventListener(type, attempt, { passive: true }));
     });
-    return removeGestures;
+    return removeListeners;
   }, []);
 
   // Pause while the tab is hidden; pick up again when the visitor comes back.
@@ -102,6 +112,7 @@ const SoundToggle = () => {
 
   const playing = state === "playing";
   const label = playing ? "Pause music" : "Play music";
+  const asking = state === "waiting" || state === "nudge";
 
   return (
     <>
@@ -114,7 +125,9 @@ const SoundToggle = () => {
         aria-pressed={playing}
         title={`${label}: ${TRACK.title}, ${TRACK.artist}`}
         data-cursor={playing ? "Pause" : "Play"}
-        className="group fixed bottom-5 left-5 z-[65] flex h-11 items-center gap-2.5 rounded-full bg-[#140d26]/75 pr-4 pl-3 text-white shadow-[0_10px_30px_-10px_rgba(20,13,38,0.6)] backdrop-blur-md transition-[background-color,translate] duration-300 hover:-translate-y-0.5 hover:bg-[#140d26]/90 sm:bottom-6 sm:left-6"
+        className={`group fixed bottom-5 left-5 z-[65] flex h-11 origin-bottom-left items-center gap-2.5 rounded-full pr-4 pl-3 text-white shadow-[0_10px_30px_-10px_rgba(20,13,38,0.6)] backdrop-blur-md transition-[background-color,translate,scale] duration-500 ease-[cubic-bezier(.34,1.56,.64,1)] hover:-translate-y-0.5 sm:bottom-6 sm:left-6 ${
+          state === "nudge" ? "scale-110 bg-[#6a4ae8] hover:bg-[#5b3bd9]" : "bg-[#140d26]/75 hover:bg-[#140d26]/90"
+        }`}
       >
         {/* Equalizer bars while playing, a play triangle otherwise. */}
         <span aria-hidden="true" className="flex h-4 w-4 items-end justify-center gap-[2px]">
@@ -129,9 +142,9 @@ const SoundToggle = () => {
           )}
         </span>
         <span className="text-small font-semibold whitespace-nowrap">
-          {state === "waiting" ? "Tap for sound" : playing ? "Sound on" : "Sound off"}
+          {asking ? "Tap for sound" : playing ? "Sound on" : "Sound off"}
         </span>
-        {state === "waiting" && (
+        {asking && (
           <span aria-hidden="true" className="absolute inset-0 animate-ping rounded-full ring-2 ring-white/40 [animation-duration:2s]" />
         )}
       </button>
