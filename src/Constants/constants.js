@@ -47,6 +47,7 @@ export const navLinks = [
   { id: 'early-ai', title: 'Early to generative AI' },
   { id: 'experience', title: 'Experience' },
   { id: 'projects', title: 'Projects' },
+  { id: 'writing', title: 'Writing' },
   { id: 'skills', title: 'Skills' },
   { id: 'contact', title: 'Contact' },
 ];
@@ -185,6 +186,61 @@ const skills = [
   { name: 'Security', icon: 'shield', fact: 'Security+, AWS Specialty' },
 ];
 
+// Articles I wrote for the SWA AI blog, newest first. Covers are local copies
+// (public/media/writing) so the page never loads anything from swa-ai.com.
+const articles = [
+  {
+    title: 'AI Agents for One Person or for the Whole Team? ChatGPT Dots, Meta Muse, Grok Bot and Claude Duet Compared',
+    blurb: 'Four new personal agents, side by side, against a platform built for a whole team.',
+    date: 'Oct 2026',
+    href: 'https://swa-ai.com/personal-ai-agents-vs-team-assistant/',
+    image: '/media/writing/1038.jpg',
+  },
+  {
+    title: "Swa vs Claude Duet: One Person's Agent or Your Team's Assistant?",
+    blurb: "Anthropic's always-on agent for one subscriber, compared from its own documentation.",
+    date: 'Oct 2026',
+    href: 'https://swa-ai.com/swa-vs-claude-duet/',
+    image: '/media/writing/1032.jpg',
+  },
+  {
+    title: 'Swa vs Meta Muse: A Personal Agent and a Company Platform Are Different Things',
+    blurb: "Meta's personal agent and what changes when a whole company needs one.",
+    date: 'Oct 2026',
+    href: 'https://swa-ai.com/swa-vs-meta-muse/',
+    image: '/media/writing/1030.jpg',
+  },
+  {
+    title: 'Swa vs ChatGPT Dots: One Model, One Owner, One Seat',
+    blurb: "OpenAI's dots are built for one person. What that means for a team.",
+    date: 'Oct 2026',
+    href: 'https://swa-ai.com/swa-vs-chatgpt-dots/',
+    image: '/media/writing/1027.jpg',
+  },
+  {
+    title: 'Swa vs Grok Bot: Who Decides Which Model Does the Work?',
+    blurb: 'Grok Bot now picks the model for you and charges per seat.',
+    date: 'Sep 2026',
+    href: 'https://swa-ai.com/swa-vs-grok-bot/',
+    image: '/media/writing/971.jpg',
+  },
+  {
+    title: 'Claude Tag vs Swa: Why Single-Model AI Is the Wrong Architecture for Most Companies',
+    blurb: 'The architectural question every company should answer before picking an AI tool.',
+    date: 'Jun 2026',
+    href: 'https://swa-ai.com/claude-tag-vs-swa/',
+    image: '/media/writing/913.jpg',
+  },
+  {
+    title: 'Introducing Swa: AI for Slack, Teams, and SMS',
+    blurb: 'The launch post: many models, one interface, inside the apps teams already use.',
+    date: 'Mar 2026',
+    href: 'https://swa-ai.com/introducing-swa-ai-platform-slack-teams-sms/',
+    image: '/media/writing/847.jpg',
+    fit: 'contain',
+  },
+];
+
 // Early to generative AI: how I've worked with it since GPT-3.5.
 const aiJourney = [
   {
@@ -226,6 +282,7 @@ const hobbies = [
 ];
 
 export {
+  articles,
   roles,
   introduction,
   experience,

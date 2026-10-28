@@ -298,24 +298,6 @@
       ]
     },
     {
-      "id": "clickup-paid-static",
-      "title": "ClickUp Paid Static",
-      "blurb": "A text-free base layer for a paid social static.",
-      "kind": "image-set",
-      "aspect": "4:5",
-      "durationSec": null,
-      "poster": "/media/studio/clickup-paid-static.webp",
-      "preview": null,
-      "images": [
-        "/media/studio/clickup-paid-static.webp"
-      ],
-      "tags": [
-        "Paid social",
-        "Static ad",
-        "ClickUp"
-      ]
-    },
-    {
       "id": "static-ad-campaign",
       "title": "Static Ad Campaign",
       "blurb": "Eighteen static ads, each one making a single point about governed AI.",

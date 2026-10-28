@@ -18,6 +18,7 @@ import About from "../Pages/About";
 import EarlyAI from "../Pages/EarlyAI";
 import Experience from "../Pages/Experience";
 import Projects from "../Pages/Projects";
+import Writing from "../Pages/Writing";
 import Skills from "../Pages/Skills";
 import Contact from "../Pages/Contact";
 
@@ -34,6 +35,7 @@ const Home = () => (
     <EarlyAI />
     <Experience />
     <Projects />
+    <Writing />
     <Skills />
     <Contact />
   </main>
