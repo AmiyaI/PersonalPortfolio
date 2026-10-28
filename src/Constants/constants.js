@@ -18,6 +18,8 @@ const roles = [
   'Founding Engineer',
   'AI Engineer',
   'Agent Architect',
+  'Agentic Coder',
+  '100x Engineer',
   'Product Builder',
   'Full-Stack Engineer',
   'Cloud & DevOps Engineer',
