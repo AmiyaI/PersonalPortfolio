@@ -5,7 +5,7 @@
      Last modification: 10/27/2026
 */
 
-// A full field of Swa indigo. The current role runs wide with its highlights;
+// A deep aurora field with frosted cards. The current role runs wide with its highlights;
 // the earlier chapters sit beside it.
 
 import { useRef } from "react";
@@ -44,15 +44,15 @@ const Experience = () => {
   );
 
   return (
-    <section ref={scope} id="experience" className="w-full field-indigo px-5 py-12 text-ink sm:px-8 lg:py-16">
-      <SectionHeader kicker="Where I've worked" title="Experience" layout="split" className="mb-8 lg:mb-10">
+    <section ref={scope} id="experience" className="w-full field-aurora-deep px-5 py-20 text-white sm:px-8 lg:py-24">
+      <SectionHeader kicker="Where I've worked" title="Experience" layout="split" tone="light" className="mb-8 lg:mb-10">
         Founding engineer at an AI startup today. Construction engineering before that, which is where I learned to ship on a schedule.
       </SectionHeader>
       <ol className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
         {experience.map((job, i) => (
           <li
             key={job.chapter}
-            className={`xp-card flex flex-col bg-white/65 p-7 ${i === 0 ? "lg:col-span-6" : "lg:col-span-3"}`}
+            className={`xp-card flex flex-col rounded-2xl bg-white/85 p-7 text-ink shadow-[0_24px_60px_-30px_rgba(20,10,80,0.6)] backdrop-blur-md ${i === 0 ? "lg:col-span-6" : "lg:col-span-3"}`}
           >
             <p className="text-body font-medium">
               {job.company}

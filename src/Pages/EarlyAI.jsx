@@ -41,7 +41,7 @@ const EarlyAI = () => {
 
       <div className="journey">
         <div className="mb-8 hidden h-1.5 bg-white lg:block" aria-hidden="true">
-          <div className="journey-fill h-full origin-left bg-accent" />
+          <div className="journey-fill aurora-line h-full origin-left" />
         </div>
         <ol className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {aiJourney.map((step) => (

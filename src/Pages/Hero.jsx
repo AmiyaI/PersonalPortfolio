@@ -26,10 +26,11 @@ const Hero = () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
         const tl = gsap.timeline({ paused: true, delay: enterDelay });
-        tl.from(".who-char", { yPercent: 110, duration: 0.8, ease: EASE.out, stagger: 0.025 })
-          .from(".name-char", { yPercent: 120, duration: 0.9, ease: EASE.out, stagger: 0.03 }, 0.12)
-          .from(".hero-line", { y: 20, opacity: 0, duration: 0.7, ease: EASE.soft, stagger: 0.08 }, "-=0.45")
-          .from(".hero-particles-wrap", { opacity: 0, duration: 1.2, ease: "power2.out" }, 0.2);
+        // Paced like the original site: an unhurried rise, letter by letter.
+        tl.from(".who-char", { yPercent: 110, duration: 1.4, ease: EASE.out, stagger: 0.07 })
+          .from(".name-char", { yPercent: 120, duration: 1.5, ease: EASE.out, stagger: 0.08 }, 0.45)
+          .from(".hero-line", { y: 20, opacity: 0, duration: 1.1, ease: EASE.soft, stagger: 0.2 }, "-=0.6")
+          .from(".hero-particles-wrap", { opacity: 0, duration: 2, ease: "power2.out" }, 0.3);
         const fontReady = Promise.race([
           document.fonts.load("1em SuperMario").catch(() => {}),
           new Promise((resolve) => setTimeout(resolve, 400)),
@@ -55,7 +56,7 @@ const Hero = () => {
       ref={scope}
       id="hero"
       aria-label="Introduction"
-      className="relative isolate flex h-[100svh] min-h-[640px] w-full flex-col justify-center overflow-hidden hero-purple pt-20"
+      className="relative isolate flex h-[100svh] min-h-[640px] w-full flex-col justify-center overflow-hidden hero-aurora pt-20"
     >
       <div className="hero-particles-wrap absolute inset-0 -z-10">
         <Suspense fallback={null}>

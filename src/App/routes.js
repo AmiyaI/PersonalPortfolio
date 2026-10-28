@@ -10,6 +10,7 @@
 // ready before a page transition swaps it in.
 
 export const routeLoaders = {
+  "/beyond": () => import("../Pages/BeyondPage"),
   "/studio": () => import("../Pages/Studio"),
   "/ai-slop": () => import("../Pages/AiSlop"),
 };

@@ -1,39 +1,27 @@
 /*
      FileName: PageTransition.jsx
-     @version: II
+     @version: III
      Creation: 10/25/2026
-     Last modification: 10/25/2026
+     Last modification: 10/28/2026
 */
 
-// Route changes play a wipe: a colored panel rises over the page with the
-// destination's name, the route swaps underneath once its code is loaded,
-// and the panel leaves through the top. Use <TransitionLink to="/studio" label="Studio">.
+// Route changes are instant: the next page's code is fetched (usually already
+// prefetched on hover), the route swaps, and the page lands at the top or at
+// the linked section. There is no loading panel between pages; each page's
+// own entrance is enough. Use <TransitionLink to="/studio#feature">.
 //
-// Pages read useEnterDelay() so their own entrance starts as the panel
-// clears instead of playing unseen underneath it.
+// useEnterDelay() is kept for pages that time their entrance against a page
+// change; with no panel to wait for it is always 0.
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { gsap, prefersReducedMotion } from "../../lib/gsap";
 import { useLenis } from "./SmoothScroll";
 import { prefetchRoute } from "../../App/routes";
 
 const TransitionContext = createContext(() => {});
-const EnterDelayContext = createContext(0);
 
 export const usePageTransition = () => useContext(TransitionContext);
-export const useEnterDelay = () => useContext(EnterDelayContext);
-
-// Each destination gets its own wipe color, so the transition hints at the
-// mood of the page you're heading to.
-const THEMES = {
-  "/": { bg: "#9e6abc", fg: "#ffffff" },
-  "/studio": { bg: "#0d0b10", fg: "#f2ead8" },
-  "/ai-slop": { bg: "#d2ff00", fg: "#111112" },
-};
-
-// How long after the swap the new page's entrance should wait.
-const WIPE_ENTER_DELAY = 0.45;
+export const useEnterDelay = () => 0;
 
 // Move keyboard and screen-reader focus to the new page once it has mounted.
 const focusMain = (tries = 20) => {
@@ -46,28 +34,10 @@ export const PageTransitionProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const lenis = useLenis();
-  const panel = useRef(null);
-  const text = useRef(null);
-  const timeline = useRef(null);
-  const [enterDelay, setEnterDelay] = useState(0);
 
-  const hidePanel = () => gsap.set(panel.current, { display: "none" });
-
-  // Browser back/forward mid-wipe: let the browser win and drop the wipe.
-  useEffect(() => {
-    const onPop = () => {
-      if (timeline.current?.isActive()) {
-        timeline.current.kill();
-        hidePanel();
-      }
-      setEnterDelay(0);
-    };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
-
+  // The label argument is accepted for older call sites; nothing shows it now.
   const go = useCallback(
-    (to, label, hash) => {
+    (to, _label, hash) => {
       const path = to.split("#")[0] || "/";
       const target = hash ?? (to.includes("#") ? `#${to.split("#")[1]}` : null);
 
@@ -95,72 +65,15 @@ export const PageTransitionProvider = ({ children }) => {
         return;
       }
 
-      const ready = prefetchRoute(path);
-
-      // A second click during a wipe jumps straight to the newest destination.
-      if (timeline.current?.isActive() || prefersReducedMotion()) {
-        timeline.current?.kill();
-        hidePanel();
-        setEnterDelay(0);
-        Promise.resolve(ready).finally(() => {
-          navigate(path);
-          land();
-        });
-        return;
-      }
-
-      const theme = THEMES[path] ?? THEMES["/"];
-      text.current.textContent = label ?? "";
-      const tl = gsap.timeline();
-      timeline.current = tl;
-      tl.set(panel.current, {
-        display: "flex",
-        backgroundColor: theme.bg,
-        color: theme.fg,
-        clipPath: "inset(100% 0% 0% 0%)",
-      })
-        .set(text.current, { yPercent: 110 })
-        .to(panel.current, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power4.inOut" })
-        .to(text.current, { yPercent: 0, duration: 0.4, ease: "power3.out" }, "-=0.3")
-        .add(() => {
-          // Hold the covered panel until the next page's code has arrived.
-          tl.pause();
-          Promise.resolve(ready).finally(() => {
-            setEnterDelay(WIPE_ENTER_DELAY);
-            navigate(path);
-            land();
-            requestAnimationFrame(() => tl.resume());
-          });
-        })
-        .to(text.current, { yPercent: -110, duration: 0.3, ease: "power3.in" }, "+=0.15")
-        .to(panel.current, { clipPath: "inset(0% 0% 100% 0%)", duration: 0.6, ease: "power4.inOut" }, "-=0.15")
-        .add(() => {
-          hidePanel();
-          // Re-assert focus once the page has fully settled under the wipe.
-          if (!document.activeElement || document.activeElement === document.body) focusMain();
-        });
+      Promise.resolve(prefetchRoute(path)).finally(() => {
+        navigate(path);
+        land();
+      });
     },
     [lenis, location.pathname, navigate]
   );
 
-  return (
-    <TransitionContext.Provider value={go}>
-      <EnterDelayContext.Provider value={enterDelay}>
-        {children}
-        <div
-          ref={panel}
-          aria-hidden="true"
-          className="fixed inset-0 z-[150] hidden items-center justify-center overflow-hidden"
-        >
-          <span
-            ref={text}
-            className="block text-[22vw] leading-none uppercase tracking-wide"
-            style={{ fontFamily: "Morganite Black" }}
-          />
-        </div>
-      </EnterDelayContext.Provider>
-    </TransitionContext.Provider>
-  );
+  return <TransitionContext.Provider value={go}>{children}</TransitionContext.Provider>;
 };
 
 export const TransitionLink = ({ to, label, children, className, onClick, ...rest }) => {

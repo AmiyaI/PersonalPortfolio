@@ -315,11 +315,29 @@ html.lenis * {
 /* Soft two-tone fields, all in the style of the owner's purple: each colour
    melts into a close neighbour along the same 160deg angle. */
 /* taste-skill-ignore-start: the owner chose these gradients */
-.hero-purple { background: linear-gradient(160deg, #9a72c8 0%, #a674c4 45%, #bd70b1 100%); } /* taste-skill-ignore */
+/* One palette from top to bottom, taken from the closing section: vivid
+   violet, orange, cyan and deep indigo. Bold sections (hero, Experience,
+   Contact) alternate with light ones so the colour carries all the way down. */
+.hero-aurora {
+  background: conic-gradient(at 80% 34%, #b067b9 0deg, #ee8458 40deg, #b9a08f 72deg, #5ec4dc 112deg, #4f86cf 160deg, #3d33b0 215deg, #6a4ae8 270deg, #8656e4 320deg, #b067b9 360deg);
+} /* taste-skill-ignore */
+/* Deep violet-to-indigo with orange and cyan glows, fading into the light
+   sections above and below it. */
+.field-aurora-deep {
+  background:
+    linear-gradient(180deg, #f7f2fd 0, rgba(247, 242, 253, 0) 6rem, rgba(247, 242, 253, 0) calc(100% - 6rem), #f7f2fd 100%),
+    radial-gradient(45% 60% at 94% 8%, rgba(238, 132, 88, 0.6), transparent 70%),
+    radial-gradient(45% 60% at 4% 96%, rgba(94, 196, 220, 0.55), transparent 70%),
+    linear-gradient(160deg, #6a4ae8 0%, #4b3bc4 55%, #3a2fa0 100%);
+} /* taste-skill-ignore */
 /* Coloured fields fade in from and out to the light ground, so sections
    blend into each other instead of meeting at a hard edge. */
-.field-ground { background: linear-gradient(160deg, #fbf8ff 0%, #f4eefd 55%, #f8eff9 100%); } /* taste-skill-ignore */
-.field-indigo { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem, transparent calc(100% - 7rem), #f7f2fd 100%), linear-gradient(160deg, #d6d1fd 0%, #c5bdf8 50%, #d8c6f6 100%); } /* taste-skill-ignore */
+.field-ground {
+  background:
+    radial-gradient(45% 55% at 100% 0%, rgba(232, 132, 90, 0.09), transparent 70%),
+    radial-gradient(45% 55% at 0% 100%, rgba(124, 194, 220, 0.12), transparent 70%),
+    linear-gradient(160deg, #fbf8ff 0%, #f6f2fd 55%, #f9f2f6 100%);
+} /* taste-skill-ignore */
 .field-teal { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem, transparent calc(100% - 7rem), #f7f2fd 100%), linear-gradient(160deg, #c9eef4 0%, #c0e1f0 50%, #cbd5f7 100%); } /* taste-skill-ignore */
 .field-orchid { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem, transparent calc(100% - 7rem), #f7f2fd 100%), linear-gradient(160deg, #eed3f0 0%, #e8c5e4 50%, #f7cfdb 100%); } /* taste-skill-ignore */
 .field-light { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem), linear-gradient(160deg, #ffe9d9 0%, #fbdfe2 55%, #f3dbf0 100%); } /* taste-skill-ignore */
@@ -349,4 +367,9 @@ html.lenis * {
 }
 @keyframes hero-scroll {
   50% { transform: translateY(24px); }
+}
+
+/* The site's recurring accent: a thin violet-to-orange-to-sky line. */
+.aurora-line {
+  background-image: linear-gradient(90deg, #6a4ae8, #e8845a 55%, #7cc2dc);
 }

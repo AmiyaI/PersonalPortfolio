@@ -19,12 +19,10 @@ import EarlyAI from "../Pages/EarlyAI";
 import Experience from "../Pages/Experience";
 import Projects from "../Pages/Projects";
 import Skills from "../Pages/Skills";
-import Beyond from "../Pages/Beyond";
-import Hobbies from "../Pages/Hobbies";
-import HotTakes from "../Pages/HotTakes";
 import Contact from "../Pages/Contact";
 
 // The creative pages carry their own media and code, so they load on demand.
+const BeyondPage = lazy(routeLoaders["/beyond"]);
 const Studio = lazy(routeLoaders["/studio"]);
 const AiSlop = lazy(routeLoaders["/ai-slop"]);
 
@@ -37,9 +35,6 @@ const Home = () => (
     <Experience />
     <Projects />
     <Skills />
-    <Beyond />
-    <Hobbies />
-    <HotTakes />
     <Contact />
   </main>
 );
@@ -56,6 +51,7 @@ const NotFound = () => (
 
 const TITLES = {
   "/": "Amiya Islam · AI and cloud engineer",
+  "/beyond": "Beyond · Amiya Islam",
   "/studio": "Studio · Amiya Islam",
   "/ai-slop": "AI Slop · Amiya Islam",
 };
@@ -82,6 +78,7 @@ function App() {
       <Suspense fallback={<div className="h-[100svh]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/beyond" element={<BeyondPage />} />
           <Route path="/studio" element={<Studio />} />
           <Route path="/ai-slop" element={<AiSlop />} />
           <Route path="*" element={<NotFound />} />

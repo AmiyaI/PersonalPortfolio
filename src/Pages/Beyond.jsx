@@ -58,6 +58,7 @@ const Beyond = () => {
         </SectionHeader>
         <div className="doors grid grid-cols-1 gap-6 md:grid-cols-2">
           <TransitionLink
+            id="studio"
             to="/studio"
             label="Studio"
             data-cursor="Enter"
@@ -92,9 +93,10 @@ const Beyond = () => {
           </TransitionLink>
 
           <a
+            id="shirts"
             href="mailto:iamiya@vt.edu?subject=I%20want%20a%20shirt"
             data-cursor="Ask"
-            className="door group relative flex min-h-[380px] flex-col justify-end overflow-hidden bg-white p-8 text-night"
+            className="door group relative flex min-h-[380px] scroll-mt-28 flex-col justify-end overflow-hidden bg-white p-8 text-night"
           >
             <img
               src={shirt.images[3]}

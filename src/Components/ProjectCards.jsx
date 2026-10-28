@@ -44,19 +44,19 @@ const ProjectCard = ({ project }) => {
             data-cursor="View"
             aria-hidden="true"
             tabIndex={-1}
-            className="project-media block aspect-[16/10] overflow-hidden"
+            className="project-media block aspect-[16/7] overflow-hidden"
           >
             {img}
           </SmartLink>
         ) : (
-          <div className="project-media aspect-[16/10] overflow-hidden">{img}</div>
+          <div className="project-media aspect-[16/7] overflow-hidden">{img}</div>
         )}
       </Tilt>
-      <div className="mt-4 flex flex-1 flex-col gap-2.5">
-        <h3 className="text-title leading-none font-extrabold tracking-[-0.03em] text-ink">{name}</h3>
-        <p className="max-w-[52ch] text-compact leading-relaxed text-ink">{description}</p>
+      <div className="mt-3 flex flex-1 flex-col gap-2">
+        <h3 className="text-lead leading-none font-extrabold tracking-[-0.02em] text-ink">{name}</h3>
+        <p className="max-w-[52ch] text-small leading-relaxed text-ink">{description}</p>
         <p className="text-small text-muted">{tags.join(", ")}</p>
-        <div className="mt-auto flex items-center gap-6 pt-2 text-compact font-semibold text-accent">
+        <div className="mt-auto flex items-center gap-5 pt-1 text-small font-semibold text-accent">
           {demo_link && (
             <SmartLink className="nav-link pb-0.5" href={demo_link}>
               {demo_label ?? "See it live"} →
@@ -113,7 +113,7 @@ const ProjectCards = () => {
   );
 
   return (
-    <ul ref={scope} className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+    <ul ref={scope} className="grid grid-cols-1 gap-x-5 gap-y-9 sm:grid-cols-2 md:grid-cols-3">
       {projects.map((project) => (
         <ProjectCard key={project.name} project={project} />
       ))}

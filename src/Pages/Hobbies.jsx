@@ -43,7 +43,7 @@ const Hobbies = () => {
   }, [canDrag]);
 
   return (
-    <section id="hobbies" className="w-full field-orchid px-5 py-12 text-night sm:px-8 lg:py-16">
+    <section id="hobbies" className="w-full scroll-mt-16 field-orchid px-5 py-12 text-night sm:px-8 lg:py-16">
       <div>
         <SectionHeader kicker="Outside of work" title="Off the clock" layout="left" className="mb-8 lg:mb-10">
           {canDrag ? "What keeps me sane outside of work. Go ahead, drag them around." : "What keeps me sane outside of work."}

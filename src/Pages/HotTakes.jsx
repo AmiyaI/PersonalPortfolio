@@ -32,6 +32,7 @@ const HotTakes = () => {
   return (
     <section
       id="takes"
+      style={{ scrollMarginTop: "4rem" }}
       className="field-ground w-full px-5 py-12 sm:px-8 lg:py-16"
       onKeyDown={(e) => {
         if (!many || e.target.closest("a")) return;

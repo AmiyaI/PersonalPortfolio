@@ -51,7 +51,7 @@ const SectionHeader = ({ kicker, title, children, layout = "left", className = "
 
   const kickerEl = kicker && (
     <p className={`flex items-center gap-3 text-small font-semibold tracking-[0.2em] uppercase ${tone === "light" ? "text-white/85" : "text-accent"} ${layout === "center" ? "justify-center" : ""}`}>
-      <span aria-hidden="true" className="kicker-line h-px w-8 bg-current" />
+      <span aria-hidden="true" className={`kicker-line h-0.5 w-8 rounded-full ${tone === "light" ? "bg-current" : "aurora-line"}`} />
       <span className="kicker-text">{kicker}</span>
     </p>
   );

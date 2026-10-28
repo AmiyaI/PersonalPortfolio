@@ -17,9 +17,13 @@ const socials = [
 const roles = [
   'Founding Engineer',
   'AI Engineer',
+  'Agent Architect',
   'Product Builder',
+  'Full-Stack Engineer',
   'Cloud & DevOps Engineer',
+  '0 → 1 Builder',
   'AI Enthusiast',
+  'Lifelong Tinkerer',
 ];
 
 const introduction = {
@@ -42,12 +46,11 @@ export const navLinks = [
   { id: 'experience', title: 'Experience' },
   { id: 'projects', title: 'Projects' },
   { id: 'skills', title: 'Skills' },
-  { id: 'takes', title: 'Hot takes' },
   { id: 'contact', title: 'Contact' },
 ];
 
 export const pageLinks = [
-  { to: '/studio', title: 'Studio' },
+  { to: '/beyond', title: 'Beyond' },
 ];
 
 const experience = [

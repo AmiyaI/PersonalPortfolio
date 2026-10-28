@@ -16,10 +16,18 @@ import { TransitionLink, useEnterDelay } from "../Components/motion/PageTransiti
 import { scrollToTarget, useLenis } from "../Components/motion/SmoothScroll";
 
 const all = media.studio;
-const feature = all[0];
-const films = all.filter((e) => e !== feature && e.aspect === "16:9" && e.preview);
-const verticals = all.filter((e) => e.aspect === "9:16");
-const stills = all.filter((e) => !e.preview);
+// Two chapters: the work made for SWA AI (tagged "Swa"), then everything else.
+const isSwa = (e) => e.tags?.includes("Swa");
+const swaWork = all.filter(isSwa);
+const ownWork = all.filter((e) => !isSwa(e));
+// No single hero film: every film gets the same size card, and The Cat Video
+// Bill just leads the grid with a small "Highlight" tag.
+const LEAD_FILM = "enterprise-film-cat-video-bill";
+const films = swaWork
+  .filter((e) => e.aspect === "16:9" && e.preview)
+  .sort((a, b) => (b.id === LEAD_FILM) - (a.id === LEAD_FILM));
+const verticals = swaWork.filter((e) => e.aspect === "9:16");
+const stills = swaWork.filter((e) => !e.preview);
 const slopShots = [
   media.slop.find((e) => e.id === "brickline")?.poster,
   media.slop.find((e) => e.id === "block-vs-jurassic-court")?.poster,
@@ -46,6 +54,22 @@ const Meta = ({ item }) => (
         {formatDuration(item.durationSec)}
       </span>
     )}
+  </div>
+);
+
+// A chapter break: a small numbered kicker, the chapter name in the display
+// face, and one serif line about what's in it.
+const Chapter = ({ no, id, title, children, className = "" }) => (
+  <div className={`studio-reveal mb-12 flex flex-col gap-3 px-5 sm:px-8 ${className}`}>
+    <p className="text-small font-semibold tracking-[0.2em] text-[#ff9a5c] uppercase" style={sans}>
+      Chapter {no}
+    </p>
+    <h2 id={id} className="text-7xl leading-[0.85] sm:text-8xl" style={display}>
+      {title}
+    </h2>
+    <p className="max-w-xl text-xl italic text-[#f2ead8]/80 sm:text-2xl" style={serif}>
+      {children}
+    </p>
   </div>
 );
 
@@ -105,13 +129,6 @@ const Studio = () => {
             }),
         });
 
-        // The featured film grows into place as it scrolls in (transform only).
-        gsap.fromTo(
-          ".studio-feature",
-          { scale: 0.9 },
-          { scale: 1, ease: "none", scrollTrigger: { trigger: ".studio-feature", start: "top 90%", end: "top 30%", scrub: 0.5 } }
-        );
-
         gsap.utils.toArray(".studio-reveal").forEach((el) => {
           gsap.from(el, {
             y: 60,
@@ -169,53 +186,46 @@ const Studio = () => {
               </div>
             </dl>
             <a
-              href="#feature"
+              href="#films-title"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToTarget(lenis, "#feature", { offset: -80 });
+                scrollToTarget(lenis, "#films-title", { offset: -96 });
               }}
               className="rounded-full border-2 border-[#f2ead8] px-5 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-300 hover:bg-[#f2ead8] hover:text-[#0d0b10]"
             >
-              {feature.src ? "Watch the film" : "Watch the preview"}
+              See the films
             </a>
             </div>
           </div>
         </header>
 
-        {/* The film burns its own title into the frame, so the caption sits below it like a credit. */}
-        <section id="feature" className="px-5 sm:px-8" aria-labelledby="feature-title">
-          <PreviewCard item={feature} className="studio-feature rounded-3xl" cursor="Watch" />
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between" style={sans}>
-            <h2 id="feature-title" className="text-5xl leading-none sm:text-7xl" style={display}>
-              {feature.title}
-            </h2>
-            <p className="max-w-md text-lg italic text-[#f2ead8]/80 sm:text-right" style={serif}>
-              {feature.blurb}{" "}
-              <span className="not-italic text-small text-[#ff9a5c]" style={sans}>
-                {formatDuration(feature.durationSec)}
-              </span>
-            </p>
-          </div>
-        </section>
+        <Chapter no="01" id="swa-title" title="Made for SWA AI" className="mt-24 sm:mt-32">
+          Product films, ads and campaigns I wrote and produced for SWA AI.
+        </Chapter>
 
-        <section className="mt-32 px-5 sm:px-8">
+        <section className="px-5 sm:px-8">
           <p className="studio-lede max-w-3xl text-2xl leading-[1.15] sm:text-5xl" style={serif}>
             Written, storyboarded, voiced, scored and cut like a real production.
           </p>
         </section>
 
-        <section className="mt-24 px-5 sm:px-8" aria-labelledby="films-title">
+        <section className="mt-16 px-5 sm:px-8" aria-labelledby="films-title">
           <h2 id="films-title" className="mb-8 text-7xl leading-none" style={display}>
             Films <span className="align-top text-2xl text-[#ff8539]">{films.length}</span>
           </h2>
-          <div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2">
-            {/* With an odd count, the first film runs wide so the pairs below come out even. */}
-            {films.map((item, i) => (
+          <div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+            {films.map((item) => (
               // The reveal sits on an inner wrapper so the linkable article (/studio#id) isn't
               // shifted by the entrance when a deep link measures where to scroll.
-              <article key={item.id} id={item.id} className={`scroll-mt-24 ${i === 0 && films.length % 2 ? "md:col-span-2" : ""}`}>
+              <article key={item.id} id={item.id} className="scroll-mt-24">
                 <div className="studio-reveal">
-                  <PreviewCard item={item} className="rounded-xl" />
+                  <PreviewCard item={item} className="rounded-xl">
+                    {item.id === LEAD_FILM && (
+                      <span className="absolute top-3 left-3 rounded-full bg-[#ff9a5c] px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#0d0b10] uppercase">
+                        Highlight
+                      </span>
+                    )}
+                  </PreviewCard>
                   <Meta item={item} />
                 </div>
               </article>
@@ -244,6 +254,23 @@ const Studio = () => {
             Campaign stills
           </h2>
           <StillsWall />
+        </section>
+
+        <section id="independent" className="mt-40 scroll-mt-24" aria-labelledby="independent-title">
+          <Chapter no="02" id="independent-title" title="Independent work">
+            My own films and experiments, and work for other teams.
+          </Chapter>
+          <div className="grid grid-cols-2 items-start gap-x-6 gap-y-12 px-5 sm:px-8 md:grid-cols-5">
+            {ownWork.map((item) => (
+              // Same inner-wrapper reveal as the films, so /studio#id deep links land true.
+              <article key={item.id} id={item.id} className={`scroll-mt-24 ${item.aspect === "16:9" ? "col-span-2" : ""}`}>
+                <div className="studio-reveal">
+                  <PreviewCard item={item} className="rounded-xl" />
+                  <Meta item={item} />
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         {/* The fun experiments live one click past the serious work, not in the main nav. */}

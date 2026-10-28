@@ -17,8 +17,11 @@ import { useLenis } from "../motion/SmoothScroll";
 // Desktop shows three words and one action; the phone menu lists everything.
 const desktopLinks = [
   { kind: "anchor", id: "about", title: "About" },
+  { kind: "anchor", id: "projects", title: "Work" },
   ...pageLinks.map((link) => ({ ...link, kind: "page" })),
 ];
+// Beyond stays lit on its own page and on the pages it leads to.
+const BEYOND_PATHS = ["/beyond", "/studio", "/ai-slop"];
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -33,9 +36,10 @@ const Navbar = () => {
   const pendingJump = useRef(null);
   const goRef = useRef(go);
   goRef.current = go;
-  // Studio is a dark room, so the nav goes light-on-dark there; everywhere
-  // else (and in the open phone menu) it is dark ink on a light ground.
-  const onDark = pathname === "/studio" && !toggle;
+  // Light-on-dark over Studio's dark room and over the home hero's colour
+  // sweep (until the solid bar appears on scroll); everywhere else, and in the
+  // open phone menu, it is dark ink on a light ground.
+  const onDark = (pathname === "/studio" || (pathname === "/" && atTop)) && !toggle;
 
   // Slide away while reading down the page, come back on any scroll up.
   useEffect(() => {
@@ -66,22 +70,24 @@ const Navbar = () => {
       html.style.overflow = "";
       window.removeEventListener("keydown", onKey);
       wide.removeEventListener("change", onWide);
-      const id = pendingJump.current;
+      const next = pendingJump.current;
       pendingJump.current = null;
-      if (id) goRef.current(`/#${id}`, "Amiya");
+      if (next) goRef.current(next.to, next.label);
     };
   }, [toggle, lenis]);
 
-  const jump = (id) => (e) => {
+  // Go somewhere; from the open phone menu, close it first and go after.
+  const goTo = (to, label) => (e) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (toggle) {
-      pendingJump.current = id;
+      pendingJump.current = { to, label };
       setToggle(false);
       return;
     }
-    go(`/#${id}`, "Amiya");
+    go(to, label);
   };
+  const jump = (id) => goTo(`/#${id}`, "Amiya");
 
   const ink = onDark ? "text-white" : "text-ink";
   // See-through over the home hero so its gradient runs to the top edge; a
@@ -110,25 +116,29 @@ const Navbar = () => {
             <img src={logo} alt="Amiya Islam" className={`h-9 object-contain ${invertLogo}`} />
           </TransitionLink>
           <ul className={`hidden list-none flex-row items-center gap-9 text-body font-medium md:flex ${ink}`}>
-            {desktopLinks.map((link) => (
-              <li key={link.title}>
-                <Magnetic strength={0.25}>
-                  {link.kind === "anchor" ? (
+            {desktopLinks.map((link) =>
+              link.kind === "anchor" ? (
+                <li key={link.title}>
+                  <Magnetic strength={0.25}>
                     <a href={`/#${link.id}`} onClick={jump(link.id)} className="nav-link pb-1">
                       {link.title}
                     </a>
-                  ) : (
+                  </Magnetic>
+                </li>
+              ) : (
+                <li key={link.title}>
+                  <Magnetic strength={0.25}>
                     <TransitionLink
                       to={link.to}
                       label={link.title}
-                      className={`nav-link pb-1 ${pathname === link.to ? "is-active" : ""}`}
+                      className={`nav-link pb-1 ${BEYOND_PATHS.includes(pathname) ? "is-active" : ""}`}
                     >
                       {link.title}
                     </TransitionLink>
-                  )}
-                </Magnetic>
-              </li>
-            ))}
+                  </Magnetic>
+                </li>
+              )
+            )}
             <li>
               <Magnetic strength={0.3}>
                 <a
@@ -184,7 +194,7 @@ const Navbar = () => {
                       <a
                         href={`/#${link.id}`}
                         onClick={jump(link.id)}
-                        className="block text-[13vw] leading-[1] font-extrabold tracking-[-0.04em] text-ink"
+                        className="block text-[11vw] leading-[1] font-extrabold tracking-[-0.04em] text-ink"
                       >
                         {link.title}
                       </a>
@@ -193,7 +203,7 @@ const Navbar = () => {
                         to={link.to}
                         label={link.title}
                         onClick={() => setToggle(false)}
-                        className="block text-[13vw] leading-[1] font-extrabold tracking-[-0.04em] text-accent"
+                        className="mt-3 block text-[11vw] leading-[1] font-extrabold tracking-[-0.04em] text-accent"
                       >
                         {link.title}
                       </TransitionLink>

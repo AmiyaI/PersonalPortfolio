@@ -29,15 +29,15 @@ const HeroText = () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
         let i = 0;
-        const cycle = gsap.timeline({ repeat: -1, delay: enterDelay + 2.4 });
+        const cycle = gsap.timeline({ repeat: -1, delay: enterDelay + 4 });
         roles.forEach(() => {
           cycle
             .to(role.current, {
-              duration: 1.1,
-              scrambleText: { text: roles[++i % roles.length], chars: "AMIYA01_/<>", speed: 0.6 },
+              duration: 1.6,
+              scrambleText: { text: roles[++i % roles.length], chars: "AMIYA01_/<>", speed: 0.4 },
               ease: "none",
             })
-            .to({}, { duration: 2.2 });
+            .to({}, { duration: 3.2 });
         });
       });
     },
@@ -75,7 +75,7 @@ const HeroText = () => {
           </span>
         </h1>
       </div>
-      <p className="hero-line relative mt-8 flex items-center gap-4 text-lg font-semibold tracking-[0.2em] text-night uppercase sm:text-2xl">
+      <p className="hero-line relative mt-8 flex items-center gap-4 text-lg font-semibold tracking-[0.2em] text-white uppercase sm:text-2xl">
         <span className="sr-only">Amiya Islam: {roles.join(", ")}</span>
         <span aria-hidden="true" className="h-px w-8 bg-current sm:w-12" />
         <span ref={role} aria-hidden="true" className="min-w-[16ch] whitespace-nowrap">

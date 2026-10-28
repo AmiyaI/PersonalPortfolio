@@ -55,9 +55,10 @@ const heroOptionsBase = {
         opacity: 8,
         mix: false,
       },
+      // Gentler than v1's 350/20: the logos follow the mouse lazily.
       parallax: {
-        force: 350,
-        smooth: 20,
+        force: 250,
+        smooth: 40,
       },
       repulse: {
         distance: 200,
@@ -96,7 +97,9 @@ const heroOptionsBase = {
       enable: true,
       random: false,
       size: false,
-      speed: 0.8,
+      // v1 used 0.8, but this engine runs at the display's refresh rate, so
+      // on a 120Hz screen 0.8 drifts visibly faster than the live site did.
+      speed: 0.4,
       outModes: {
         default: 'bounce',
       },
@@ -105,7 +108,7 @@ const heroOptionsBase = {
       limit: {
         value: 0,
       },
-      value: 30,
+      value: 34,
     },
 
     opacity: {
@@ -113,7 +116,7 @@ const heroOptionsBase = {
       animation: {
         count: 0,
         enable: true,
-        speed: 0.2,
+        speed: 0.1,
         decay: 0,
         sync: true,
         destroy: 'none',
@@ -121,15 +124,26 @@ const heroOptionsBase = {
       },
     },
 
+    // Half font glyphs (AWS, Docker, Linux, Python, React from Font Awesome
+    // Brands), half one-colour SVG marks the brand font doesn't have
+    // (Kubernetes, Terraform, OpenAI, Claude, Gemini; simple-icons, CC0, in
+    // public/particles). replaceColor paints each SVG in the particle's colour.
     shape: {
-      type: 'character',
+      type: ['character', 'image'],
       options: {
         character: [
-          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
-          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
-          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
-          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: [''], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: ['\uf375'], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: ['\uf395'], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: ['\uf17c'], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: ['\uf3e2'], weight: '400' },
+          { fill: true, font: 'Font Awesome 6 Brands', style: '', value: ['\uf41b'], weight: '400' },
         ],
+        image: ['kubernetes', 'terraform', 'openai', 'claude', 'googlegemini'].map((name) => ({
+          src: `/particles/${name}.svg`,
+          width: 24,
+          height: 24,
+          replaceColor: true,
+        })),
       },
     },
 
@@ -140,7 +154,7 @@ const heroOptionsBase = {
       animation: {
         count: 0,
         enable: true,
-        speed: 0.2,
+        speed: 0.1,
         decay: 0,
         sync: true,
         destroy: 'none',
