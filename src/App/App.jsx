@@ -6,7 +6,7 @@
 */
 
 import { lazy, Suspense, useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import NavBar from "../Components/nav/NavBar";
 import Footer from "../Components/Footer";
 import Cursor from "../Components/motion/Cursor";
@@ -59,8 +59,12 @@ const TITLES = {
   "/ai-slop": "AI Slop · Amiya Islam",
 };
 
+// Amplify answers /studio with a redirect to /studio/. Drop the trailing slash
+// so titles, the nav highlight and every pathname check see one spelling.
+const trimSlash = (path) => (path.length > 1 && path.endsWith("/") ? path.replace(/\/+$/, "") : path);
+
 function App() {
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
 
   // Cabinet Grotesk arrives after first paint and changes section heights.
   useEffect(() => {
@@ -73,6 +77,10 @@ function App() {
     const id = requestAnimationFrame(() => ScrollTrigger.refresh());
     return () => cancelAnimationFrame(id);
   }, [pathname]);
+
+  if (trimSlash(pathname) !== pathname) {
+    return <Navigate to={`${trimSlash(pathname)}${search}${hash}`} replace />;
+  }
 
   return (
     <>
