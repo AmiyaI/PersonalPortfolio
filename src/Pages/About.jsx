@@ -6,8 +6,8 @@
 */
 
 import { useRef } from "react";
-import SectionTitle from "../Components/SectionTitle";
-import { memoji, introduction, stats } from "../Constants/constants";
+import SectionHeader from "../Components/SectionHeader";
+import { memoji, introduction } from "../Constants/constants";
 import ImageSlider from "../Components/elements/ImageSlider";
 import { gsap, useGSAP, SplitText, MOTION_OK } from "../lib/gsap";
 
@@ -35,19 +35,6 @@ const About = () => {
             ),
         });
 
-        gsap.utils.toArray(".stat-value").forEach((el) => {
-          const counter = { n: 0 };
-          gsap.to(counter, {
-            n: Number(el.dataset.value),
-            duration: 1.8,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 90%", once: true },
-            onUpdate: () => {
-              el.textContent = Math.round(counter.n).toLocaleString();
-            },
-          });
-        });
-
         gsap.from(".about-part", {
           y: 28,
           stagger: 0.08,
@@ -61,29 +48,12 @@ const About = () => {
   );
 
   return (
-    <section ref={scope} id="about" className="field-ground w-full overflow-hidden px-5 py-16 sm:px-8 lg:py-20">
-      <div className="flex max-w-3xl flex-col gap-3">
-        <SectionTitle title="About me" />
-        <p className="about-statement max-w-[40ch] text-lead leading-snug text-ink">
-          {introduction.statement}
-        </p>
-      </div>
+    <section ref={scope} id="about" className="field-ground w-full overflow-hidden px-5 py-12 sm:px-8 lg:py-16">
+      <SectionHeader kicker="Introduction" title="About me" layout="left" textClassName="about-statement text-lead! leading-snug">
+        {introduction.statement}
+      </SectionHeader>
 
-      <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 lg:mt-16 lg:flex lg:justify-between">
-        {stats.map((stat) => (
-          <div key={stat.label} className="flex flex-col">
-            <dd className="order-1 text-num leading-none font-medium tabular-nums text-ink">
-              <span className="stat-value" data-value={stat.value}>
-                {stat.value.toLocaleString()}
-              </span>
-              <span className="text-accent">{stat.suffix}</span>
-            </dd>
-            <dt className="order-2 mt-2 max-w-[22ch] text-small text-muted">{stat.label}</dt>
-          </div>
-        ))}
-      </dl>
-
-      <div className="about-story mt-12 grid grid-cols-1 items-center gap-10 lg:mt-16 lg:grid-cols-12">
+      <div className="about-story mt-10 grid grid-cols-1 items-center gap-10 lg:mt-12 lg:grid-cols-12">
         <div className="flex flex-col gap-5 text-body text-ink lg:col-span-6">
           <p className="about-part text-lead font-medium text-accent">{introduction.text[0]}</p>
           <p className="about-part">{introduction.text[1]}</p>

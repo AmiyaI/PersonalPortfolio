@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import { AnimatePresence, motion } from "motion/react";
-import { navLinks, pageLinks, resumeLink } from "../../Constants/constants";
+import { navLinks, pageLinks } from "../../Constants/constants";
 import { logo, menu, close } from "../../assets";
 import { TransitionLink, usePageTransition } from "../motion/PageTransition";
 import Magnetic from "../motion/Magnetic";
@@ -130,13 +130,6 @@ const Navbar = () => {
               </li>
             ))}
             <li>
-              <Magnetic strength={0.25}>
-                <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="nav-link pb-1">
-                  Résumé
-                </a>
-              </Magnetic>
-            </li>
-            <li>
               <Magnetic strength={0.3}>
                 <a
                   href="/#contact"
@@ -178,7 +171,6 @@ const Navbar = () => {
               {[
                 ...navLinks.map((l) => ({ ...l, kind: "anchor" })),
                 ...pageLinks.map((l) => ({ ...l, kind: "page" })),
-                { kind: "file", to: resumeLink, title: "Résumé" },
               ].map(
                 (link, i) => (
                   <motion.li
@@ -188,17 +180,7 @@ const Navbar = () => {
                     exit={{ y: 20, opacity: 0, transition: { duration: 0.2 } }}
                     className="overflow-hidden"
                   >
-                    {link.kind === "file" ? (
-                      <a
-                        href={link.to}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setToggle(false)}
-                        className="block text-[13vw] leading-[1] font-extrabold tracking-[-0.04em] text-accent"
-                      >
-                        {link.title}
-                      </a>
-                    ) : link.kind === "anchor" ? (
+                    {link.kind === "anchor" ? (
                       <a
                         href={`/#${link.id}`}
                         onClick={jump(link.id)}

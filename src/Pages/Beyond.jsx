@@ -9,7 +9,7 @@
 // to the AI Slop experiments) and the shirts. Studio previews its film on hover.
 
 import { useRef } from "react";
-import SectionTitle from "../Components/SectionTitle";
+import SectionHeader from "../Components/SectionHeader";
 import { TransitionLink } from "../Components/motion/PageTransition";
 import { gsap, useGSAP, MOTION_OK, EASE, START } from "../lib/gsap";
 import media from "../Constants/media.json";
@@ -51,14 +51,11 @@ const Beyond = () => {
   };
 
   return (
-    <section ref={scope} id="beyond" className="field-ground w-full px-5 py-16 sm:px-8 lg:py-20">
+    <section ref={scope} id="beyond" className="field-ground w-full px-5 py-12 sm:px-8 lg:py-16">
       <div>
-        <div className="mb-10 flex max-w-3xl flex-col gap-3">
-          <SectionTitle title="Beyond the code" />
-          <p className="max-w-[52ch] text-body text-ink">
-            I also direct films and ads with AI, and I design shirts.
-          </p>
-        </div>
+        <SectionHeader kicker="Creative side" title="Beyond the code" layout="split" className="mb-8 lg:mb-10">
+          I also direct films and ads with AI, and I design shirts.
+        </SectionHeader>
         <div className="doors grid grid-cols-1 gap-6 md:grid-cols-2">
           <TransitionLink
             to="/studio"

@@ -9,7 +9,7 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import SectionTitle from "../Components/SectionTitle";
+import SectionHeader from "../Components/SectionHeader";
 import { hobbies } from "../Constants/constants";
 import { hasFinePointer } from "../lib/gsap";
 
@@ -43,14 +43,11 @@ const Hobbies = () => {
   }, [canDrag]);
 
   return (
-    <section id="hobbies" className="w-full field-orchid px-5 py-16 text-night sm:px-8 lg:py-20">
+    <section id="hobbies" className="w-full field-orchid px-5 py-12 text-night sm:px-8 lg:py-16">
       <div>
-        <div className="mb-10 flex max-w-3xl flex-col gap-3">
-          <SectionTitle title="Off the clock" />
-          <p className="max-w-[52ch] text-body">
-            {canDrag ? "What keeps me sane outside of work. Go ahead, drag them around." : "What keeps me sane outside of work."}
-          </p>
-        </div>
+        <SectionHeader kicker="Outside of work" title="Off the clock" layout="left" className="mb-8 lg:mb-10">
+          {canDrag ? "What keeps me sane outside of work. Go ahead, drag them around." : "What keeps me sane outside of work."}
+        </SectionHeader>
         <div ref={board} className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {hobbies.map((hobby, i) => (
             <motion.div

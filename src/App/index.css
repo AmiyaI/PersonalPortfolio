@@ -46,13 +46,13 @@
   /* The type ladder: every size on the main page is one of these. */
   --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
   --text-compact: 1rem;
-  --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-  --text-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-  --text-title: clamp(1.5rem, 1.2rem + 0.8vw, 2rem);
-  --text-quote: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
-  --text-num: clamp(2.25rem, 1.6rem + 2vw, 3.5rem);
-  --text-head: clamp(2.25rem, 1.4rem + 3vw, 4.25rem);
-  --text-mega: clamp(2.5rem, 6.5vw, 6.5rem);
+  --text-body: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem);
+  --text-lead: clamp(1.125rem, 1.02rem + 0.4vw, 1.375rem);
+  --text-title: clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem);
+  --text-quote: clamp(1.25rem, 1rem + 1vw, 2rem);
+  --text-num: clamp(1.875rem, 1.4rem + 1.5vw, 2.75rem);
+  --text-head: clamp(2rem, 1.4rem + 2vw, 3.25rem);
+  --text-mega: clamp(2.25rem, 5vw, 5rem);
 }
 
 /* Tailwind 4's preflight differs from v3 in a few places v1 relied on. */
@@ -316,11 +316,22 @@ html.lenis * {
    melts into a close neighbour along the same 160deg angle. */
 /* taste-skill-ignore-start: the owner chose these gradients */
 .hero-purple { background: linear-gradient(160deg, #9a72c8 0%, #a674c4 45%, #bd70b1 100%); } /* taste-skill-ignore */
+/* Coloured fields fade in from and out to the light ground, so sections
+   blend into each other instead of meeting at a hard edge. */
 .field-ground { background: linear-gradient(160deg, #fbf8ff 0%, #f4eefd 55%, #f8eff9 100%); } /* taste-skill-ignore */
-.field-indigo { background: linear-gradient(160deg, #d6d1fd 0%, #c5bdf8 50%, #d8c6f6 100%); } /* taste-skill-ignore */
-.field-teal { background: linear-gradient(160deg, #c9eef4 0%, #c0e1f0 50%, #cbd5f7 100%); } /* taste-skill-ignore */
-.field-orchid { background: linear-gradient(160deg, #eed3f0 0%, #e8c5e4 50%, #f7cfdb 100%); } /* taste-skill-ignore */
-.field-light { background: linear-gradient(160deg, #ffe9d9 0%, #fbdfe2 55%, #f3dbf0 100%); } /* taste-skill-ignore */
+.field-indigo { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem, transparent calc(100% - 7rem), #f7f2fd 100%), linear-gradient(160deg, #d6d1fd 0%, #c5bdf8 50%, #d8c6f6 100%); } /* taste-skill-ignore */
+.field-teal { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem, transparent calc(100% - 7rem), #f7f2fd 100%), linear-gradient(160deg, #c9eef4 0%, #c0e1f0 50%, #cbd5f7 100%); } /* taste-skill-ignore */
+.field-orchid { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem, transparent calc(100% - 7rem), #f7f2fd 100%), linear-gradient(160deg, #eed3f0 0%, #e8c5e4 50%, #f7cfdb 100%); } /* taste-skill-ignore */
+.field-light { background: linear-gradient(180deg, #f7f2fd 0, transparent 7rem), linear-gradient(160deg, #ffe9d9 0%, #fbdfe2 55%, #f3dbf0 100%); } /* taste-skill-ignore */
+/* The closing section: a soft conic sweep (violet, orange, sky, indigo) that
+   fades in from the light ground above and settles into the footer's indigo. */
+.field-aurora {
+  background:
+    linear-gradient(180deg, #f7f2fd 0, rgba(247, 242, 253, 0.6) 5rem, rgba(247, 242, 253, 0) 15rem),
+    linear-gradient(180deg, rgba(47, 42, 138, 0) calc(100% - 9rem), #2f2a8a 100%),
+    conic-gradient(at 56% 46%, #b06ab8 0deg, #e8845a 38deg, #b39f92 72deg, #7cc2dc 105deg, #5285cb 155deg, #4337b4 210deg, #6a4ae8 270deg, #8656e4 320deg, #b06ab8 360deg);
+} /* taste-skill-ignore */
+.footer-ground { background: #2f2a8a; } /* taste-skill-ignore */
 .field-deep { background: linear-gradient(160deg, #3d2d70 0%, #2d2152 55%, #3b2462 100%); } /* taste-skill-ignore */
 /* taste-skill-ignore-end */
 
@@ -328,4 +339,14 @@ html.lenis * {
 .edge-fade {
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); /* taste-skill-ignore: an edge mask, not a fill */
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); /* taste-skill-ignore */
+}
+
+/* The hero scroll pill's dot, as in v1: down 24px and back every 2s. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-scroll-dot {
+    animation: hero-scroll 2s ease-in-out infinite;
+  }
+}
+@keyframes hero-scroll {
+  50% { transform: translateY(24px); }
 }

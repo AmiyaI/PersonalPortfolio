@@ -5,7 +5,7 @@
      Last modification: 10/25/2026
 */
 
-import { phishai, portfolio, weatherApp, avatar } from '../assets';
+import { phishai, portfolio, weatherApp, avatar, techIcons } from '../assets';
 
 const socials = [
   { label: 'GitHub', href: 'https://github.com/AmiyaI' },
@@ -13,26 +13,28 @@ const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amiya-islam' },
 ];
 
+// The hero's role line scrambles through these in order.
+const roles = [
+  'Founding Engineer',
+  'AI Engineer',
+  'Product Builder',
+  'Cloud & DevOps Engineer',
+  'AI Enthusiast',
+];
+
 const introduction = {
   text: [
     "Hey, I'm Amiya. Thanks for stopping by :)",
 
-    "I'm the Founding Engineer at SWA AI, an early-stage startup founded by former Nike executives. I build the multi-agent AI platform our customers use inside Slack, Microsoft Teams, SMS, web and mobile.",
+    "I'm a founding engineer who loves building with AI, from the agents themselves to the products people use and the cloud they run on.",
 
-    "I came to software from construction engineering at Virginia Tech, picked up DevOps, Kubernetes and a stack of AWS certifications along the way, and now ship everything from billing systems to autonomous agents.",
+    "I came to software from construction engineering at Virginia Tech, picked up DevOps, Kubernetes and a stack of cloud certifications along the way, and I've been hooked on AI since ChatGPT first launched.",
 
-    "Off the clock I'm lifting, outside, at the piano, or making AI films and experiments. Some are serious. Some are pure slop.",
+    "Off the clock you'll find me working on my fitness, out in nature, trading or playing the piano. I'm always up for building something great with people who care about it as much as I do. Thanks for visiting!",
   ],
   statement:
     "I build AI agents that do real work, and the cloud infrastructure that keeps them fast, safe and cheap to run.",
 };
-
-const stats = [
-  { value: 1000, suffix: '+', label: 'production changes shipped in 5 months' },
-  { value: 35, suffix: '', label: 'codebases touched' },
-  { value: 121, suffix: '', label: 'business apps agents can connect to' },
-  { value: 9, suffix: '', label: 'cloud & security certifications' },
-];
 
 export const navLinks = [
   { id: 'about', title: 'About' },
@@ -48,61 +50,20 @@ export const pageLinks = [
   { to: '/studio', title: 'Studio' },
 ];
 
-// A copy of the resume without the phone number, served from public/.
-export const resumeLink = '/Amiya_Islam_Resume.pdf';
-
 const experience = [
   {
     company: 'SWA AI',
     role: 'Founding Engineer',
     period: 'Feb 2025 – Present',
-    chapter: 'AI agents & platform',
+    chapter: 'Building an enterprise AI platform from zero',
     points: [
-      'Built a production multi-agent AI platform used in Slack, Microsoft Teams, SMS, web and mobile, powered by OpenAI, Claude, Gemini, Grok, Perplexity and DeepSeek.',
-      'Launched a marketplace that connects 121 business apps to agents in one click, with lazy tool loading so agents only load what a request needs.',
-      'Built the autonomous scheduler end to end on AWS serverless: Lambda, DynamoDB, EventBridge and SQS.',
-      'Shipped a no-code agent builder: pick instructions, model, knowledge and per-app permissions.',
+      'Built a production multi-agent AI platform that teams use inside Slack, Microsoft Teams, SMS, web and mobile, on OpenAI, Claude, Gemini and more.',
+      'Built the enterprise controls: spend limits per person and team, enforced on every message, and model access controls at every level.',
+      'Built billing end to end and led the move from Chargebee to Stripe, with usage-based overage.',
+      'Redesigned the data model for multi-tenant orgs across 9+ services and migrated live data with zero downtime.',
+      'Manage 2 engineers and own production reliability: infrastructure as code, incidents and security audits.',
     ],
-    tags: ['Multi-agent', 'RAG', 'AWS serverless'],
-  },
-  {
-    company: 'SWA AI',
-    role: 'Founding Engineer',
-    period: 'Feb 2025 – Present',
-    chapter: 'Enterprise, billing & data',
-    points: [
-      'Built AI governance: per-person and per-team spend limits enforced on every message, plus model access controls at every level.',
-      'Built billing end to end and led the move from Chargebee to Stripe, with usage-based overage and 300+ tests.',
-      'Consolidated login across 4 web apps onto Auth0 with Google, Slack and Apple sign-in.',
-      'Redesigned the schema across 9+ services for multi-tenant orgs and migrated live data with zero downtime.',
-    ],
-    tags: ['Stripe', 'Auth0', 'Postgres'],
-  },
-  {
-    company: 'SWA AI',
-    role: 'Founding Engineer',
-    period: 'Feb 2025 – Present',
-    chapter: 'Products & channels',
-    points: [
-      'Built and launched Swa Solo, a standalone AI chat product, in about one week, frontend and backend.',
-      'Architected three web portals: customer admin, internal admin and a reseller partner portal.',
-      'Built the SMS and WhatsApp assistant on Twilio with carrier compliance, plus a Telegram channel.',
-      'Co-built a partner reseller program with wholesale pricing, revenue sharing and automated invoicing.',
-    ],
-    tags: ['Next.js', 'Twilio', 'Product'],
-  },
-  {
-    company: 'SWA AI',
-    role: 'Founding Engineer',
-    period: 'Feb 2025 – Present',
-    chapter: 'Leadership & operations',
-    points: [
-      'Manage 2 engineers in India across time zones and work daily with the CEO, CTO and COO.',
-      'Helped design an AI pull-request reviewer that checks every PR across 30+ repos with specialist reviewers.',
-      'Own production reliability: a pre-production environment in infrastructure as code, incidents and security audits.',
-      'Lead company-wide AI tool rollout and the NVIDIA Inception program.',
-    ],
-    tags: ['Leadership', 'IaC', 'AI tooling'],
+    tags: ['Multi-agent', 'AWS serverless', 'Stripe'],
   },
   {
     company: 'DPR Construction',
@@ -200,14 +161,23 @@ const memoji = {
 };
 
 // The poster list in Skills: one giant word per line, one fact beside it.
-const skillLines = [
-  { word: 'ai agents', fact: 'OpenAI, Claude, Gemini, Grok, RAG' },
-  { word: 'aws', fact: '5 certifications, DevOps Pro' },
-  { word: 'kubernetes', fact: 'Certified administrator' },
-  { word: 'terraform', fact: 'Infrastructure as code, certified' },
-  { word: 'typescript', fact: 'Next.js, React, Node' },
-  { word: 'python', fact: 'Services and automation' },
-  { word: 'security', fact: 'Security+, AWS Specialty' },
+// The skills grid: a brand logo (devicon, MIT, in assets/tech) or a drawn
+// icon, the name, and the certification or track record behind it.
+const skills = [
+  { name: 'AI agents', icon: 'sparkle', fact: 'OpenAI, Claude, Gemini, RAG' },
+  { name: 'AWS', icon: techIcons.aws, fact: '5 certifications, DevOps Pro' },
+  { name: 'Kubernetes', icon: techIcons.kubernetes, fact: 'Certified administrator' },
+  { name: 'Terraform', icon: techIcons.terraform, fact: 'Certified associate' },
+  { name: 'Docker', icon: techIcons.docker, fact: 'Containerized services' },
+  { name: 'Linux', icon: techIcons.linux, fact: 'Certified sysadmin' },
+  { name: 'Python', icon: techIcons.python, fact: 'Services and automation' },
+  { name: 'TypeScript', icon: techIcons.typescript, fact: 'Front end to back end' },
+  { name: 'React', icon: techIcons.react, fact: 'Web apps and portals' },
+  { name: 'Next.js', icon: techIcons.nextjs, fact: 'Production web apps' },
+  { name: 'Node.js', icon: techIcons.nodejs, fact: 'APIs and agent services' },
+  { name: 'PostgreSQL', icon: techIcons.postgresql, fact: 'Multi-tenant data' },
+  { name: 'CI/CD', icon: techIcons.githubactions, fact: 'GitHub Actions, Jenkins' },
+  { name: 'Security', icon: 'shield', fact: 'Security+, AWS Specialty' },
 ];
 
 // Early to generative AI: how I've worked with it since GPT-3.5.
@@ -251,13 +221,13 @@ const hobbies = [
 ];
 
 export {
+  roles,
   introduction,
-  stats,
   experience,
   certifications,
   projects,
   memoji,
-  skillLines,
+  skills,
   hobbies,
   hotTakes,
   aiJourney,

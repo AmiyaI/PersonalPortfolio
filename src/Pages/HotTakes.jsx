@@ -10,7 +10,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import SectionTitle from "../Components/SectionTitle";
+import SectionHeader from "../Components/SectionHeader";
 import { hotTakes } from "../Constants/constants";
 
 const HotTakes = () => {
@@ -32,17 +32,16 @@ const HotTakes = () => {
   return (
     <section
       id="takes"
-      className="field-ground w-full px-5 py-16 sm:px-8 lg:py-20"
+      className="field-ground w-full px-5 py-12 sm:px-8 lg:py-16"
       onKeyDown={(e) => {
         if (!many || e.target.closest("a")) return;
         if (e.key === "ArrowRight") step(1);
         if (e.key === "ArrowLeft") step(-1);
       }}
     >
-      <div className="mb-10 flex max-w-3xl flex-col gap-3">
-        <SectionTitle title="Hot takes" />
-        <p className="max-w-[52ch] text-body">Opinions I'll defend at dinner. Disagree with me, I dare you.</p>
-      </div>
+      <SectionHeader kicker="Opinions" title="Hot takes" layout="center" className="mb-8 lg:mb-10">
+        Opinions I'll defend at dinner. Disagree with me, I dare you.
+      </SectionHeader>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
         <div className="relative min-h-[16rem] overflow-hidden sm:min-h-[12rem] lg:col-span-9" aria-live="polite">

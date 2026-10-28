@@ -5,9 +5,8 @@
      Last modification: 10/25/2026
 */
 
-// The page's one signature move: an edge-to-edge line of the certifications,
-// drifting at a constant speed. Scrolling speeds it up and flips it with your
-// direction; hovering pauses it.
+// A quiet line of the certifications under the skills grid, drifting slowly.
+// Scrolling nudges it along with your direction; hovering pauses it.
 
 import { useRef } from "react";
 import { certifications } from "../Constants/constants";
@@ -20,7 +19,7 @@ const CertTicker = () => {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        const loop = gsap.fromTo(".ticker-row", { xPercent: 0 }, { xPercent: -50, duration: 50, ease: "none", repeat: -1 });
+        const loop = gsap.fromTo(".ticker-row", { xPercent: 0 }, { xPercent: -50, duration: 45, ease: "none", repeat: -1 });
         let direction = 1;
         let hovering = false;
         ScrollTrigger.create({
@@ -30,7 +29,7 @@ const CertTicker = () => {
           onUpdate: (self) => {
             direction = self.direction;
             if (hovering) return;
-            const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 250, 8);
+            const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 900, 1.5);
             gsap.to(loop, { timeScale: boost * direction, duration: 0.2, overwrite: true });
             gsap.to(loop, { timeScale: direction, duration: 1.2, delay: 0.2, ease: "power2.out", overwrite: false });
           },
@@ -56,14 +55,15 @@ const CertTicker = () => {
   );
 
   return (
-    <div ref={scope} className="edge-fade overflow-hidden field-deep py-10 text-mega leading-none font-extrabold tracking-[-0.04em] lg:py-12">
+    <div ref={scope} className="edge-fade mx-auto mt-10 max-w-6xl overflow-hidden border-y border-night/10 py-4 text-lead leading-none font-semibold tracking-[-0.01em] text-night/80">
       <p className="sr-only">Certified in: {certifications.join(", ")}.</p>
       <div className="ticker-row flex w-max whitespace-nowrap" aria-hidden="true">
         {[0, 1].map((copy) => (
           <span key={copy} className="flex shrink-0 items-center">
-            {certifications.map((item, i) => (
-              <span key={item} className={`pr-[0.6em] ${i % 2 ? "text-orange" : "text-white"}`}>
+            {certifications.map((item) => (
+              <span key={item} className="flex items-center">
                 {item}
+                <span aria-hidden="true" className="px-[0.9em] text-accent">✦</span>
               </span>
             ))}
           </span>

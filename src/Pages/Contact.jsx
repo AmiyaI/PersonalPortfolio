@@ -5,12 +5,12 @@
      Last modification: 10/25/2026
 */
 
-// The page inverts: light ground, the email address set as display type,
-// with the original contact form beside it for anyone who prefers a form.
+// The page closes on a colour sweep that fades in from the light ground:
+// a short note and the email on the left, the form on a frosted card.
 
 import { useRef } from "react";
 import ContactForm from "../Components/ContactForm";
-import { resumeLink } from "../Constants/constants";
+import SectionHeader from "../Components/SectionHeader";
 import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 
 const EMAIL = "iamiya@vt.edu";
@@ -35,25 +35,20 @@ const Contact = () => {
   );
 
   return (
-    <section ref={scope} id="contact" className="w-full field-light px-5 py-16 text-night sm:px-8 lg:py-20">
-      <h2 className="contact-part max-w-[30ch] text-lead font-medium">
-        Building with AI agents, or need a hand with the cloud underneath? Write to me.
-      </h2>
-      <a
-        href={`mailto:${EMAIL}`}
-        className="contact-part mt-10 block w-fit text-mega leading-[0.95] font-extrabold tracking-[-0.045em] transition-colors duration-300 hover:text-indigo"
-      >
-        {EMAIL}
-      </a>
-      <div className="mt-12 grid grid-cols-1 gap-14 lg:grid-cols-12">
-        <div className="contact-part flex flex-col gap-4 text-body lg:col-span-4">
-          <p>Based in Miami, FL. Open to relocation.</p>
-          <p className="text-muted">I usually reply within a day or two.</p>
-          <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="nav-link self-start pb-0.5 font-semibold text-accent">
-            Download my résumé (PDF) ↓
+    <section ref={scope} id="contact" className="field-aurora w-full px-5 pt-32 pb-24 text-white sm:px-8 lg:pt-40 lg:pb-28">
+      <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="flex flex-col gap-6 lg:col-span-5">
+          <SectionHeader kicker="Get in touch" title="Let's talk" tone="light">
+            Have an idea, a question, or just want to say hi? Write to me. I usually reply within a day or two.
+          </SectionHeader>
+          <a
+            href={`mailto:${EMAIL}`}
+            className="contact-part nav-link w-fit pb-1 text-title font-extrabold tracking-[-0.02em]"
+          >
+            {EMAIL}
           </a>
         </div>
-        <div className="contact-part lg:col-span-7 lg:col-start-6">
+        <div className="contact-part rounded-3xl bg-white/70 p-6 shadow-[0_30px_80px_-30px_rgba(30,20,90,0.6)] backdrop-blur-md sm:p-8 lg:col-span-6 lg:col-start-7">
           <ContactForm />
         </div>
       </div>

@@ -11,10 +11,12 @@ import HeroText from "../Components/HeroText";
 const HeroParticles = lazy(() => import("../Components/Particles/HeroParticles"));
 import { gsap, useGSAP, MOTION_OK, EASE } from "../lib/gsap";
 import { useEnterDelay } from "../Components/motion/PageTransition";
+import { scrollToTarget, useLenis } from "../Components/motion/SmoothScroll";
 
 const Hero = () => {
   const scope = useRef(null);
   const enterDelay = useEnterDelay();
+  const lenis = useLenis();
 
   // One entrance timeline: "Who's", then the name, then the sentence and
   // button, while the particles fade up behind. Waits briefly for the Mario
@@ -61,6 +63,19 @@ const Hero = () => {
         </Suspense>
       </div>
       <HeroText />
+      {/* v1's scroll pill: a dot that keeps dropping toward the next section. */}
+      <a
+        href="#about"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToTarget(lenis, "#about");
+        }}
+        aria-label="Scroll to About"
+        data-cursor="Scroll"
+        className="hero-line absolute bottom-8 left-1/2 flex h-16 w-9 -translate-x-1/2 items-start justify-center rounded-3xl border-4 border-white/85 p-2 sm:bottom-10"
+      >
+        <span className="hero-scroll-dot h-3 w-3 rounded-full bg-white/85" />
+      </a>
     </section>
   );
 };

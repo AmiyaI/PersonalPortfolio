@@ -10,7 +10,7 @@
 // when the bar reaches it.
 
 import { useRef } from "react";
-import SectionTitle from "../Components/SectionTitle";
+import SectionHeader from "../Components/SectionHeader";
 import { aiJourney } from "../Constants/constants";
 import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 
@@ -34,13 +34,10 @@ const EarlyAI = () => {
   );
 
   return (
-    <section ref={scope} id="early-ai" className="field-ground w-full px-5 py-16 sm:px-8 lg:py-20">
-      <div className="mb-12 flex max-w-3xl flex-col gap-3">
-        <SectionTitle title="Early to generative AI" />
-        <p className="max-w-[52ch] text-body">
-          I started on ChatGPT when it launched with GPT-3.5, and I never went back.
-        </p>
-      </div>
+    <section ref={scope} id="early-ai" className="field-ground w-full px-5 py-12 sm:px-8 lg:py-16">
+      <SectionHeader kicker="Since day one" title="Early to generative AI" layout="center" className="mb-8 lg:mb-10">
+        I started on ChatGPT when it launched with GPT-3.5, and I never went back.
+      </SectionHeader>
 
       <div className="journey">
         <div className="mb-8 hidden h-1.5 bg-white lg:block" aria-hidden="true">
