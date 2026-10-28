@@ -10,6 +10,7 @@ import { Route, Routes, useLocation } from "react-router";
 import NavBar from "../Components/nav/NavBar";
 import Footer from "../Components/Footer";
 import Cursor from "../Components/motion/Cursor";
+import SoundToggle from "../Components/SoundToggle";
 import { ScrollTrigger } from "../lib/gsap";
 import { routeLoaders } from "./routes";
 import { TransitionLink } from "../Components/motion/PageTransition";
@@ -76,6 +77,7 @@ function App() {
   return (
     <>
       <Cursor />
+      <SoundToggle />
       <NavBar />
       <Suspense fallback={<div className="h-[100svh]" />}>
         <Routes>

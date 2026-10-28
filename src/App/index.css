@@ -373,3 +373,15 @@ html.lenis * {
 .aurora-line {
   background-image: linear-gradient(90deg, #6a4ae8, #e8845a 55%, #7cc2dc);
 }
+
+/* The music button's equalizer: four bars bouncing out of step. */
+.sound-bar {
+  height: 40%;
+  animation: sound-bar 0.9s ease-in-out infinite alternate;
+}
+@keyframes sound-bar {
+  to { height: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sound-bar { animation: none; height: 70%; }
+}
