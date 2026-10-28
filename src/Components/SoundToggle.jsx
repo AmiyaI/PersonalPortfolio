@@ -66,7 +66,10 @@ const SoundToggle = () => {
       play().catch(() => {});
       removeGestures();
     };
-    const events = ["pointerdown", "keydown", "touchstart"];
+    // The events browsers accept as permission to start sound: a mouse press,
+    // the end of a touch (touchstart does not count on phones), a click or a key.
+    // Scrolling never counts.
+    const events = ["pointerdown", "pointerup", "touchend", "click", "keydown"];
     const removeGestures = () => events.forEach((type) => window.removeEventListener(type, onGesture));
 
     play().catch(() => {
