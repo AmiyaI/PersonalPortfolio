@@ -8,7 +8,8 @@
 import { phishai, portfolio, weatherApp, avatar, techIcons } from '../assets';
 
 const socials = [
-  { label: 'GitHub', href: 'https://github.com/AmiyaI' },
+  // Personal projects; the work account (AmiyaSWA) is the contribution graph in Experience.
+  { label: 'GitHub', href: 'https://github.com/AmiyaI', title: 'Personal GitHub (AmiyaI)' },
   { label: 'Email', href: 'mailto:iamiya@vt.edu' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amiya-islam' },
 ];

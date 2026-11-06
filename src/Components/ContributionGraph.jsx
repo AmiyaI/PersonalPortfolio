@@ -78,6 +78,7 @@ const ContributionGraph = () => {
     >
       <figcaption className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
+          <p className="mb-2 text-small font-semibold tracking-[0.14em] text-accent uppercase">Work GitHub</p>
           <p className="text-title leading-none font-extrabold tracking-[-0.03em]">
             {format(calendar.total)} contributions in the last year
           </p>
@@ -85,14 +86,15 @@ const ContributionGraph = () => {
             {format(recent)} of them in the last six months, once agentic coding became how I work.
           </p>
         </div>
-        <a
-          href={`https://github.com/${calendar.user}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nav-link shrink-0 self-start pb-0.5 text-small font-semibold text-accent sm:self-end"
-        >
-          github.com/{calendar.user} ↗
-        </a>
+        {/* Work and personal accounts, labelled, since the site links to both. */}
+        <div className="flex shrink-0 flex-col gap-1 text-small sm:items-end">
+          <a href={`https://github.com/${calendar.user}`} target="_blank" rel="noopener noreferrer" className="nav-link self-start pb-0.5 font-semibold text-accent sm:self-end">
+            Work: github.com/{calendar.user} ↗
+          </a>
+          <a href="https://github.com/AmiyaI" target="_blank" rel="noopener noreferrer" className="nav-link self-start pb-0.5 font-semibold text-muted sm:self-end">
+            Personal: github.com/AmiyaI ↗
+          </a>
+        </div>
       </figcaption>
 
       <div ref={scroller} className="mt-6 overflow-x-auto pb-1">

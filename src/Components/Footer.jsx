@@ -27,7 +27,8 @@ const Footer = () => {
                   href={social.href}
                   target={social.href.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  aria-label={social.label}
+                  aria-label={social.title ?? social.label}
+                  title={social.title ?? social.label}
                   data-cursor={social.label}
                   className="block text-white/85 transition-[color,translate] duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] hover:-translate-y-1 hover:text-white"
                 >
