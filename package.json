@@ -7,6 +7,7 @@
   "author": "Amiya Islam",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/fetch-contributions.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },

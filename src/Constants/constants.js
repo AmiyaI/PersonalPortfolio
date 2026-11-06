@@ -85,16 +85,40 @@ const experience = [
   },
   {
     company: 'Virginia Tech',
-    role: 'B.S., DevOps Certificate & M.S. (paused)',
-    period: '2019 – Present',
-    chapter: 'Education & first team',
+    role: 'Supervisor, Student Affairs',
+    period: 'May – Aug 2019',
+    chapter: 'Leading a team of 30',
     points: [
-      'B.S. in Construction Engineering and Management (2023).',
-      'Certificate in DevOps Engineering with a 4.0 GPA (2023).',
-      'M.S. in Information Technology, paused to build full time.',
-      'Supervised a campus operations team of 30 and tripled its efficiency.',
+      'Directed and trained a team of 30 in a campus operations role.',
+      'Tripled the team\'s efficiency by revamping how the work was run.',
+      'Owned scheduling, performance and coordination across campus departments.',
     ],
-    tags: ['Education', 'Leadership'],
+    tags: ['Leadership', 'Operations'],
+  },
+];
+
+// Education sits in its own tab of the Experience section.
+const education = [
+  {
+    school: 'Virginia Tech',
+    degree: 'M.S. in Information Technology',
+    period: '2025 – paused',
+    note: 'Paused to build full time.',
+    points: ['Programming, networking, system design, cybersecurity, AI and ML.'],
+  },
+  {
+    school: 'Virginia Tech',
+    degree: 'Certificate in DevOps Engineering',
+    period: '2023',
+    note: '4.0 GPA',
+    points: ['Linux, networking, Python, AWS, CI/CD, Docker and Jenkins.'],
+  },
+  {
+    school: 'Virginia Tech',
+    degree: 'B.S. in Construction Engineering and Management',
+    period: '2019 – 2023',
+    note: 'Where I learned to ship on a schedule.',
+    points: ['Project management, estimating, scheduling and structural analysis.'],
   },
 ];
 
@@ -283,6 +307,7 @@ const hobbies = [
 
 export {
   articles,
+  education,
   roles,
   introduction,
   experience,
