@@ -10,6 +10,10 @@ import { projects } from "../Constants/constants";
 import Tilt from "./elements/Tilt";
 import { gsap, useGSAP, MOTION_OK, EASE, DUR, START } from "../lib/gsap";
 import { TransitionLink } from "./motion/PageTransition";
+import { SHOW_BEYOND } from "../lib/features";
+
+// Links into Studio wait until Beyond launches (lib/features.js).
+const live = (href) => (href && (SHOW_BEYOND || !href.startsWith("/studio")) ? href : undefined);
 
 // Internal paths ("/studio") get a page transition; everything else opens in a new tab.
 const SmartLink = ({ href, children, ...rest }) =>
@@ -24,7 +28,8 @@ const SmartLink = ({ href, children, ...rest }) =>
   );
 
 const ProjectCard = ({ project }) => {
-  const { name, description, tags, image, imageAlt, source_code_link, demo_link, demo_label } = project;
+  const { name, description, tags, image, imageAlt, source_code_link, demo_label } = project;
+  const demo_link = live(project.demo_link);
   const href = demo_link ?? source_code_link;
   const img = (
     <img

@@ -13,6 +13,8 @@ import Cursor from "../Components/motion/Cursor";
 import SoundToggle from "../Components/SoundToggle";
 import { ScrollTrigger } from "../lib/gsap";
 import { routeLoaders } from "./routes";
+import { SHOW_BEYOND } from "../lib/features";
+import ComingSoon from "../Pages/ComingSoon";
 import { TransitionLink } from "../Components/motion/PageTransition";
 import Hero from "../Pages/Hero";
 import About from "../Pages/About";
@@ -52,11 +54,16 @@ const NotFound = () => (
   </main>
 );
 
-const TITLES = {
+const TITLES = SHOW_BEYOND ? {
   "/": "Amiya Islam · AI and cloud engineer",
   "/beyond": "Beyond · Amiya Islam",
   "/studio": "Studio · Amiya Islam",
   "/ai-slop": "AI Slop · Amiya Islam",
+} : {
+  "/": "Amiya Islam · AI and cloud engineer",
+  "/beyond": "Coming soon · Amiya Islam",
+  "/studio": "Coming soon · Amiya Islam",
+  "/ai-slop": "Coming soon · Amiya Islam",
 };
 
 // Amplify answers /studio with a redirect to /studio/. Drop the trailing slash
@@ -90,9 +97,9 @@ function App() {
       <Suspense fallback={<div className="h-[100svh]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/beyond" element={<BeyondPage />} />
-          <Route path="/studio" element={<Studio />} />
-          <Route path="/ai-slop" element={<AiSlop />} />
+          <Route path="/beyond" element={SHOW_BEYOND ? <BeyondPage /> : <ComingSoon />} />
+          <Route path="/studio" element={SHOW_BEYOND ? <Studio /> : <ComingSoon />} />
+          <Route path="/ai-slop" element={SHOW_BEYOND ? <AiSlop /> : <ComingSoon />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

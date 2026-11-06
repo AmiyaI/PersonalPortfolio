@@ -12,7 +12,7 @@ import menu from './menu.svg';
 
 // Projects
 import phishai from './projects/phishai.jpeg';
-import portfolio from './projects/portfolio.jpg';
+import b4ai from './projects/b4ai.jpg';
 import weatherApp from './projects/weather-app.jpg';
 
 // Avatar
@@ -21,7 +21,7 @@ import avatar from './avatar/avatar.webp';
 // Textures
 import noise from './textures/noise.png';
 
-export { menu, close, phishai, portfolio, weatherApp, avatar, logo, noise };
+export { menu, close, phishai, b4ai, weatherApp, avatar, logo, noise };
 
 // Skill logos from devicon (MIT, see tech/LICENSE-devicon).
 import awsIcon from './tech/aws.svg';

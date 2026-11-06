@@ -5,7 +5,7 @@
      Last modification: 10/25/2026
 */
 
-import { phishai, portfolio, weatherApp, avatar, techIcons } from '../assets';
+import { phishai, b4ai, weatherApp, avatar, techIcons } from '../assets';
 
 const socials = [
   // Personal projects; the work account (AmiyaSWA) is the contribution graph in Experience.
@@ -178,12 +178,14 @@ const projects = [
     source_code_link: 'https://github.com/AmiyaI/WeatherApp',
   },
   {
-    name: 'This Website',
-    description: 'The site you are on: React 19, GSAP, Lenis and a particle hero, deployed on AWS Amplify.',
-    tags: ['React', 'GSAP', 'Amplify'],
-    image: portfolio,
-    source_code_link: 'https://github.com/AmiyaI/PersonalPortfolio',
-    demo_link: 'https://www.amiyaislam.com',
+    name: 'Before AI',
+    description: 'My first portfolio, built by hand in 2023 before I used any AI coding tools: React, Framer Motion and a particle hero. The site you are on is its redesign, rebuilt with AI.',
+    tags: ['React', 'Framer Motion', 'Built by hand'],
+    image: b4ai,
+    imageAlt: 'The original 2023 site: Who\'s Amiya? over floating tech logos',
+    source_code_link: 'https://github.com/AmiyaI/PersonalPortfolio/tree/original-site',
+    demo_link: 'https://b4ai.amiyaislam.com',
+    demo_label: 'Visit b4ai.amiyaislam.com',
   },
 ];
 

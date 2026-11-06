@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 // robots.txt that blocks all crawlers. Local builds and main are unchanged.
 const branch = process.env.AWS_BRANCH;
 const isStaging = Boolean(branch) && branch !== 'main';
+// Beyond (and Studio, AI Slop) stays "Coming soon" on amiyaislam.com until it
+// launches; staging and local dev show it. See src/lib/features.js.
+const showBeyond = branch !== 'main';
 
 const noindexStaging = () => ({
   name: 'noindex-staging',
@@ -23,6 +26,9 @@ const noindexStaging = () => ({
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), noindexStaging()],
+  define: {
+    __SHOW_BEYOND__: JSON.stringify(showBeyond),
+  },
   server: {
     host: true,
   },
