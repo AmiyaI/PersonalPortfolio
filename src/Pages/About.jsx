@@ -53,6 +53,9 @@ const About = () => {
       <SectionHeader kicker="Introduction" title="About me" layout="left" textClassName="about-statement text-lead! leading-snug">
         {introduction.statement}
       </SectionHeader>
+      <div className="mt-5">
+        <WavingFlags />
+      </div>
 
       <div className="about-story mt-10 grid grid-cols-1 items-center gap-10 lg:mt-12 lg:grid-cols-12">
         <div className="flex flex-col gap-5 text-body text-ink lg:col-span-6">
@@ -61,8 +64,7 @@ const About = () => {
           <p className="about-part">{introduction.text[2]}</p>
           <p className="about-part">{introduction.text[3]}</p>
         </div>
-        <div className="about-part flex flex-col items-center gap-5 lg:col-span-5 lg:col-start-8">
-          <WavingFlags />
+        <div className="about-part flex justify-center lg:col-span-5 lg:col-start-8">
           <div className="aspect-[4/5] w-[60%] max-w-[300px]">
             <ImageSlider images={memoji.image} />
           </div>

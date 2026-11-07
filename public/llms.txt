@@ -1,0 +1,23 @@
+# Amiya Islam
+
+> Founding engineer and AI maximalist who loves building products from 0 to 1. Personal site: https://www.amiyaislam.com
+
+## About
+- Founding engineer at SWA AI (swa-ai.com), an enterprise AI platform: built the multi-agent platform teams use in Slack, Microsoft Teams, SMS, web and mobile, plus its enterprise controls, billing and multi-tenant data model.
+- Before software: construction engineering (B.S., Virginia Tech) and a project engineer role at DPR Construction on a $100M civic build.
+- Certifications: AWS DevOps Engineer Professional, AWS Security Specialty, AWS Solutions Architect, Developer and SysOps Associate, CKA, LFCS, CompTIA Security+, Terraform Associate.
+
+## Writing
+- [AI Agents for One Person or for the Whole Team?](https://swa-ai.com/personal-ai-agents-vs-team-assistant/)
+- [Swa vs Claude Duet](https://swa-ai.com/swa-vs-claude-duet/)
+- [Swa vs Meta Muse](https://swa-ai.com/swa-vs-meta-muse/)
+- [Swa vs ChatGPT Dots](https://swa-ai.com/swa-vs-chatgpt-dots/)
+- [Swa vs Grok Bot](https://swa-ai.com/swa-vs-grok-bot/)
+- [Claude Tag vs Swa](https://swa-ai.com/claude-tag-vs-swa/)
+- [Introducing Swa](https://swa-ai.com/introducing-swa-ai-platform-slack-teams-sms/)
+
+## Links
+- [GitHub, personal](https://github.com/AmiyaI)
+- [GitHub, work](https://github.com/AmiyaSWA)
+- [LinkedIn](https://www.linkedin.com/in/amiya-islam)
+- [The original 2023 site, built before AI coding tools](https://b4ai.amiyaislam.com)

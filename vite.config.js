@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
-// Staging must never be indexed. Amplify sets AWS_BRANCH during its build:
+// Staging must never be indexed; the live site gets an open robots.txt and a sitemap. Amplify sets AWS_BRANCH during its build:
 // every branch except main (amiyaislam.com) gets a noindex meta tag and a
 // robots.txt that blocks all crawlers. Local builds and main are unchanged.
 const branch = process.env.AWS_BRANCH;
@@ -19,8 +19,20 @@ const noindexStaging = () => ({
     return html.replace('<head>', '<head>\n    <meta name="robots" content="noindex, nofollow">');
   },
   generateBundle() {
-    if (!isStaging) return;
-    this.emitFile({ type: 'asset', fileName: 'robots.txt', source: 'User-agent: *\nDisallow: /\n' });
+    if (isStaging) {
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: 'User-agent: *\nDisallow: /\n' });
+      return;
+    }
+    // The live site: crawlable, with a sitemap of the public pages. Beyond is
+    // listed only once it launches.
+    const pages = ['/', ...(showBeyond ? ['/beyond', '/studio'] : [])];
+    const urls = pages.map((p) => `  <url><loc>https://www.amiyaislam.com${p}</loc></url>`).join('\n');
+    this.emitFile({ type: 'asset', fileName: 'robots.txt', source: 'User-agent: *\nAllow: /\n\nSitemap: https://www.amiyaislam.com/sitemap.xml\n' });
+    this.emitFile({
+      type: 'asset',
+      fileName: 'sitemap.xml',
+      source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+    });
   },
 });
 
