@@ -9,6 +9,7 @@ import { useRef } from "react";
 import SectionHeader from "../Components/SectionHeader";
 import { memoji, introduction } from "../Constants/constants";
 import ImageSlider from "../Components/elements/ImageSlider";
+import WavingFlags from "../Components/WavingFlags";
 import { gsap, useGSAP, SplitText, MOTION_OK } from "../lib/gsap";
 
 const About = () => {
@@ -60,7 +61,8 @@ const About = () => {
           <p className="about-part">{introduction.text[2]}</p>
           <p className="about-part">{introduction.text[3]}</p>
         </div>
-        <div className="about-part flex justify-center lg:col-span-5 lg:col-start-8">
+        <div className="about-part flex flex-col items-center gap-5 lg:col-span-5 lg:col-start-8">
+          <WavingFlags />
           <div className="aspect-[4/5] w-[60%] max-w-[300px]">
             <ImageSlider images={memoji.image} />
           </div>

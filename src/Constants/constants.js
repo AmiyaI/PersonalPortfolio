@@ -39,8 +39,7 @@ const introduction = {
 
     "Off the clock you'll find me working on my fitness, out in nature, trading or playing the piano. I'm always up for building something great with people who care about it as much as I do. Thanks for visiting!",
   ],
-  statement:
-    "I build AI agents that do real work, and the cloud infrastructure that keeps them fast, safe and cheap to run.",
+  statement: 'AI maximalist who loves building products from 0 to 1.',
 };
 
 export const navLinks = [

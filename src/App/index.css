@@ -385,3 +385,15 @@ html.lenis * {
 @media (prefers-reduced-motion: reduce) {
   .sound-bar { animation: none; height: 70%; }
 }
+
+/* Waving flags (About): each strip bobs and shades a beat behind the last. */
+.flag-strip {
+  animation: flag-wave 1.8s ease-in-out infinite alternate;
+}
+@keyframes flag-wave {
+  from { transform: translateY(-2px); filter: brightness(1.06); }
+  to { transform: translateY(2px); filter: brightness(0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flag-strip { animation: none; }
+}
