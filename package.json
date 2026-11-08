@@ -15,7 +15,6 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@emailjs/browser": "^5.0.3",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@gsap/react": "^2.1.2",
     "@tsparticles/engine": "^4.4.0",

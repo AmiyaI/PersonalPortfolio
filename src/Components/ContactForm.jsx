@@ -7,6 +7,11 @@
 
 import { useRef, useState } from "react";
 
+// Messages go through Web3Forms to iamiya@vt.edu. The access key is public by
+// design: it only lets a form deliver to that inbox. (EmailJS was dropped:
+// its Gmail connection expired and the form stopped delivering.)
+const WEB3FORMS_KEY = "01000187-a3f2-4fd4-999f-dd3d83984f3f";
+
 const fields = [
   { id: "firstname", name: "from_name", label: "First name", type: "text", autoComplete: "given-name" },
   { id: "lastname", name: "from_last", label: "Last name", type: "text", autoComplete: "family-name" },
@@ -38,9 +43,22 @@ const ContactForm = () => {
     }
     setStatus("sending");
     try {
-      // Loaded on demand: most visitors never send the form.
-      const { default: emailjs } = await import("@emailjs/browser");
-      await emailjs.sendForm("amiya_personalport", "template1", form.current, { publicKey: "cdoSytMf3BqCdBI3H" });
+      // Plain form data (no JSON content type) keeps this a "simple" request,
+      // so the browser skips the CORS preflight that Web3Forms rejects.
+      const fields = new FormData(form.current);
+      const name = `${fields.get("from_name")} ${fields.get("from_last")}`.trim();
+      const body = new FormData();
+      body.append("access_key", WEB3FORMS_KEY);
+      body.append("subject", `New message from ${name} via amiyaislam.com`);
+      body.append("from_name", "amiyaislam.com");
+      body.append("name", name);
+      body.append("email", fields.get("from_email"));
+      body.append("replyto", fields.get("from_email"));
+      body.append("message", fields.get("message"));
+      body.append("botcheck", "");
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { Accept: "application/json" }, body });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok || !result.success) throw new Error(result.message || `Web3Forms answered ${res.status}`);
       lastSent.current = Date.now();
       form.current.reset();
       setStatus("sent");
