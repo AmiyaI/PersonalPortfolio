@@ -67,7 +67,7 @@ const Experience = () => {
   return (
     <section ref={scope} id="experience" className="w-full field-aurora-deep px-5 py-20 text-white sm:px-8 lg:py-24">
       <SectionHeader kicker="Where I've worked" title="Experience" layout="split" tone="light" className="mb-8">
-        Founding engineer at an AI startup today. Construction engineering before that, which is where I learned to ship on a schedule.
+        From building buildings to building software. Founding engineer at an AI startup today.
       </SectionHeader>
 
       <div role="tablist" aria-label="Experience" onKeyDown={onKeyDown} className="mb-8 inline-flex rounded-full bg-white/15 p-1 backdrop-blur-md">

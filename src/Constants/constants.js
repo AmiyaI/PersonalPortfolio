@@ -117,7 +117,7 @@ const education = [
     school: 'Virginia Tech',
     degree: 'B.S. in Construction Engineering and Management',
     period: '2019 – 2023',
-    note: 'Where I learned to ship on a schedule.',
+    note: 'Where I started: building buildings.',
     points: ['Project management, estimating, scheduling and structural analysis.'],
   },
 ];
