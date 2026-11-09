@@ -10,16 +10,19 @@
 // The nav's Beyond menu links straight to each part.
 
 import Beyond from "./Beyond";
+import { MediaViewerProvider } from "../Components/media/MediaViewer";
 import Hobbies from "./Hobbies";
 import HotTakes from "./HotTakes";
 
 // tabIndex -1 lets the page transition move focus here after a route change.
 const BeyondPage = () => (
-  <main id="main" tabIndex={-1} className="pt-16 outline-none">
-    <Beyond />
-    <Hobbies />
-    <HotTakes />
-  </main>
+  <MediaViewerProvider>
+    <main id="main" tabIndex={-1} className="pt-16 outline-none">
+      <Beyond />
+      <Hobbies />
+      <HotTakes />
+    </main>
+  </MediaViewerProvider>
 );
 
 export default BeyondPage;

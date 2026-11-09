@@ -6,18 +6,21 @@
 */
 
 // Doors off the career page: the creative work (Studio, which also leads on
-// to the AI Slop experiments) and the shirts. Studio previews its film on hover.
+// to the AI Slop experiments) and the shirts. Studio previews its film on hover;
+// Shirts opens the mushroom tee lookbook, with a separate link to ask for one.
 
 import { useRef } from "react";
 import SectionHeader from "../Components/SectionHeader";
 import { TransitionLink } from "../Components/motion/PageTransition";
 import { gsap, useGSAP, MOTION_OK, EASE, START } from "../lib/gsap";
 import media from "../Constants/media.json";
+import { useMediaViewer } from "../Components/media/MediaViewer";
 
 const studioFeature = media.studio[0];
 const shirt = media.shirts[0];
 
 const Beyond = () => {
+  const openViewer = useMediaViewer();
   const scope = useRef(null);
 
   useGSAP(
@@ -92,12 +95,16 @@ const Beyond = () => {
             </div>
           </TransitionLink>
 
-          <a
-            id="shirts"
-            href="mailto:iamiya@vt.edu?subject=I%20want%20a%20shirt"
-            data-cursor="Ask"
-            className="door group relative flex min-h-[380px] scroll-mt-28 flex-col justify-end overflow-hidden bg-white p-8 text-night"
-          >
+          {/* The whole card opens the lookbook; the "Ask" link sits above it as a
+              sibling, so neither control is nested inside the other. */}
+          <div id="shirts" className="door group relative flex min-h-[380px] scroll-mt-28 flex-col justify-end overflow-hidden bg-white p-8 text-night">
+            <button
+              type="button"
+              onClick={() => openViewer(shirt, 0)}
+              data-cursor="View"
+              aria-label={`Open the ${shirt.title}, ${shirt.images.length} photos`}
+              className="absolute inset-0 z-10 cursor-pointer"
+            />
             <img
               src={shirt.images[3]}
               alt="The mushroom tee, worn in a lookbook shot"
@@ -108,10 +115,17 @@ const Beyond = () => {
                 Shirts <span className="inline-block transition-transform duration-[400ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2">→</span>
               </h3>
               <p className="mt-3 max-w-md text-body">
-                Shirts I designed, starting with the mushroom tee. Not in a store yet. Want one? Ask me.
+                Shirts I designed, starting with the mushroom tee. Tap to see the lookbook. Not in a store yet.
               </p>
+              <a
+                href="mailto:iamiya@vt.edu?subject=I%20want%20a%20shirt"
+                data-cursor="Ask"
+                className="nav-link relative z-20 mt-4 inline-block pb-0.5 text-compact font-semibold text-accent"
+              >
+                Want one? Ask about a shirt ↗
+              </a>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </section>
