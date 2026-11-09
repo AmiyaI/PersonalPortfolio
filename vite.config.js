@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { seoFallback } from './scripts/seo-fallback.mjs';
 
 // Staging must never be indexed; the live site gets an open robots.txt and a sitemap. Amplify sets AWS_BRANCH during its build:
 // every branch except main (amiyaislam.com) gets a noindex meta tag and a
@@ -37,7 +38,7 @@ const noindexStaging = () => ({
 });
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), noindexStaging()],
+  plugins: [react(), tailwindcss(), noindexStaging(), seoFallback()],
   define: {
     __SHOW_BEYOND__: JSON.stringify(showBeyond),
   },
