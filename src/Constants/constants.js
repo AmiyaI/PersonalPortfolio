@@ -37,7 +37,7 @@ const introduction = {
 
     "I came to software from construction engineering at Virginia Tech, picked up DevOps, Kubernetes and a stack of cloud certifications along the way, and I've been hooked on AI since ChatGPT first launched.",
 
-    "Off the clock you'll find me working on my fitness, out in nature, trading or playing the piano. I'm always up for building something great with people who care about it as much as I do. Thanks for visiting!",
+    "Off the clock you'll find me working on my fitness, out in nature, trading, playing the piano, or making things with new AI tools just to see what they can do. I'm always up for building something great with people who care about it as much as I do. Thanks for visiting!",
   ],
   statement: 'AI maximalist who loves building products from 0 to 1.',
 };
