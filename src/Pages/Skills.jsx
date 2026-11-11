@@ -15,8 +15,23 @@ import CertTicker from "../Components/CertTicker";
 import { skills } from "../Constants/constants";
 import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 
-// The two skills without a brand logo get a simple drawn mark instead.
+// Skills without a brand logo get a simple drawn mark instead.
 const DRAWN = {
+  network: (
+    <path d="M12 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm-6.5 11a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm13 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm-7.4-5.6 1.8 0-.1 2.3 4.9 3.3-1 1.5-4.7-3.1-4.7 3.1-1-1.5 4.9-3.3-.1-2.3Z" />
+  ),
+  terminal: (
+    <path d="M3.5 4.5h17a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1Zm1 2v11h15v-11h-15Zm2.3 2.4 3.6 3.1-3.6 3.1-1.3-1.5 1.9-1.6-1.9-1.6 1.3-1.5Zm4.7 4.6h5v2h-5v-2Z" />
+  ),
+  database: (
+    <path d="M12 2.5c4.4 0 8 1.4 8 3.25v12.5c0 1.85-3.6 3.25-8 3.25s-8-1.4-8-3.25V5.75C4 3.9 7.6 2.5 12 2.5Zm6 6.1c-1.5.8-3.6 1.15-6 1.15s-4.5-.35-6-1.15v3.15c0 .55 2.3 1.5 6 1.5s6-.95 6-1.5V8.6Zm0 5.5c-1.5.8-3.6 1.15-6 1.15s-4.5-.35-6-1.15v4.15c0 .55 2.3 1.5 6 1.5s6-.95 6-1.5V14.1ZM12 4.5c-3.7 0-6 .95-6 1.25S8.3 7 12 7s6-.95 6-1.25S15.7 4.5 12 4.5Z" />
+  ),
+  plug: (
+    <path d="M8 2.5h2v4h4v-4h2v4h1.5a1 1 0 0 1 1 1v3.5a6 6 0 0 1-5.5 6v4.5h-2V17a6 6 0 0 1-5.5-6V7.5a1 1 0 0 1 1-1H8v-4Zm-1.5 6V11a4 4 0 0 0 8 0V8.5h-8Z" />
+  ),
+  clock: (
+    <path d="M12 2.5a9.5 9.5 0 1 1 0 19 9.5 9.5 0 0 1 0-19Zm0 2a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15Zm1 2.5v4.6l3.4 2.2-1.1 1.7L11 12.7V7h2Z" />
+  ),
   sparkle: (
     <path d="M12 2.5c.5 4.6 2.4 6.5 7 7-4.6.5-6.5 2.4-7 7-.5-4.6-2.4-6.5-7-7 4.6-.5 6.5-2.4 7-7Zm6.5 11c.25 2 1 2.75 3 3-2 .25-2.75 1-3 3-.25-2-1-2.75-3-3 2-.25 2.75-1 3-3Z" />
   ),
@@ -26,7 +41,15 @@ const DRAWN = {
 };
 
 const Logo = ({ icon, name }) =>
-  DRAWN[icon] ? (
+  icon?.mask ? (
+    // One-colour brand mark, tinted with its brand colour.
+    <span
+      aria-hidden="true"
+      title={name}
+      className="block h-9 w-9"
+      style={{ backgroundColor: icon.color, maskImage: `url(${icon.mask})`, maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center" }}
+    />
+  ) : DRAWN[icon] ? (
     <svg viewBox="0 0 24 24" className="h-9 w-9 fill-accent" aria-hidden="true">
       {DRAWN[icon]}
     </svg>
