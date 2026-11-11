@@ -20,6 +20,9 @@ const DRAWN = {
   network: (
     <path d="M12 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm-6.5 11a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm13 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm-7.4-5.6 1.8 0-.1 2.3 4.9 3.3-1 1.5-4.7-3.1-4.7 3.1-1-1.5 4.9-3.3-.1-2.3Z" />
   ),
+  harness: (
+    <path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5Zm0 2.3L5.5 8.2v7.6l6.5 3.4 6.5-3.4V8.2L12 4.8Zm0 3.7a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" />
+  ),
   terminal: (
     <path d="M3.5 4.5h17a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1Zm1 2v11h15v-11h-15Zm2.3 2.4 3.6 3.1-3.6 3.1-1.3-1.5 1.9-1.6-1.9-1.6 1.3-1.5Zm4.7 4.6h5v2h-5v-2Z" />
   ),
@@ -41,15 +44,7 @@ const DRAWN = {
 };
 
 const Logo = ({ icon, name }) =>
-  icon?.mask ? (
-    // One-colour brand mark, tinted with its brand colour.
-    <span
-      aria-hidden="true"
-      title={name}
-      className="block h-9 w-9"
-      style={{ backgroundColor: icon.color, maskImage: `url(${icon.mask})`, maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center" }}
-    />
-  ) : DRAWN[icon] ? (
+  DRAWN[icon] ? (
     <svg viewBox="0 0 24 24" className="h-9 w-9 fill-accent" aria-hidden="true">
       {DRAWN[icon]}
     </svg>
@@ -83,11 +78,12 @@ const Skills = () => {
       <SectionHeader kicker="What I do" title="Skills" layout="center" className="mb-8 lg:mb-10">
         What I reach for most, and the certification or track record behind each one.
       </SectionHeader>
-      <ul className="skill-grid mx-auto grid max-w-6xl grid-cols-3 gap-2 sm:gap-3 md:grid-cols-4 lg:grid-cols-7">
+      {/* Flex rather than grid so a short last row sits centred. */}
+      <ul className="skill-grid mx-auto flex max-w-6xl flex-wrap justify-center gap-2 sm:gap-3">
         {skills.map((skill) => (
           <li
             key={skill.name}
-            className="skill-card group flex flex-col items-center gap-2 rounded-2xl bg-white/70 px-2 py-4 text-center sm:px-3 sm:py-5 shadow-[0_1px_0_rgba(20,13,38,0.04)] transition-[translate,box-shadow,background-color] duration-300 ease-[cubic-bezier(.22,1,.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_-12px_rgba(45,33,82,0.35)]"
+            className="skill-card group flex w-[calc((100%-1rem)/3)] flex-col items-center gap-2 rounded-2xl sm:w-[calc((100%-2.25rem)/4)] lg:w-[calc((100%-4.5rem)/7)] bg-white/70 px-2 py-4 text-center sm:px-3 sm:py-5 shadow-[0_1px_0_rgba(20,13,38,0.04)] transition-[translate,box-shadow,background-color] duration-300 ease-[cubic-bezier(.22,1,.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_-12px_rgba(45,33,82,0.35)]"
           >
             <span className="transition-transform duration-500 ease-[cubic-bezier(.34,1.56,.64,1)] group-hover:-rotate-6 group-hover:scale-110">
               <Logo icon={skill.icon} name={skill.name} />

@@ -196,15 +196,13 @@ const memoji = {
 // The skills grid: a brand logo (devicon, MIT, in assets/tech) or a drawn
 // icon, the name, and the certification or track record behind it.
 const skills = [
-  // AI first: the brand marks (simple-icons, in public/particles) are tinted
-  // with a mask; the rest are drawn icons in Skills.jsx.
-  { name: 'Claude', icon: { mask: '/particles/claude.svg', color: '#d97757' }, fact: 'Claude Code daily, API in production' },
-  { name: 'OpenAI', icon: { mask: '/particles/openai.svg', color: '#10141f' }, fact: 'GPT models and Codex' },
-  { name: 'Multi-model', icon: { mask: '/particles/googlegemini.svg', color: '#4b6cf0' }, fact: 'Gemini, Grok, Perplexity, DeepSeek' },
+  // AI first, described by what I build rather than by vendor or employer.
+  { name: 'LLMs', icon: 'sparkle', fact: 'Claude, GPT, Gemini, Grok and more' },
+  { name: 'Agentic coding', icon: 'terminal', fact: 'Claude Code and Codex, every day' },
   { name: 'Multi-agent systems', icon: 'network', fact: 'Supervisor and specialist agents' },
-  { name: 'Agent harnesses', icon: 'terminal', fact: 'Agentic coding with Claude Code and Codex' },
+  { name: 'Agent harnesses', icon: 'harness', fact: 'Orchestrators that plan, route and run agents' },
   { name: 'RAG', icon: 'database', fact: 'Knowledge bases and retrieval' },
-  { name: 'Tool integrations', icon: 'plug', fact: '121 apps agents can use' },
+  { name: 'Tool integrations', icon: 'plug', fact: 'Connecting agents to apps: auth, APIs, tool calling' },
   { name: 'Scheduled agents', icon: 'clock', fact: 'Agents that run on their own schedule' },
   { name: 'AWS', icon: techIcons.aws, fact: '5 certifications, DevOps Pro' },
   { name: 'Kubernetes', icon: techIcons.kubernetes, fact: 'Certified administrator' },
