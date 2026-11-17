@@ -199,11 +199,10 @@ const skills = [
   // AI first, described by what I build rather than by vendor or employer.
   { name: 'LLMs', icon: 'sparkle', fact: 'Claude, GPT, Gemini, Grok and more' },
   { name: 'Agentic coding', icon: 'terminal', fact: 'Claude Code and Codex, every day' },
-  { name: 'Multi-agent systems', icon: 'network', fact: 'Supervisor and specialist agents' },
-  { name: 'Agent harnesses', icon: 'harness', fact: 'Orchestrators that plan, route and run agents' },
+  { name: 'Multi-agent systems', icon: 'network', fact: 'Harnesses that plan, route and run specialist agents' },
   { name: 'RAG', icon: 'database', fact: 'Knowledge bases and retrieval' },
   { name: 'Tool integrations', icon: 'plug', fact: 'Connecting agents to apps: auth, APIs, tool calling' },
-  { name: 'Scheduled agents', icon: 'clock', fact: 'Agents that run on their own schedule' },
+  { name: 'Scheduled agents & automations', icon: 'clock', fact: 'Run on their own schedule' },
   { name: 'AWS', icon: techIcons.aws, fact: '5 certifications, DevOps Pro' },
   { name: 'Kubernetes', icon: techIcons.kubernetes, fact: 'Certified administrator' },
   { name: 'Terraform', icon: techIcons.terraform, fact: 'Certified associate' },
