@@ -17,7 +17,7 @@ import { TransitionLink } from "../Components/motion/PageTransition";
 const VIDEO = { src: "/media/ugc/ugc-sample.mp4", poster: "/media/ugc/ugc-sample-poster.jpg" };
 // The button opens my Discord profile; the username is shown (and copyable)
 // for anyone who'd rather search for it in the app.
-const DISCORD = { user: "fatkidonacid", url: "https://discord.com/users/1524736383673958592" };
+const DISCORD = { user: "omiyo123", url: "https://discord.com/users/1524736383673958592" };
 
 const SKILLS = [
   { title: "Hooks and scripts", text: "Openers that stop the scroll and scripts that sound like a real person, not an ad." },
