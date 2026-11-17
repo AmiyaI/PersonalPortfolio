@@ -208,7 +208,7 @@ const skills = [
   { name: 'Terraform', icon: techIcons.terraform, fact: 'Certified associate' },
   { name: 'Docker', icon: techIcons.docker, fact: 'Containerized services' },
   { name: 'Linux', icon: techIcons.linux, fact: 'Certified sysadmin' },
-  { name: 'Python', icon: techIcons.python, fact: 'Services and automation' },
+  { name: 'Python', icon: techIcons.python, fact: 'Scripting and backend services' },
   { name: 'TypeScript', icon: techIcons.typescript, fact: 'Front end to back end' },
   { name: 'React', icon: techIcons.react, fact: 'Web apps and portals' },
   { name: 'Next.js', icon: techIcons.nextjs, fact: 'Production web apps' },
