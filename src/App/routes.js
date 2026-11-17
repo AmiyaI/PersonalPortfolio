@@ -11,6 +11,7 @@
 
 export const routeLoaders = {
   "/beyond": () => import("../Pages/BeyondPage"),
+  "/ugc": () => import("../Pages/UgcPage"),
   "/studio": () => import("../Pages/Studio"),
   "/ai-slop": () => import("../Pages/AiSlop"),
 };

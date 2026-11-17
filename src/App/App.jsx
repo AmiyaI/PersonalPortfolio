@@ -28,6 +28,8 @@ import Contact from "../Pages/Contact";
 
 // The creative pages carry their own media and code, so they load on demand.
 const BeyondPage = lazy(routeLoaders["/beyond"]);
+// Live for brands regardless of the Beyond switch; not in the nav.
+const UgcPage = lazy(routeLoaders["/ugc"]);
 const Studio = lazy(routeLoaders["/studio"]);
 const AiSlop = lazy(routeLoaders["/ai-slop"]);
 
@@ -60,11 +62,13 @@ const NotFound = () => (
 const TITLES = SHOW_BEYOND ? {
   "/": "Amiya Islam · AI and cloud engineer",
   "/beyond": "Beyond · Amiya Islam",
+  "/ugc": "UGC · Amiya Islam",
   "/studio": "Studio · Amiya Islam",
   "/ai-slop": "AI Slop · Amiya Islam",
 } : {
   "/": "Amiya Islam · AI and cloud engineer",
   "/beyond": "Coming soon · Amiya Islam",
+  "/ugc": "UGC · Amiya Islam",
   "/studio": "Coming soon · Amiya Islam",
   "/ai-slop": "Coming soon · Amiya Islam",
 };
@@ -101,6 +105,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/beyond" element={SHOW_BEYOND ? <BeyondPage /> : <ComingSoon />} />
+          <Route path="/ugc" element={<UgcPage />} />
           <Route path="/studio" element={SHOW_BEYOND ? <Studio /> : <ComingSoon />} />
           <Route path="/ai-slop" element={SHOW_BEYOND ? <AiSlop /> : <ComingSoon />} />
           <Route path="*" element={<NotFound />} />

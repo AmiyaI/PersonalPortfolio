@@ -99,6 +99,33 @@ const SoundToggle = () => {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, [state]);
 
+  // Step aside for any video with sound (the UGC ad, a film in the viewer):
+  // pause when it starts and pick back up when it pauses or ends. Muted
+  // preview loops don't count. play/pause don't bubble, so listen in capture.
+  useEffect(() => {
+    const own = audio.current;
+    let ducked = false;
+    const isLoud = (el) => el instanceof HTMLVideoElement && !el.muted && el.volume > 0;
+    const onPlay = (e) => {
+      if (!isLoud(e.target) || own.paused || state !== "playing") return;
+      own.pause();
+      ducked = true;
+    };
+    const onStop = (e) => {
+      if (!isLoud(e.target) || !ducked) return;
+      ducked = false;
+      own.play().catch(() => {});
+    };
+    document.addEventListener("play", onPlay, true);
+    document.addEventListener("pause", onStop, true);
+    document.addEventListener("ended", onStop, true);
+    return () => {
+      document.removeEventListener("play", onPlay, true);
+      document.removeEventListener("pause", onStop, true);
+      document.removeEventListener("ended", onStop, true);
+    };
+  }, [state]);
+
   const toggle = () => {
     if (state === "playing") {
       audio.current.pause();
