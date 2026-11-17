@@ -15,6 +15,7 @@ import { ScrollTrigger } from "../lib/gsap";
 import { routeLoaders } from "./routes";
 import { SHOW_BEYOND } from "../lib/features";
 import ComingSoon from "../Pages/ComingSoon";
+import { MediaViewerProvider } from "../Components/media/MediaViewer";
 import { TransitionLink } from "../Components/motion/PageTransition";
 import Hero from "../Pages/Hero";
 import About from "../Pages/About";
@@ -32,16 +33,18 @@ const AiSlop = lazy(routeLoaders["/ai-slop"]);
 
 // tabIndex -1 lets the page transition move focus here after a route change.
 const Home = () => (
-  <main id="main" tabIndex={-1} className="outline-none">
-    <Hero />
-    <About />
-    <EarlyAI />
-    <Experience />
-    <Projects />
-    <Writing />
-    <Skills />
-    <Contact />
-  </main>
+  <MediaViewerProvider>
+    <main id="main" tabIndex={-1} className="outline-none">
+      <Hero />
+      <About />
+      <EarlyAI />
+      <Experience />
+      <Projects />
+      <Writing />
+      <Skills />
+      <Contact />
+    </main>
+  </MediaViewerProvider>
 );
 
 const NotFound = () => (

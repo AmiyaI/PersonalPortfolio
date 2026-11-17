@@ -149,8 +149,8 @@ const projects = [
     tags: ['AI video', 'HyperFrames', 'ElevenLabs'],
     image: '/media/studio/i-didnt-film-this-poster.webp',
     imageAlt: "A frame from I Didn't Film This",
-    demo_link: '/studio#i-didnt-film-this',
-    demo_label: 'Watch it in Studio',
+    // Plays the full film in the viewer, right on the card.
+    video: 'i-didnt-film-this',
   },
   {
     name: 'Agentic Marketing Engine',

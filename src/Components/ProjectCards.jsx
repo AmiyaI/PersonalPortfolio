@@ -11,6 +11,10 @@ import Tilt from "./elements/Tilt";
 import { gsap, useGSAP, MOTION_OK, EASE, DUR, START } from "../lib/gsap";
 import { TransitionLink } from "./motion/PageTransition";
 import { SHOW_BEYOND } from "../lib/features";
+import { useMediaViewer } from "./media/MediaViewer";
+import media from "../Constants/media.json";
+
+const films = Object.fromEntries(media.studio.map((item) => [item.id, item]));
 
 // Links into Studio wait until Beyond launches (lib/features.js).
 const live = (href) => (href && (SHOW_BEYOND || !href.startsWith("/studio")) ? href : undefined);
@@ -31,6 +35,9 @@ const ProjectCard = ({ project }) => {
   const { name, description, tags, image, imageAlt, source_code_link, demo_label } = project;
   const demo_link = live(project.demo_link);
   const href = demo_link ?? source_code_link;
+  const openViewer = useMediaViewer();
+  const film = project.video ? films[project.video] : null;
+  const watch = film && (() => openViewer(film));
   const img = (
     <img
       src={image}
@@ -43,7 +50,18 @@ const ProjectCard = ({ project }) => {
     <li className="project-card flex list-none flex-col">
       <Tilt options={{ max: 6, scale: 1, speed: 600 }} className="group overflow-hidden bg-surface">
         {/* The text links below are the accessible ones; the image is a mouse shortcut. */}
-        {href ? (
+        {watch ? (
+          <button
+            type="button"
+            onClick={watch}
+            data-cursor="Play"
+            aria-hidden="true"
+            tabIndex={-1}
+            className="project-media block aspect-[16/7] w-full cursor-pointer overflow-hidden"
+          >
+            {img}
+          </button>
+        ) : href ? (
           <SmartLink
             href={href}
             data-cursor="View"
@@ -62,6 +80,11 @@ const ProjectCard = ({ project }) => {
         <p className="max-w-[52ch] text-small leading-relaxed text-ink">{description}</p>
         <p className="text-small text-muted">{tags.join(", ")}</p>
         <div className="mt-auto flex items-center gap-5 pt-1 text-small font-semibold text-accent">
+          {watch && (
+            <button type="button" onClick={watch} className="nav-link pb-0.5 font-semibold">
+              Watch the video ▶
+            </button>
+          )}
           {demo_link && (
             <SmartLink className="nav-link pb-0.5" href={demo_link}>
               {demo_label ?? "See it live"} →
