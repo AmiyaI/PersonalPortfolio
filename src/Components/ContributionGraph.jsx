@@ -8,8 +8,8 @@
 // The GitHub contribution calendar for the last year, redrawn in the site's
 // colours (quiet violet days, orange for the busiest). The data is refreshed
 // from GitHub's public profile before every build (scripts/fetch-contributions.mjs).
-// The headline and the ramp line are computed from that data, so they stay true
-// as the year rolls forward. Hovering a day shows its count; the columns sweep
+// The headline and the ramp line are computed from that data. The calendar can
+// be frozen ("frozen": true in the JSON), so the wording avoids dates that age. Hovering a day shows its count; the columns sweep
 // in left to right as the card scrolls into view.
 
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
@@ -18,6 +18,7 @@ import { gsap, useGSAP, MOTION_OK } from "../lib/gsap";
 
 const LEVEL_COLOURS = ["#ddd6ef", "#cdbff6", "#a184f1", "#6a4ae8", "#ee8458"];
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const format = (n) => n.toLocaleString("en-US");
 const describe = (day) => {
@@ -33,7 +34,7 @@ const ContributionGraph = () => {
 
   // Columns of seven days (Sunday at the top), padded so the first column
   // starts on its real weekday, plus month labels where a month begins.
-  const { weeks, months, recent } = useMemo(() => {
+  const { weeks, months, ramp } = useMemo(() => {
     const days = calendar.days;
     const lead = new Date(`${days[0].date}T00:00:00Z`).getUTCDay();
     const cells = [...Array(lead).fill(null), ...days];
@@ -44,8 +45,12 @@ const ContributionGraph = () => {
       const first = week.find((d) => d && d.date.endsWith("-01")) ?? (i === 0 ? week.find(Boolean) : null);
       if (first) labels.push({ col: i, name: MONTHS[Number(first.date.slice(5, 7)) - 1] });
     });
-    const lastSix = days.slice(-182).reduce((sum, d) => sum + d.count, 0);
-    return { weeks: columns, months: labels, recent: lastSix };
+    // The ramp line: January's total against the busiest month in the data.
+    const byMonth = {};
+    for (const d of days) byMonth[d.date.slice(0, 7)] = (byMonth[d.date.slice(0, 7)] ?? 0) + d.count;
+    const [peakKey, peak] = Object.entries(byMonth).sort((a, b) => b[1] - a[1])[0];
+    const january = Object.entries(byMonth).find(([k]) => k.endsWith("-01"))?.[1] ?? 0;
+    return { weeks: columns, months: labels, ramp: { january, peak, peakMonth: MONTH_NAMES[Number(peakKey.slice(5, 7)) - 1] } };
   }, []);
 
   // On narrow screens the calendar scrolls sideways; start at the latest weeks.
@@ -80,10 +85,10 @@ const ContributionGraph = () => {
         <div>
           <p className="mb-2 text-small font-semibold tracking-[0.14em] text-accent uppercase">Work GitHub</p>
           <p className="text-title leading-none font-extrabold tracking-[-0.03em]">
-            {format(calendar.total)} contributions in the last year
+            {format(calendar.total)} contributions in a year of building AI agents
           </p>
           <p className="mt-2 text-compact text-muted">
-            {format(recent)} of them in the last six months, once agentic coding became how I work.
+            From {format(ramp.january)} in January to {format(ramp.peak)} in {ramp.peakMonth}, once agentic coding became how I work.
           </p>
         </div>
         {/* Work and personal accounts, labelled, since the site links to both. */}
@@ -100,7 +105,7 @@ const ContributionGraph = () => {
       <div ref={scroller} className="mt-6 overflow-x-auto pb-1">
         {/* Fills the card's width on desktop; below ~740px the cells stop at
             11px and the calendar scrolls sideways instead. */}
-        <div className="min-w-[740px]" role="img" aria-label={`GitHub contribution calendar: ${format(calendar.total)} contributions in the last year`}>
+        <div className="min-w-[740px]" role="img" aria-label={`GitHub contribution calendar: ${format(calendar.total)} contributions in a year of building AI agents`}>
           <div className="relative mb-2 h-4 text-[11px] text-muted" aria-hidden="true">
             {months.map((m) => (
               <span key={`${m.name}-${m.col}`} className="absolute" style={{ left: `${(m.col / weeks.length) * 100}%` }}>
@@ -136,7 +141,7 @@ const ContributionGraph = () => {
 
       <div className="mt-3 flex items-center justify-between gap-4 text-small text-muted">
         <span aria-live="polite" className="min-h-[1.25em]">
-          {hovered ? describe(hovered) : `Updated ${calendar.updated}`}
+          {hovered ? describe(hovered) : "Hover a day to see its count"}
         </span>
         <span className="flex items-center gap-1.5" aria-hidden="true">
           Less

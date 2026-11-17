@@ -28,6 +28,13 @@ const parse = (html) => {
 };
 
 const main = async () => {
+  // Frozen: keep the saved calendar exactly as it is (set "frozen": true in the
+  // JSON, e.g. while the work account is inactive). Delete the flag to resume.
+  const saved = await readFile(OUT, "utf8").then(JSON.parse).catch(() => null);
+  if (saved?.frozen) {
+    console.log(`contributions: frozen at ${saved.total} (${saved.updated}), not refreshing`);
+    return;
+  }
   try {
     const res = await fetch(`https://github.com/users/${USER}/contributions`, {
       headers: { "user-agent": "amiyaislam.com build" },
